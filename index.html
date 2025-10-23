@@ -4,98 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cursos Integrados de Gestión de Proyectos e IA</title>
-    <link rel="stylesheet" href="css/styles.css">
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Mermaid.js para los diagramas -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- jsPDF para certificado -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- Fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .tab-button:hover {
+            background: #e5e7eb;
+        }
+        .tab-button.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            min-height: calc(100vh - 140px);
+            display: none;
+        }
+        iframe.active {
+            display: block;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <!-- Header Global -->
-    <header class="bg-white shadow-md p-4">
-        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-blue-700">Cursos Integrados de Gestión e IA</h1>
-            <nav class="flex space-x-4">
-                <button class="tab-button active" data-tab="tab-fundamentos">Fundamentos</button>
-                <button class="tab-button" data-tab="tab-pmo">PMO IA</button>
-                <button class="tab-button" data-tab="tab-stack">Stack IA</button>
+<body>
+    <!-- Header -->
+    <header style="background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 16px; position: sticky; top: 0; z-index: 1000;">
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <h1 style="font-size: 1.5rem; font-weight: bold; color: #1e40af; margin: 0;">
+                📚 Cursos Integrados de Gestión e IA
+            </h1>
+            <nav style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button onclick="cambiar('fundamentos')" class="tab-button active" id="btn-fundamentos">
+                    📖 Fundamentos
+                </button>
+                <button onclick="cambiar('pmo')" class="tab-button" id="btn-pmo">
+                    🤖 PMO IA
+                </button>
+                <button onclick="cambiar('stack')" class="tab-button" id="btn-stack">
+                    ⚡ Stack IA
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Sidebar TOC Global (común para todos) -->
-    <aside id="toc-sidebar" class="hidden lg:block fixed top-16 left-0 h-screen w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto z-40">
-        <h3 class="text-lg font-bold mb-4">Navegación Global</h3>
-        <ul id="toc-nav" class="space-y-2">
-            <li><a href="#tab-fundamentos" class="toc-link block text-gray-500 hover:text-blue-500">Fundamentos de Gestión</a></li>
-            <li><a href="#tab-pmo" class="toc-link block text-gray-500 hover:text-blue-500">PMO Virtual con IA</a></li>
-            <li><a href="#tab-stack" class="toc-link block text-gray-500 hover:text-blue-500">Stack de IA</a></li>
-        </ul>
-    </aside>
+    <!-- Iframes para cada curso -->
+    <iframe id="iframe-fundamentos" src="backups/fundamentos.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: block;"></iframe>
+    <iframe id="iframe-pmo" src="backups/pmo.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: none;"></iframe>
+    <iframe id="iframe-stack" src="backups/stack.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: none;"></iframe>
 
-    <!-- Contenido Principal -->
-    <main class="lg:ml-64 p-6">
-        <!-- Tab 1: Fundamentos -->
-        <div id="tab-fundamentos" class="tab-content active">
-            <h2 class="text-2xl font-bold mb-4">Curso 1: Fundamentos de Gestión de Proyectos</h2>
-            <!-- Aquí va el contenido extraído del <main> de backups/fundamentos.html -->
-            <!-- Portada y secciones colapsables con <details> -->
-            <details>
-                <summary class="cursor-pointer p-4 bg-gray-200 rounded">Parte 1: Conceptos Básicos</summary>
-                <div class="p-4">
-                    <!-- Contenido de Parte 1 de fundamentos -->
-                    <section id="parte-1-fund">
-                        <h3>PARTE 1: CONCEPTOS BÁSICOS</h3>
-                        <!-- Todas las secciones de Parte 1 -->
-                    </div>
-                </div>
-            </details>
-            <details>
-                <summary class="cursor-pointer p-4 bg-gray-200 rounded">Parte 2: Las 5 Fases</summary>
-                <div class="p-4">
-                    <!-- Contenido de Parte 2 -->
-                </div>
-            </details>
-            <!-- Continuar con todas las partes como acordeones -->
-        </div>
-
-        <!-- Tab 2: PMO IA -->
-        <div id="tab-pmo" class="tab-content">
-            <h2 class="text-2xl font-bold mb-4">Curso 2: PMO Virtual con IA</h2>
-            <!-- Contenido extraído del <main> de backups/pmo.html -->
-            <details>
-                <summary class="cursor-pointer p-4 bg-gray-200 rounded">P0: Fundamentos IA</summary>
-                <div class="p-4">
-                    <!-- Contenido de P0 -->
-                </div>
-            </details>
-            <!-- Continuar con acordeones para P1, P2, etc. -->
-        </div>
-
-        <!-- Tab 3: Stack IA -->
-        <div id="tab-stack" class="tab-content">
-            <h2 class="text-2xl font-bold mb-4">Curso 3: Stack de IA</h2>
-            <!-- Contenido extraído del <main> de backups/stack.html -->
-            <details>
-                <summary class="cursor-pointer p-4 bg-gray-200 rounded">P0: Fundamentos IA</summary>
-                <div class="p-4">
-                    <!-- Contenido de P0 -->
-                </div>
-            </details>
-            <!-- Continuar con acordeones -->
-        </div>
-    </main>
-
-    <!-- Footer Global -->
-    <footer class="bg-gray-800 text-white p-4 mt-8">
-        <p>© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
-        <button id="certificado-btn" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Generar Certificado</button>
+    <!-- Footer -->
+    <footer style="background: #1f2937; color: white; padding: 24px; text-align: center;">
+        <p style="margin: 0 0 16px 0;">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
+        <button id="certificado-btn" onclick="generarCertificado()" style="background: #3b82f6; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+            📄 Generar Certificado de Progreso
+        </button>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // USANDO ESTILOS INLINE DIRECTOS (no pueden ser sobrescritos por Tailwind)
+        function cambiar(curso) {
+            console.log('>>> CAMBIANDO A:', curso);
+
+            // Ocultar TODOS los iframes usando style.display directo
+            document.querySelectorAll('iframe').forEach(f => {
+                f.style.display = 'none';
+                console.log('Ocultando:', f.id);
+            });
+
+            // Desactivar todos los botones
+            document.querySelectorAll('.tab-button').forEach(b => {
+                b.classList.remove('active');
+            });
+
+            // Mostrar el iframe seleccionado usando style.display directo
+            const iframe = document.getElementById('iframe-' + curso);
+            const btn = document.getElementById('btn-' + curso);
+
+            if (iframe && btn) {
+                iframe.style.display = 'block';
+                btn.classList.add('active');
+                console.log('✅ MOSTRANDO:', iframe.id);
+            } else {
+                console.error('❌ No se encontró iframe o botón para:', curso);
+            }
+        }
+
+        // Función para generar certificado
+        function generarCertificado() {
+            if (typeof jsPDF === 'undefined') {
+                alert('jsPDF no está cargado. Verifica tu conexión a internet.');
+                return;
+            }
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                // Título
+                doc.setFontSize(24);
+                doc.setTextColor(30, 64, 175);
+                doc.text('CERTIFICADO DE PROGRESO', 105, 40, { align: 'center' });
+
+                // Línea decorativa
+                doc.setDrawColor(59, 130, 246);
+                doc.setLineWidth(1);
+                doc.line(20, 50, 190, 50);
+
+                // Contenido
+                doc.setFontSize(16);
+                doc.setTextColor(0, 0, 0);
+                doc.text('Cursos Integrados de Gestión de Proyectos e IA', 105, 70, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.text('Este certificado reconoce que has accedido a:', 105, 90, { align: 'center' });
+
+                doc.setFontSize(14);
+                doc.text('✓ Fundamentos de Gestión de Proyectos', 30, 110);
+                doc.text('✓ PMO Virtual con IA', 30, 125);
+                doc.text('✓ Stack de IA', 30, 140);
+
+                // Fecha
+                const fecha = new Date().toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                doc.setFontSize(10);
+                doc.text('Fecha: ' + fecha, 105, 170, { align: 'center' });
+
+                // Footer
+                doc.setFontSize(8);
+                doc.setTextColor(100, 100, 100);
+                doc.text('© 2025 Randhy Paul Rodriguez Santos', 105, 280, { align: 'center' });
+                doc.text('Generado con Claude Code', 105, 285, { align: 'center' });
+
+                // Descargar
+                doc.save('certificado-cursos-gestion-ia.pdf');
+
+                alert('✅ Certificado generado exitosamente!');
+            } catch (error) {
+                console.error('Error generando certificado:', error);
+                alert('Error al generar el certificado: ' + error.message);
+            }
+        }
+
+        // Inicializar Mermaid
+        if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({ startOnLoad: true, theme: 'default' });
+            console.log('✅ Mermaid inicializado');
+        }
+
+        // Log de eventos de carga de iframes
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.onload = function() {
+                console.log('✅ Cargado:', iframe.id);
+            };
+            iframe.onerror = function() {
+                console.error('❌ Error:', iframe.id);
+            };
+        });
+
+        console.log('🚀 Aplicación iniciada correctamente');
+        console.log('Iframes:', document.querySelectorAll('iframe').length);
+        console.log('Botones:', document.querySelectorAll('button').length);
+    </script>
 </body>
 </html>

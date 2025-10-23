@@ -134,7 +134,6 @@
           font-family: monospace;
           white-space: pre-wrap; /* Para respetar saltos de línea */
           font-size: 0.9em;
-          overflow-x: auto; /* Scroll para prompts largos */
         }
         
         /* Glosario con <dl> */
@@ -254,35 +253,38 @@
         <main id="content" class="lg:pl-[300px] p-6 md:p-12 max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
             
             <!-- Portada -->
-            <header class="mb-12 text-center">
-                 <h1 class="text-5xl font-extrabold text-sky-700">PMO VIRTUAL CON IA v2.0</h1>
+            <header class="mb-12">
+                 <h1 class="text-5xl font-extrabold text-sky-700">PMO VIRTUAL CON IA</h1>
                  <p class="text-2xl italic text-gray-600 mt-4">Metodología Completa de Gestión de Proyectos con Inteligencia Artificial</p>
-                 
-                 <div class="mt-10 inline-block text-left">
-                     <p class="font-semibold text-gray-500">Autor Principal:</p>
-                     <p class="text-3xl font-bold text-gray-900">Randhy Paul Rodriguez Santos</p>
-                 </div>
-                 <div class="mt-4 inline-block text-left ml-8">
-                     <p class="font-semibold text-gray-500">Colaborador y Editor:</p>
-                     <p class="text-3xl font-bold text-gray-900">Manus AI</p>
-                 </div>
-                 
-                 <p class="mt-8 text-gray-500">Versión 2.0 - Edición Definitiva | Octubre 2025</p>
+
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                    <div>
+                        <p class="font-semibold text-gray-500">Autor Principal:</p>
+                        <p class="text-2xl font-bold text-gray-900">Randhy Paul Rodriguez Santos</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-500">Colaborador y Editor:</p>
+                        <p class="text-2xl font-bold text-gray-900">Manus AI</p>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-gray-500">Versión 2.0 | Octubre 2025</p>
+                <p class="text-gray-500 italic">(Parte 2 de la serie: Cursos Integrados de Gestión e IA)</p>
             </header>
-            
+
             <hr class="my-12 border-t-2 border-gray-300">
 
             <!-- Nota de Copyright -->
-            <section class="mb-12 p-6 bg-white rounded-lg shadow-sm border border-gray-200 text-sm">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Nota de Copyright y Descargo de Responsabilidad</h3>
-                <p class="text-gray-600 mb-4">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
-                <p class="text-gray-600 mb-4">Ninguna parte de esta publicación puede ser reproducida, distribuida o transmitida en cualquier forma o por cualquier medio, incluyendo fotocopias, grabaciones u otros métodos electrónicos o mecánicos, sin el permiso previo por escrito del autor, excepto en el caso de breves citas incorporadas en revisiones críticas y ciertos otros usos no comerciales permitidos por la ley de derechos de autor.</p>
-                 <p class="text-gray-600">Este manual es una obra independiente creada por Randhy Paul Rodriguez Santos. Aunque se hace referencia a conceptos y terminología estandarizados por el Project Management Institute, Inc. (PMI), como los que se encuentran en la Guía del PMBOK®, este trabajo no ha sido preparado, revisado, aprobado o respaldado por el PMI. Todos los nombres de productos, logotipos y marcas son propiedad de sus respectivos dueños. El uso de estos nombres no implica respaldo.</p>
+            <section class="mb-12 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                <h3 class="text-xl font-semibold mb-4">Nota de Copyright y Descargo de Responsabilidad</h3>
+                <p class="text-sm text-gray-600 mb-4">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
+                <p class="text-sm text-gray-600 mb-4">Ninguna parte de esta publicación puede ser reproducida, distribuida o transmitida en cualquier forma o por cualquier medio, incluyendo fotocopias, grabaciones u otros métodos electrónicos o mecánicos, sin el permiso previo por escrito del autor, excepto en el caso de breves citas incorporadas en revisiones críticas y ciertos otros usos no comerciales permitidos por la ley de derechos de autor.</p>
+                <p class="text-sm text-gray-600">Este manual es una obra independiente creada por Randhy Paul Rodriguez Santos. Todos los nombres de productos, logotipos y marcas mencionados son propiedad de sus respectivos dueños. El uso de estos nombres no implica respaldo.</p>
             </section>
 
-             <!-- Visión del Manual -->
-             <section id="vision" class="mb-12">
-                 <h3>🎯 VISIÓN DEL MANUAL</h3>
+             <!-- Propósito -->
+             <section id="proposito" class="mb-12">
+                 <h3>🎯 PROPÓSITO DE ESTE MANUAL</h3>
                  <p class="text-xl font-semibold text-sky-700 mb-4">Democratizar la gestión de proyectos profesional mediante Inteligencia Artificial.</p>
                  <p>Este manual está diseñado para profesionales de gestión de proyectos, desarrolladores, emprendedores y líderes técnicos que desean aprovechar el poder de la Inteligencia Artificial para gestionar proyectos de forma más eficiente, sin necesidad de ser expertos en IA.</p>
                  <p class="mt-4 font-semibold">Después de leer y aplicar este manual, serás capaz de:</p>
@@ -291,9 +293,10 @@
                      <li>Trabajar efectivamente con múltiples IAs (Claude, ChatGPT, Cursor, etc.)</li>
                      <li>Escribir prompts profesionales que generen resultados de alta calidad</li>
                      <li>Reducir el tiempo de desarrollo en un 50-70%</li>
-                     <li>Aumentar la productivity del equipo en 2-3x</li>
+                     <li>Aumentar la productividad del equipo en 2-3x</li>
                      <li>Mantener altos estándares de calidad con código generado por IA</li>
                  </ul>
+                 <p class="mt-4"><strong>Público objetivo:</strong> Project Managers, Developers, Emprendedores y líderes técnicos que gestionan proyectos tecnológicos.</p>
              </section>
 
             <hr class="my-12">
@@ -323,8 +326,708 @@
                 <p>El rol del PM evoluciona de "coordinador" a "orquestador de IA".</p>
             </section>
 
-            <!-- Continue with all sections from pmo.txt content... (truncated for brevity, but in full, include all) -->
+            <section id="0.2">
+                <h3>0.2 Fundamentos de Prompt Engineering</h3>
+                <h4>¿Qué es un Prompt?</h4>
+                <p>La instrucción que le das a una IA. La calidad del prompt determina la calidad del resultado.</p>
+                <h4>Anatomía de un Buen Prompt</h4>
+                <code class="prompt">[ROL] + [CONTEXTO] + [TAREA] + [FORMATO] + [RESTRICCIONES]</code>
+                <p><strong>Ejemplo Bueno:</strong></p>
+                <code class="prompt">
+[ROL] Actúa como un PM Senior certificado PMI con 10 años de experiencia.
+[CONTEXTO] Proyecto SaaS B2B análisis datos. Equipo 5 personas. $200K. 6 meses.
+[TAREA] Crea un Project Charter completo (objetivos SMART, alcance, stakeholders, riesgos, hitos, presupuesto).
+[FORMATO] Markdown con tablas. 200-300 palabras/sección.
+[RESTRICCIONES] Limitar alcance a MVP. No features avanzadas.
+                </code>
+                <h4>Las 7 Técnicas de Prompt Engineering</h4>
+                <ol>
+                    <li><strong>Zero-Shot:</strong> Pedir sin ejemplos. (Ej: "Genera Gantt 3 meses").</li>
+                    <li><strong>Few-Shot:</strong> Dar 1-3 ejemplos. (Ej: "Aquí 2 user stories. Genera 5 similares.").</li>
+                    <li><strong>Chain-of-Thought (CoT):</strong> Pedir razonamiento paso a paso. (Ej: "Estima esfuerzo X. Piensa paso a paso: descomponer, complejidad, horas, buffer.").</li>
+                    <li><strong>Role Prompting:</strong> Asignar rol experto. (Ej: "Actúa como Tech Lead. Revisa esta arquitectura.").</li>
+                    <li><strong>Iterative Refinement:</strong> Mejorar en varias pasadas. (Ej: "WBS ok, pero detalla más 'Testing' en 8 subtareas.").</li>
+                    <li><strong>Constrained Generation:</strong> Definir límites claros. (Ej: "Plan comunicaciones. Max 5 reuniones. Formato tabla.").</li>
+                    <li><strong>Meta-Prompting:</strong> Pedir a la IA que mejore tu prompt. (Ej: "Tengo este prompt 'Crea plan app'. Dame 3 versiones mejoradas.").</li>
+                </ol>
+                 <h4>Plantilla de Prompt Universal</h4>
+                 <code class="prompt">
+Actúa como [ROL ESPECÍFICO con experiencia relevante].
 
+Contexto:
+- Proyecto: [Nombre y descripción breve]
+- Stack/Herramientas: [Tecnologías relevantes]
+- Restricciones: [Limitaciones de tiempo, presupuesto, etc.]
+
+Tarea:
+[Descripción clara de lo que necesitas que haga la IA]
+
+Formato de salida:
+[Cómo quieres que se presente el resultado]
+
+Criterios de calidad:
+- [Criterio 1]
+- [Criterio 2]
+
+Ejemplos (opcional):
+[Si tienes ejemplos, inclúyelos aquí]
+                 </code>
+            </section>
+
+            <section id="0.3">
+                <h3>0.3 Guía Completa del Stack de IAs</h3>
+                <h4>Comparativa de IAs y Herramientas (Ecosistema Completo)</h4>
+                <table>
+                     <thead>
+                         <tr><th>IA/Herramienta/Ext</th><th>Fortalezas</th><th>Mejor para</th><th>Costo</th></tr>
+                     </thead>
+                     <tbody>
+                         <tr><td><strong>Claude (Anthropic)</strong></td><td>Razonamiento profundo, arquitectura, análisis complejo</td><td>Diseño arquitectura, code review, docs técnicos</td><td>$20/mes (Pro)</td></tr>
+                         <tr><td><strong>ChatGPT (OpenAI)</strong></td><td>Conocimiento actualizado, versatilidad, plugins</td><td>Investigación, planificación, docs negocio</td><td>$20/mes (Plus)</td></tr>
+                         <tr><td><strong>Grok (xAI)</strong></td><td>Acceso datos X/Twitter real-time</td><td>Investigación tendencias, análisis sentimiento</td><td>$16/mes (Premium+)</td></tr>
+                         <tr><td><strong>Gemini (Google)</strong></td><td>Multimodal (texto/imagen/video), integración Google</td><td>Investigación visual, prototipos multimedia</td><td>Gratis/$20/mes (Adv)</td></tr>
+                         <tr><td><strong>Cursor</strong></td><td>Generación código en contexto, edición inline</td><td>Desarrollo código, refactoring</td><td>$20/mes (Pro)</td></tr>
+                         <tr><td><strong>GitHub Copilot</strong></td><td>Autocompletado rápido, integración VS Code</td><td>Autocompletado, funciones pequeñas</td><td>$10/mes (Ind)</td></tr>
+                         <tr><td><strong>v0.dev (Vercel)</strong></td><td>Generación UI React, preview real-time</td><td>Prototipos UI React</td><td>Gratis (límites)</td></tr>
+                         <tr><td><strong>Manus AI</strong></td><td>Edición contenido estructurado, refinamiento docs</td><td>Docs PM, edición manuales</td><td>Gratis/API pago</td></tr>
+                         <tr><td><strong>Agents (CrewAI/Auto-GPT...)</strong></td><td>Automatización autónoma workflows</td><td>Simulación PMI, testing automatizado</td><td>Gratis (open-source)</td></tr>
+                         <tr><td><strong>IAs Chinas (Ernie/Qwen)</strong></td><td>Perspectivas globales, multilingüe</td><td>Prompts éticos, campañas globales</td><td>Gratis/API pago</td></tr>
+                         <tr><td><strong>Video/Audio (Runway/ElevenLabs)</strong></td><td>Prototipos animados, voiceovers</td><td>Demos visuales, audio educativo</td><td>$12-29/mes</td></tr>
+                         <tr><td><strong>VS Code Ext Gratis (Codeium...)</strong></td><td>Autocompletado IA, agents IDE</td><td>Desarrollo bootstrapping, debug gratis</td><td>Gratis</td></tr>
+                         <tr><td><strong>VS Code Ext Pago (Copilot/Tabnine...)</strong></td><td>Autocompletado avanzado, contextual</td><td>Refactor pro, equipos</td><td>$10-20/mes</td></tr>
+                     </tbody>
+                </table>
+                 <h4>Diagrama Mermaid: Árbol de Selección IA/Ext</h4>
+                 <div class="mermaid">
+                     graph TD
+                        A[Tarea: ¿Código/Desarrollo?] --> B{¿Presupuesto?}
+                        B -->|Gratis| C[Codeium/Continue.dev/CodeWhisperer<br/>Autocompletado básico + agents]
+                        B -->|Pago| D[Copilot/Tabnine Pro/Cursor<br/>Avanzado + multi-archivo]
+                        A --> E[Tarea: ¿Análisis/Docs?]
+                        E --> F{¿Multimodal?}
+                        F -->|Sí| G[Gemini/Runway/ElevenLabs<br/>Visual/audio + Manus edición]
+                        F -->|No| H[Claude/ChatGPT/Ernie-Qwen<br/>Razonamiento + multilingüe]
+                        E --> I[Tarea: ¿Automatización?]
+                        I --> J[CrewAI/Auto-GPT/LangChain<br/>Workflows agenticos gratis]
+                        K[Sector: Desarrollo] --> D
+                        L[Sector: Marketing] --> G
+                        M[Sector: Salud] --> H
+                        N[Sector: Educación] --> I
+                 </div>
+            </section>
+            
+             <section id="0.4">
+                 <h3>0.4 Cómo Elegir la IA Correcta para Cada Tarea</h3>
+                 <h4>Árbol de Decisión</h4>
+                 <div class="mermaid">
+                     graph TD
+                        A(Inicio: Tarea) --> B{¿Código?};
+                        B -- Sí --> C{¿Complejo o Simple?};
+                        B -- No --> D{¿Análisis/Diseño o Docs?};
+                        
+                        C -- Complejo --> E(Cursor);
+                        C -- Simple/Auto --> F(Copilot);
+                        
+                        D -- Análisis/Diseño Tec --> G(Claude);
+                        D -- Docs Negocio/Invest --> H(ChatGPT);
+                        
+                        E --> I{¿Code review?};
+                        I -- Sí --> J(Claude);
+                        I -- No --> K(Fin);
+                        
+                        G --> L{¿Implementar?};
+                        L -- Sí --> E;
+                        L -- No --> K;
+                 </div>
+                 <h4>Matriz de Decisión</h4>
+                <table>
+                     <thead>
+                         <tr><th>Tipo de Tarea</th><th>IA Principal</th><th>IA Secundaria</th><th>Tiempo Est.</th></tr>
+                     </thead>
+                     <tbody>
+                         <tr><td>Diseño Arquitectura</td><td>Claude</td><td>ChatGPT (invest.)</td><td>2-4h</td></tr>
+                         <tr><td>Generación WBS</td><td>Claude/ChatGPT</td><td>-</td><td>1-2h</td></tr>
+                         <tr><td>Desarrollo Feature</td><td>Cursor</td><td>Copilot (auto)</td><td>Variable</td></tr>
+                         <tr><td>Code Review</td><td>Claude</td><td>-</td><td>30-60m</td></tr>
+                         <tr><td>Generación Tests</td><td>Cursor</td><td>-</td><td>1-2h</td></tr>
+                         <tr><td>Docs Técnicos</td><td>Claude</td><td>-</td><td>1-2h</td></tr>
+                         <tr><td>Docs Negocio</td><td>ChatGPT</td><td>-</td><td>1-2h</td></tr>
+                         <tr><td>Invest. Mercado</td><td>ChatGPT (web)</td><td>Grok</td><td>2-3h</td></tr>
+                         <tr><td>Diseño UI</td><td>v0.dev</td><td>Cursor (impl.)</td><td>1-3h</td></tr>
+                         <tr><td>Debugging</td><td>Claude</td><td>Cursor</td><td>Variable</td></tr>
+                     </tbody>
+                </table>
+            </section>
+
+             <section id="0.5">
+                 <h3>0.5 Plataformas de Automatización para Workflows de PM</h3>
+                 <p>Herramientas como CrewAI, Auto-GPT y LangChain permiten crear "agentes" de IA que pueden ejecutar secuencias de tareas de forma autónoma, simulando partes del flujo de trabajo de gestión de proyectos.</p>
+                 <div class="analogia">
+                     <blockquote>Piensa en los agentes como asistentes virtuales especializados. Puedes tener un agente "Planificador" que use Claude para generar el WBS, un agente "Tester" que use Cursor para escribir pruebas, y un agente "Reportero" que use ChatGPT para resumir el progreso.</blockquote>
+                 </div>
+                 <p><strong>Ventajas:</strong> Automatización de tareas repetitivas, simulación rápida de escenarios, ejecución 24/7.</p>
+                 <p><strong>Desventajas:</strong> Requieren configuración técnica, pueden "alucinar" o desviarse sin supervisión humana, la calidad depende totalmente de los prompts iniciales.</p>
+                 <p><strong>Uso en PMO Virtual:</strong> Ideales para simular viabilidad, automatizar testing básico, generar reportes preliminares, pero siempre con validación humana final.</p>
+             </section>
+
+            <hr class="my-12">
+
+            <section id="parte-1-pmo">
+                 <h1>PARTE 1: ¿QUÉ ES UNA PMO VIRTUAL CON IA?</h1>
+            </section>
+
+            <section id="1.1">
+                 <h3>1.1 Definición y Conceptos Clave</h3>
+                 <p>Una <strong>PMO (Project Management Office) Virtual con IA</strong> es un sistema donde humanos definen visión y toman decisiones estratégicas, mientras un ecosistema de IAs (Claude, ChatGPT, Cursor, Copilot, Gemini, Ernie, Qwen), agentes autónomos (CrewAI, Auto-GPT, LangChain), herramientas especializadas (Manus AI, Runway, ElevenLabs) y extensiones de IDE (Codeium, Continue.dev, CodeWhisperer, Tabnine) ejecutan tareas técnicas, generan código, documentan y optimizan.</p>
+             </section>
+
+             <section id="1.2">
+                 <h3>1.2 Diferencia con PMO Tradicional</h3>
+                 <table>
+                     <thead>
+                         <tr><th>Aspecto</th><th>PMO Tradicional</th><th>PMO Virtual IA Expandida</th></tr>
+                     </thead>
+                     <tbody>
+                         <tr><td>Equipo</td><td>10-15 humanos</td><td>2-6 humanos + IA/agents/ext</td></tr>
+                         <tr><td>Costo</td><td>$100-150K/mes</td><td>$40-80K/mes (-60%, opciones gratis)</td></tr>
+                         <tr><td>Velocidad MVP</td><td>6-12 meses</td><td>2-4 meses (3-4x más rápido)</td></tr>
+                         <tr><td>Productividad</td><td>1x</td><td>3-4x (con Manus, Auto-GPT)</td></tr>
+                         <tr><td>Código generado</td><td>100% humano</td><td>70-80% IA/ext</td></tr>
+                         <tr><td>Escalabilidad</td><td>Lineal</td><td>Exponencial (agents, IAs globales)</td></tr>
+                     </tbody>
+                 </table>
+             </section>
+
+             <section id="1.3">
+                 <h3>1.3 Principios Fundamentales</h3>
+                 <ol>
+                     <li><strong>IAs/Agents como Colaboradores Escalables:</strong> Manus refina, CrewAI ejecuta, Codeium ofrece alternativa gratis a Copilot.</li>
+                     <li><strong>Documentación Clara con Manus:</strong> Invertir en prompts para Manus ahorra edición manual.</li>
+                     <li><strong>Metodología Híbrida Gratis/Pago:</strong> Empieza con Continue.dev gratis, escala a Cursor pago.</li>
+                     <li><strong>Iteración Rápida con Agents:</strong> Auto-GPT simula fases, ajusta rápido.</li>
+                     <li><strong>Validación Constante Multi-IA:</strong> Revisar agents con humano, integrar Ernie para diversidad.</li>
+                 </ol>
+                  <div class="analogia">
+                     <blockquote><strong>Anécdota:</strong> En un proyecto de salud, un agent CrewAI automatizó testing GDPR, pero sin validación Manus, docs fallaron compliance; con multi-IA, ahorró 50% tiempo y evitó multas.</blockquote>
+                 </div>
+             </section>
+
+             <section id="1.4">
+                 <h3>1.4 Estructura de la PMO Virtual</h3>
+                 <p>(Ver sección 1.5 para detalle de roles)</p>
+                 <div class="mermaid">
+                     graph TD
+                        A[PMO Director Humano<br/>Visión estratégica] --> B[Project Manager Humano<br/>Coordinación fases]
+                        B --> C[Tech Lead Humano<br/>Arquitectura + review]
+                        C --> D[Developer Humano<br/>Validación + iteración]
+                        A --> E[Multi-IA Ecosistema]
+                        E --> F[Claude/ChatGPT/Gemini<br/>Análisis/planificación]
+                        E --> G[Cursor/Copilot/Tabnine/Codeium<br/>Código gen/refactor<br/>Gratis: Codeium; Pago: Copilot]
+                        E --> H[Manus AI<br/>Edición docs estructurados]
+                        E --> I[CrewAI/Auto-GPT/LangChain<br/>Agents autónomos workflows]
+                        E --> J[Ernie/Qwen<br/>Multilingüe/global]
+                        E --> K[Runway/ElevenLabs<br/>Video/audio prototipos]
+                        E --> L[Continue.dev/CodeWhisperer<br/>Agents/ext VS Code<br/>Gratis: Continue; Pago: Cursor]
+                        D -.-> F; D -.-> G; D -.-> H; D -.-> I; D -.-> J; D -.-> K; D -.-> L;
+                        
+                        style A fill:#ff9800
+                        style B fill:#ff9800
+                        style C fill:#ff9800
+                        style D fill:#ff9800
+                        style E fill:#2196f3
+                        style F fill:#4caf50
+                        style G fill:#4caf50
+                        style H fill:#4caf50
+                        style I fill:#4caf50
+                        style J fill:#4caf50
+                        style K fill:#4caf50
+                        style L fill:#4caf50
+                 </div>
+             </section>
+             
+             <section id="1.5">
+                 <h3>1.5 Roles y Responsabilidades (Humano-IA)</h3>
+                  <table>
+                      <thead>
+                          <tr><th>Rol</th><th>Responsabilidades Clave</th><th>Herramientas IA Principales</th></tr>
+                      </thead>
+                      <tbody>
+                          <tr><td><strong>PMO Director (Humano)</strong></td><td>Visión estratégica, aprobar Charters, gestionar stakeholders</td><td>(Uso indirecto a través de reportes)</td></tr>
+                          <tr><td><strong>Project Manager (Humano)</strong></td><td>Crear WBS, gestionar cronograma, priorizar, validar entregables, coordinar IAs</td><td>Claude, ChatGPT, Manus AI, Agents (para reportes)</td></tr>
+                          <tr><td><strong>Tech Lead (Humano)</strong></td><td>Diseñar arquitectura, definir stack, code review (IA + humano), resolver problemas complejos</td><td>Claude, Cursor, Copilot/Codeium, Agents (para simulación)</td></tr>
+                          <tr><td><strong>Developer (Humano + IA)</strong></td><td>Ejecutar tareas WBS, generar código con IAs, probar, validar, documentar</td><td>Cursor, Copilot/Codeium/Tabnine, Claude (debug), v0.dev (UI), Continue.dev</td></tr>
+                           <tr><td><strong>QA / Tester (Humano + IA)</strong></td><td>Generar y ejecutar tests con IAs, reportar bugs, validar calidad</td><td>Cursor, Agents (CrewAI, LangChain), Claude (casos complejos)</td></tr>
+                           <tr><td><strong>"Equipo de IAs" (Virtual)</strong></td><td>Ejecución de tareas específicas según su fortaleza</td><td>Todo el stack: Claude, ChatGPT, Gemini, Cursor, Copilot, Manus, Agents, etc.</td></tr>
+                      </tbody>
+                  </table>
+             </section>
+
+             <hr class="my-12">
+
+            <section id="parte-2-metodologia">
+                 <h1>PARTE 2: METODOLOGÍA - LAS 5 FASES PMI ADAPTADAS A IA</h1>
+                 <p>La metodología sigue los 5 grupos de procesos PMI adaptados para el ecosistema IA expandido.</p>
+                 <div class="mermaid">
+                     graph TD
+                        A[Iniciación<br/>Gemini+Manus: Investigación/docs] --> B[Planificación<br/>Claude WBS+Auto-GPT simulación]
+                        B --> C[Ejecución<br/>Cursor+Copilot código+Runway prototipos+Continue.dev agents]
+                        C --> D[Monitoreo<br/>ChatGPT reportes+Ernie multilingüe+LangChain tracking]
+                        D --> E[Cierre<br/>CrewAI retrospectiva+ElevenLabs audio+Tabnine review]
+                        
+                        subgraph "Adicional: Flujo Agents en Ejecución"
+                            F[Plan Agent: CrewAI define pasos] --> G[Execute: Auto-GPT corre código/tests]
+                            G --> H[Review: Manus refina outputs] --> I[Iterate: VS Code Codeium ajusta]
+                        end
+                        
+                        style A fill:#e3f2fd
+                        style B fill:#fff3e0
+                        style C fill:#e8f5e8
+                        style D fill:#fce4ec
+                        style E fill:#f3e5f5
+                        style F fill:#ff9800
+                        style G fill:#ff9800
+                        style H fill:#ff9800
+                        style I fill:#ff9800
+                 </div>
+                 <p><strong>Transición Lógica:</strong> Outputs de Iniciación (Gemini) alimentan Planificación (Claude WBS), simulada por Auto-GPT. Ejecución usa Cursor/Copilot/Codeium, agents CrewAI automatizan testing. Monitoreo usa LangChain tracking, cierre con Manus docs finales.</p>
+                  <div class="analogia">
+                     <blockquote><strong>Anécdota Entretenida:</strong> Como un vuelo con agents: En desarrollo, Auto-GPT "piloteó" testing autónomo, pero sin humano en torre (review), aterrizó en bugs; con multi-IA, el proyecto "despegó" 3x más rápido.</blockquote>
+                 </div>
+             </section>
+
+             <section id="2.1">
+                 <h3>2.1 FASE 1: Iniciación</h3>
+                 <p><strong>Objetivo:</strong> Convertir idea en proyecto autorizado, usando Gemini+Manus.</p>
+                 <h4>1.1 Proceso: Identificación Idea (Multi-IA)</h4>
+                  <code class="prompt">
+Actúa como consultor producto con Manus AI. Idea: [descripción]. Clarifícala: problema, audience, valor, MVP. Refina output con estructura PMI usando agents LangChain. Integra VS Code Continue.dev.
+                  </code>
+                   <div class="mermaid">
+                     graph LR
+                        P[Idea Vaga] --> Q[Gemini/ChatGPT: Brainstorm]
+                        Q --> R[Manus AI: Estructura docs]
+                        R --> S[Auto-GPT: Simula viabilidad]
+                        S --> T[VS Code CodeWhisperer: Notas gratis]
+                        T --> U[Project Charter Listo]
+                   </div>
+                 <h4>1.2 Proceso: Análisis Viabilidad (Agents)</h4>
+                  <code class="prompt">
+Analiza viabilidad [proyecto]. Usa agents LangChain para simular stack: Next.js+Prisma. Recomienda gratis (Codeium) vs pago (Copilot).
+                  </code>
+                 <h4>1.3 Proceso: Creación Project Charter (Manus+Claude)</h4>
+                  <code class="prompt">
+Genera Charter [detalles]. Refina con Manus AI para PMI estructura, simula con Auto-GPT.
+                  </code>
+             </section>
+
+             <section id="2.2">
+                 <h3>2.2 FASE 2: Planificación</h3>
+                 <p><strong>Objetivo:</strong> Crear plan detallado.</p>
+                 <h4>2.1 Proceso: Gestión Alcance (Agents/VS Code)</h4>
+                  <code class="prompt">
+Genera WBS [proyecto]. Descompón. Simula dependencias CrewAI, refina VS Code Codeium/Tabnine.
+                  </code>
+                  <div class="mermaid">
+                     graph TD
+                        V[WBS N1] --> W[Claude: Descompone]
+                        W --> X[Auto-GPT: Simula deps]
+                        X --> Y[VS Code Copilot/Tabnine: Estima pago]
+                        Y --> Z[Codeium: Optimiza gratis]
+                        Z --> AA[WBS Completo]
+                   </div>
+                 <h4>2.2 Proceso: Gestión Cronograma (LangChain+VS Code)</h4>
+                  <code class="prompt">
+Estima duraciones WBS [proyecto]. Usa LangChain agent, integra Tabnine VS Code.
+                  </code>
+                   <code class="prompt">
+WBS: [pega]. Crea cronograma. Simula Auto-GPT, refina Manus. Integra VS Code Continue.dev tracking.
+                   </code>
+                 <h4>2.3 Proceso: Gestión Costos (Gratis/Pago)</h4>
+                  <code class="prompt">
+Presupuesto [proyecto]. Desglosa gratis (CodeWhisperer) vs pago (Tabnine), simula burn rate CrewAI.
+                  </code>
+                 <h4>2.4 Proceso: Gestión Calidad (Agents)</h4>
+                  <code class="prompt">
+Estándares calidad [proyecto]. Genera plan testing agentico LangChain, integra VS Code Codeium.
+                  </code>
+                 <h4>2.5 Proceso: Gestión Recursos (Expandido)</h4>
+                  <code class="prompt">
+Recursos [proyecto]. Lista multi-IA, balance gratis/pago, setup agents LangChain.
+                  </code>
+                 <h4>2.6 Proceso: Gestión Riesgos (IA+Agents)</h4>
+                  <code class="prompt">
+Identifica riesgos [categorías]. Simula impactos Auto-GPT, mitiga Manus+Ernie. Considera fallos ext VS Code.
+                  </code>
+                 <h4>2.7 Proceso: Gestión Comunicaciones (Multi-IA)</h4>
+                   <code class="prompt">
+Plan comunicaciones [proyecto]. Incluye prompts reportes CrewAI, visuals Runway.
+                   </code>
+             </section>
+
+             <section id="2.3">
+                 <h3>2.3 FASE 3: Ejecución</h3>
+                 <p><strong>Objetivo:</strong> Ejecutar plan con IAs.</p>
+                 <h4>3.1 Proceso: Workflow Ejecución (Agents/Ext)</h4>
+                 <p>Pasos: Prep (Gemini) → Diseño (Claude+Manus) → Dev (Cursor+Copilot/Codeium) → Test (CrewAI+Continue) → Review (Claude+LangChain) → Docs (Manus) → Integ (Auto-GPT) → Deploy (CodeWhisperer).</p>
+                   <div class="mermaid">
+                     graph LR
+                        Prep[Prep: Gemini] --> Dis[Diseño: Claude+Manus]
+                        Dis --> Dev[Dev: Cursor+Copilot/Codeium]
+                        Dev --> Test[Test: CrewAI+Continue]
+                        Test --> Rev[Review: LangChain+Claude]
+                        Rev --> Doc[Docs: Manus+ElevenLabs]
+                        Doc --> Int[Integ: Auto-GPT CI]
+                        Int --> Dep[Deploy: CodeWhisperer]
+                   </div>
+                 <h4>3.2 Proceso: Gestión Equipo (Agents)</h4>
+                 <p>Daily (Continue notes gratis). Blockers (CrewAI+VS Code simulación).</p>
+                 <h4>3.3 Proceso: Gestión Cambios (Agents)</h4>
+                 <p>Scope Creep (CrewAI simula impacto). CCB (Agents para proyecciones).</p>
+             </section>
+
+             <section id="2.4">
+                 <h3>2.4 FASE 4: Monitoreo y Control</h3>
+                 <p><strong>Objetivo:</strong> Asegurar progreso según plan.</p>
+                 <h4>4.1 Proceso: Tracking Progreso (Agents/VS Code)</h4>
+                 <p>Métricas Diarias (Continue log gratis). Semanales (ChatGPT+Manus reportes). Burndown (LangChain agentico).</p>
+                  <div class="mermaid">
+                     graph LR
+                        Week1[S1: 100h] --> Week2[S2: 70h CrewAI]
+                        Week2 --> Week3[S3: 40h Copilot]
+                        Week3 --> Week4[S4: 0h Manus]
+                        Ideal[Ideal] -.-> Week4
+                   </div>
+                 <h4>4.2 Proceso: Control Calidad (Agents/Ext)</h4>
+                 <p>Métricas: Coverage >80% (CrewAI). Bugs 0 (Tabnine/CodeWhisperer).</p>
+                 <h4>4.3 Proceso: Gestión Riesgos (Agents)</h4>
+                 <p>Revisión Semanal (Auto-GPT sim). Escalación (LangChain alerta).</p>
+                 <h4>4.4 Proceso: Control Cambios (Multi-IA)</h4>
+                 <p>CCB (Agents simulan impactos).</p>
+                 <h4>4.5 Proceso: Comunicación Stakeholders (Manus/Audio)</h4>
+                 <p>Monthly Report (Manus+ElevenLabs audio).</p>
+             </section>
+
+             <section id="2.5">
+                 <h3>2.5 FASE 5: Cierre</h3>
+                 <p><strong>Objetivo:</strong> Cerrar formalmente y documentar.</p>
+                 <h4>5.1 Proceso: Entrega Final (Agents)</h4>
+                 <p>Checklist: Agents CrewAI validación, VS Code Codeium audit gratis, Manus docs polish.</p>
+                 <h4>5.2 Proceso: Post-Mortem (Multi-IA)</h4>
+                 <p>Reunión (LangChain auto-retro). Docs (Claude+Manus+Qwen global).</p>
+                 <h4>5.3 Proceso: Cierre Admin (Ext)</h4>
+                 <p>Financiero (Copilot analytics pago/CodeWhisperer gratis). Formal (Template + Agent close CrewAI).</p>
+             </section>
+
+             <hr class="my-12">
+
+            <section id="parte-3-templates">
+                 <h1>PARTE 3: BIBLIOTECA DE TEMPLATES Y PROMPTS</h1>
+                 <p>Templates editables con guía multi-IA/agents/ext.</p>
+            </section>
+             
+             <section id="3.1">
+                 <h3>3.1 Templates de Documentos</h3>
+                 <p>Incluye plantillas para Project Charter, WBS, Cronograma, Presupuesto, Registro de Riesgos, Daily Log, Weekly Report, Monthly Report, Project Closure.</p>
+                 <p><em>(Ver secciones anteriores para el contenido de cada template)</em></p>
+                  <code class="prompt">
+Usa prompt: "Genera [Template Name] para [Sector] con [IA Principal]. Refina con Manus, simula con [Agent], integra [VS Code Ext]."
+                  </code>
+             </section>
+
+             <section id="3.2">
+                 <h3>3.2 Biblioteca de Prompts por Fase</h3>
+                 <p>Colección organizada de prompts efectivos para cada fase y tarea, incluyendo ejemplos multi-IA.</p>
+                 <p><em>(Prompts específicos ya incluidos en cada sección de la Fase 2)</em></p>
+             </section>
+             
+             <section id="3.3">
+                 <h3>3.3 Prompts Avanzados de Prompt Engineering</h3>
+                 <p>Ejemplos de técnicas avanzadas como Chain-of-Thought, Meta-Prompting, y prompts para controlar agents autónomos (CrewAI, LangChain).</p>
+                  <code class="prompt">
+Ejemplo Meta-Prompting: "Tengo prompt: 'Crea API'. Mejóralo con CoT, role prompt (Tech Lead), y constraints (Node.js, Express, JWT)."
+                  </code>
+                   <code class="prompt">
+Ejemplo Agent Control (CrewAI): "Define agent 'Tester' que use LangChain para generar casos Playwright y ejecutarlos en CI/CD simulado por Auto-GPT."
+                   </code>
+             </section>
+
+            <hr class="my-12">
+
+            <section id="parte-4-casos">
+                 <h1>PARTE 4: CASOS DE ESTUDIO Y PLAYBOOKS</h1>
+            </section>
+
+            <section id="4.1">
+                 <h3>4.1 Caso de Estudio: SaaS B2B de Análisis de Datos</h3>
+                 <p><strong>Contexto:</strong> DataInsight, $200K, 6 meses. Stack Next.js/TS/Postgres.</p>
+                 <p><strong>Workflow:</strong> Iniciación (Gemini+Manus), Plan (Claude+Auto-GPT+Codeium), Ejecución (Cursor+Runway+CrewAI), Monitoreo (ChatGPT+Ernie+LangChain), Cierre (Manus+ElevenLabs+Tabnine).</p>
+                  <div class="mermaid">
+                     graph TD
+                        Infra[Infra 32t] --> Backend[Backend 89t CrewAI]
+                        Backend --> Frontend[Frontend 76t Copilot]
+                        Frontend --> Int[Integraciones 28t LangChain]
+                        Int --> Test[Testing 22t Continue]
+                   </div>
+                 <p><strong>Métricas:</strong> -70% tiempo, 3.4x prod, 87% coverage, -7.5% costo.</p>
+                 <p><strong>Lecciones:</strong> CrewAI requiere prompts precisos (usa Manus). Codeium gratis = 80% Copilot. Ernie evitó sesgos global data.</p>
+            </section>
+            
+            <section id="4.2">
+                 <h3>4.2 Caso de Estudio: App Móvil de E-commerce</h3>
+                 <p><strong>Contexto:</strong> ShopFast, $150K, 4 meses. Stack React Native/Node/Mongo.</p>
+                 <p><strong>Workflow:</strong> UI (Runway+Gemini) → Código (Cursor+Copilot RN) → Int (Stripe+CrewAI) → Test (LangChain+Continue) → Docs (Manus+ElevenLabs).</p>
+                   <div class="mermaid">
+                     graph LR
+                        UI[UI Runway+Gemini] --> Code[Cursor+Copilot RN]
+                        Code --> Int[Stripe+CrewAI]
+                        Int --> Test[LangChain+Continue]
+                        Test --> Docs[Manus+ElevenLabs]
+                   </div>
+                 <p><strong>Métricas:</strong> -50% tiempo, -71% bugs, x1.5 leads, -5% costo.</p>
+                 <p><strong>Lecciones:</strong> Tabnine Pro aceleró RN refactor vs Codeium. CrewAI automatizó integraciones (validar edge cases).</p>
+            </section>
+            
+            <!-- Nuevos casos de estudio -->
+             <section id="caso-hr">
+                 <h4>4.2.1 Caso de Estudio: Sistema HR</h4>
+                 <p><strong>Contexto:</strong> Implementación HR 500 empleados, $300K, 9 meses. Stack Next/Prisma/Postgres.</p>
+                 <p><strong>Workflow:</strong> Migración (Auto-GPT) → Código (Cursor+Tabnine HR) → Compliance (Claude+Qwen) → Test (LangChain agents) → Cierre (Manus+Continue).</p>
+                  <div class="mermaid">
+                     graph TD
+                        Mig[Mig Auto-GPT] --> Code[Cursor+Tabnine HR]
+                        Code --> Comp[Compliance Claude+Qwen]
+                        Comp --> Test[LangChain agents]
+                        Test --> Close[Manus+Continue]
+                   </div>
+                 <p><strong>Métricas:</strong> -50% costos, 84% coverage (CodeWhisperer gratis), -25% tiempo reclut.</p>
+                 <p><strong>Lecciones:</strong> Qwen para HR cultural diversity. Continue agents debug +35%. Balance Tabnine vs CodeWhisperer: 90% overlap.</p>
+            </section>
+            
+             <section id="caso-marketing">
+                 <h4>4.2.2 Caso de Estudio: Campaña Digital Global</h4>
+                 <p><strong>Contexto:</strong> Campaña SaaS, $200K, 3 meses. Foco leads.</p>
+                 <p><strong>Workflow:</strong> Ideas (ChatGPT+Gemini) → Video Ads (Runway) → Copy (Qwen multi) → Landing (Copilot VS Code) → A/B Test (LangChain agents) → Report (Manus+ElevenLabs).</p>
+                   <div class="mermaid">
+                     graph LR
+                        Brain[ChatGPT+Gemini] --> Video[Runway]
+                        Video --> Copy[Qwen multi]
+                        Copy --> Land[Copilot VS Code]
+                        Land --> Opt[LangChain A/B]
+                        Opt --> Rep[Manus+ElevenLabs]
+                   </div>
+                 <p><strong>Métricas:</strong> x2 leads, -50% tiempo, 250% ROI.</p>
+                 <p><strong>Lecciones:</strong> Runway+ElevenLabs x1.5 engagement. CrewAI A/B gratis -30% test manual. Manus copy +25% efectivo.</p>
+            </section>
+
+             <section id="caso-salud">
+                 <h4>4.2.3 Caso de Estudio: Sistema Historias Clínicas</h4>
+                 <p><strong>Contexto:</strong> Digitalización 10K pacientes, $500K, 8 meses. HIPAA/GDPR.</p>
+                 <p><strong>Workflow:</strong> Análisis (Gemini+Manus) → WBS (Claude GDPR) → Migración (Auto-GPT) → Código (Cursor+Codeium) → Ética (Qwen) → UI Protos (Runway) → Alertas (LangChain agents) → Cierre (ElevenLabs+Tabnine).</p>
+                  <div class="mermaid">
+                     graph TD
+                        Ana[Gemini+Manus] --> WBS[Claude GDPR]
+                        WBS --> Mig[Auto-GPT data]
+                        Mig --> Code[Cursor+Codeium]
+                        Code --> Eth[Qwen ética]
+                        Eth --> UI[Runway protos]
+                        UI --> Alert[LangChain agents]
+                        Alert --> Close[ElevenLabs+Tabnine]
+                   </div>
+                 <p><strong>Métricas:</strong> +40% eficiencia, 0 brechas (Qwen+Claude), -60% tiempo docs (Manus).</p>
+                 <p><strong>Lecciones:</strong> Codeium gratis = 85% Tabnine código seguro. LangChain alerts -50% issues. ElevenLabs audio -30% errores transcripción.</p>
+            </section>
+
+            <section id="4.3">
+                 <h3>4.3 Playbook: Diseño de Arquitectura con Claude</h3>
+                 <p>Guía paso a paso sobre cómo usar Claude para diseñar arquitecturas complejas, incluyendo prompts específicos y checklist de validación.</p>
+            </section>
+
+            <section id="4.4">
+                 <h3>4.4 Playbook: Desarrollo Rápido con Cursor</h3>
+                 <p>Técnicas y prompts para maximizar la velocidad de desarrollo con Cursor, cubriendo generación de código, refactoring y debugging.</p>
+            </section>
+
+            <section id="4.5">
+                 <h3>4.5 Playbook: Testing Automatizado con IA</h3>
+                 <p>Cómo usar Cursor y agentes (CrewAI, LangChain) para generar unit, integration y E2E tests, y configurar pipelines CI/CD que los ejecuten.</p>
+            </section>
+
+             <hr class="my-12">
+
+            <section id="parte-5-practicas">
+                 <h1>PARTE 5: MEJORES PRÁCTICAS Y TROUBLESHOOTING</h1>
+            </section>
+
+            <section id="5.1">
+                 <h3>5.1 Mejores Prácticas de Trabajo con IAs</h3>
+                 <p><strong>DO:</strong> Prompts específicos (Manus, CrewAI, Codeium). Balance gratis/pago (Continue -> Cursor). Integra agents (LangChain sim).</p>
+                 <p><strong>DON'T:</strong> Olvidar setup agents (CrewAI config). Ignorar privacidad ext VS Code (Copilot data).</p>
+                  <div class="analogia">
+                     <blockquote>Ecosistema como red neuronal: Manus (docs), CrewAI (workflows), VS Code ext (código).</blockquote>
+                 </div>
+            </section>
+
+            <section id="5.2">
+                 <h3>5.2 Troubleshooting: Problemas Comunes y Soluciones</h3>
+                 <p>Escenarios por sector/IA y cómo resolverlos usando multi-IA y agents.</p>
+                 <ul>
+                     <li><strong>Desarrollo (Blocker ext VS Code):</strong> Switch Codeium gratis, prompt: "Refactor [código] Codeium VS Code."</li>
+                     <li><strong>Marketing (Agent fail CrewAI A/B):</strong> Itera Manus, prompt: "Refina workflow CrewAI [detalles], integra Runway."</li>
+                     <li><strong>Salud (Audio privacy ElevenLabs):</strong> Qwen ética + Claude compliance, prompt: "Audita audio [output] GDPR LangChain agents."</li>
+                     <li><strong>Educación (Prompts CLI Gemini lento):</strong> Tabnine Pro acelera, prompt: "Optimiza CLI Gemini [script] Tabnine pago/CodeWhisperer gratis."</li>
+                 </ul>
+            </section>
+
+            <section id="5.3">
+                 <h3>5.3 Gestión de Calidad con Código Generado por IA</h3>
+                 <p>Estrategias para asegurar alta calidad: code reviews (Claude + humano), testing exhaustivo (Cursor + agents), static analysis, y métricas de coverage.</p>
+            </section>
+
+            <section id="5.4">
+                <h3>5.4 Ejercicios Prácticos</h3>
+                <p>Ejercicios diseñados para reforzar los conceptos clave de cada sección.</p>
+
+                <section id="ejercicio1">
+                    <h4>Ejercicio 1: Escribir Prompts Efectivos</h4>
+                    <p>Practicar las 7 técnicas de prompt engineering para diferentes escenarios.</p>
+                    <p><strong>Ejemplo (Zero-Shot):</strong> "Actúa como QA Senior. Genera plan testing API REST e-commerce (unit, integ, E2E), casos prueba, herramientas, criterios aceptación."</p>
+                </section>
+
+                 <section id="ejercicio2">
+                     <h4>Ejercicio 2: Elegir la IA Correcta</h4>
+                     <p>Decidir qué IA usar (Claude, Cursor, ChatGPT, etc.) para tareas específicas y justificar la elección.</p>
+                 </section>
+
+                 <section id="ejercicio3">
+                     <h4>Ejercicio 3: Debugging de Prompts</h4>
+                     <p>Identificar problemas en prompts mal escritos y reescribirlos siguiendo las mejores prácticas.</p>
+                     <p><strong>Ejemplo Malo:</strong> "Crea una app."</p>
+                     <p><strong>Ejemplo Mejorado:</strong> "Actúa como PM Senior. Plan detallado MVP app móvil delivery comida (React Native, 3 meses, 2 devs, $50K). Genera: Features MVP (max 10), WBS N2, hitos, esfuerzo/feature. Formato Markdown."</p>
+                 </section>
+
+                 <section id="ejercicio4">
+                     <h4>Ejercicio 4: Proyecto Mini - Sistema de Tareas</h4>
+                     <p>Aplicar toda la metodología (Iniciación -> Cierre) en un proyecto pequeño (To-Do App con Next.js/Prisma) usando solo IAs como equipo virtual.</p>
+                 </section>
+            </section>
+
+             <hr class="my-12">
+
+            <section id="parte-6-recursos">
+                 <h1>PARTE 6: RECURSOS Y HERRAMIENTAS</h1>
+            </section>
+
+            <section id="6.1">
+                 <h3>6.1 Cómo Empezar</h3>
+                 <ol>
+                     <li><strong>Setup Inicial (1 día):</strong> Instalar IAs (Cursor, Copilot/Codeium, Claude, ChatGPT), setup GitHub, leer metodología.</li>
+                     <li><strong>Proyecto Piloto (2-4 sem):</strong> Hacer proyecto pequeño (ej. "Todo App con IA") para practicar.</li>
+                     <li><strong>Proyecto Real (8-12 sem):</strong> Aplicar metodología completa.</li>
+                 </ol>
+            </section>
+
+            <section id="6.2">
+                 <h3>6.2 Métricas de Éxito</h3>
+                 <ul>
+                     <li><strong>Productividad:</strong> Velocity (2-3x), Lead/Cycle Time (-50/70%), Deploy Freq (Daily).</li>
+                     <li><strong>Calidad:</strong> Coverage (>80%), Bug rate (<5/sem), Critical bugs (0).</li>
+                     <li><strong>Costo:</strong> Cost/feature (-50/70%), Team size (-50%), Burn rate (-50%).</li>
+                     <li><strong>Satisfacción:</strong> Team/Stakeholder (>8/10), NPS (>50).</li>
+                 </ul>
+            </section>
+
+            <section id="6.3">
+                 <h3>6.3 Recursos Adicionales</h3>
+                 <p>Links a documentación oficial de IAs, agents, ext VS Code, comunidades y cursos.</p>
+                  <div class="mermaid">
+                     graph LR
+                        Dev --> GDev[Codeium+Cont+CrewAI]
+                        Dev --> PDev[Copilot+Cursor+Tabnine]
+                        Mkt --> GMkt[Gemini+Auto+Manus]
+                        Mkt --> PMkt[ChatGPT+Runway]
+                        Salud --> GSalud[Qwen+LangChain+CodeW]
+                        Salud --> PSalud[Claude+ElevenLabs]
+                        Edu --> GEdu[Ernie+Auto-GPT]
+                        Edu --> PEdu[GeminiAdv+Tabnine]
+                        style GDev fill:#e8f5e8; style GMkt fill:#e8f5e8; style GSalud fill:#e8f5e8; style GEdu fill:#e8f5e8;
+                        style PDev fill:#fff3e0; style PMkt fill:#fff3e0; style PSalud fill:#fff3e0; style PEdu fill:#fff3e0;
+                  </div>
+                 <p><em>(Ver Anexo C para lista detallada)</em></p>
+             </section>
+
+             <section id="6.4">
+                 <h3>6.4 Mejora Continua</h3>
+                 <p>Esta metodología es un documento vivo. Después de cada proyecto: revisar, actualizar templates, agregar prompts, mejorar procesos.</p>
+                  <code class="prompt">
+Prompt Mejora Continua: "Analiza lecciones [proyecto] con Manus+LangChain agent, sugiere stack VS Code para próximo (gratis/pago)."
+                  </code>
+             </section>
+
+              <!-- Anexo C y Glosario movidos aquí para orden lógico -->
+             <section id="anexo-c">
+                 <h3>Anexo C: Recursos y Herramientas Detallados</h3>
+                 <h4>Herramientas Recomendadas</h4>
+                 <ul>
+                     <li><strong>Gestión Proyectos:</strong> Jira, Linear, GitHub Projects, Notion</li>
+                     <li><strong>Comunicación:</strong> Slack, Discord, Loom</li>
+                     <li><strong>Desarrollo:</strong> Cursor, VS Code + Copilot/Codeium, Warp (Terminal)</li>
+                     <li><strong>Testing:</strong> Jest, Playwright, Cypress</li>
+                     <li><strong>CI/CD:</strong> GitHub Actions, Vercel, Railway</li>
+                     <li><strong>Monitoreo:</strong> Sentry, LogRocket, Vercel Analytics</li>
+                 </ul>
+                 <h4>Recursos de Aprendizaje</h4>
+                 <ul>
+                     <li><strong>Prompt Engineering:</strong> promptingguide.ai, OpenAI Cookbook, Anthropic Prompt Library</li>
+                     <li><strong>Gestión Proyectos:</strong> PMI PMBOK, Scrum Guide, Shape Up</li>
+                     <li><strong>Desarrollo IA:</strong> Cursor Docs, Copilot Docs, v0.dev Examples</li>
+                     <li><strong>Agents IA:</strong> CrewAI Docs, LangChain Docs, Auto-GPT Repo</li>
+                     <li><strong>VS Code Ext:</strong> Marketplace (Codeium, Continue.dev, etc.)</li>
+                 </ul>
+             </section>
+
+             <section id="glosario-ia-pm">
+                 <h3>Glosario de Términos IA y PM</h3>
+                 <dl id="glossary-list">
+                    <dt>Agentica</dt><dd>Herramientas (CrewAI/Auto-GPT/LangChain) para IA autónoma en workflows. Ej: Simular fases PMI.</dd>
+                    <dt>Agile</dt><dd>Metodología iterativa (Sprints) para flexibilidad y entrega rápida.</dd>
+                    <dt>AI (Inteligencia Artificial)</dt><dd>Sistemas que realizan tareas humanas (código, análisis).</dd>
+                    <dt>Chain-of-Thought (CoT)</dt><dd>Prompt que pide razonamiento paso a paso.</dd>
+                    <dt>CI/CD</dt><dd>Automatización de integración y despliegue.</dd>
+                    <dt>Code Review</dt><dd>Revisión de código (humano + IA) para calidad.</dd>
+                    <dt>Continue.dev</dt><dd>Extensión VS Code gratis con agents para autocompletado y debug.</dd>
+                    <dt>Copilot (GitHub)</dt><dd>Extensión VS Code de pago para autocompletado avanzado y chat IA.</dd>
+                    <dt>CrewAI</dt><dd>Framework Python para crear agents de IA autónomos.</dd>
+                    <dt>Cursor</dt><dd>IDE de pago optimizado para desarrollo con IA (generación, refactor).</dd>
+                    <dt>Daily Standup</dt><dd>Reunión diaria corta (15 min).</dd>
+                    <dt>ElevenLabs</dt><dd>IA de pago para generación de audio/voz realista.</dd>
+                    <dt>Ernie Bot</dt><dd>LLM de Baidu (China) fuerte en multilingüe y contexto cultural.</dd>
+                    <dt>Few-Shot Prompting</dt><dd>Dar ejemplos a la IA.</dd>
+                    <dt>Gemini (Google)</dt><dd>LLM multimodal (texto, imagen, video) con integración Google.</dd>
+                    <dt>Grok (xAI)</dt><dd>LLM con acceso a data X/Twitter.</dd>
+                    <dt>LangChain</dt><dd>Framework para construir aplicaciones con LLMs y agents.</dd>
+                    <dt>Manus AI</dt><dd>Herramienta IA para edición y refinamiento de contenido estructurado (docs).</dd>
+                    <dt>Mermaid</dt><dd>Lenguaje para crear diagramas en Markdown.</dd>
+                    <dt>PMBOK</dt><dd>Guía estándar del PMI.</dd>
+                    <dt>Prompt Engineering</dt><dd>Arte de escribir instrucciones para IAs.</dd>
+                    <dt>Project Charter</dt><dd>Documento que autoriza el proyecto.</dd>
+                    <dt>Qwen (Alibaba)</dt><dd>LLM chino fuerte en multilingüe y capacidades técnicas.</dd>
+                    <dt>RACI Matrix</dt><dd>Matriz de roles (Responsible, Accountable...).</dd>
+                    <dt>Runway ML</dt><dd>Plataforma IA de pago para generación/edición de video.</dd>
+                    <dt>Scrum</dt><dd>Framework ágil con Sprints.</dd>
+                    <dt>Sprint</dt><dd>Iteración corta (1-4 sem) en Agile.</dd>
+                    <dt>Tabnine</dt><dd>Extensión VS Code (gratis/pago) para autocompletado IA.</dd>
+                    <dt>Triple Constraint</dt><dd>Alcance, Tiempo, Costo.</dd>
+                    <dt>v0.dev</dt><dd>IA de Vercel (gratis con límites) para generar UI React.</dd>
+                    <dt>Velocity</dt><dd>Métrica ágil (trabajo/sprint).</dd>
+                    <dt>VS Code Extensions</dt><dd>Plugins para VS Code que integran IA (Copilot, Codeium, etc.).</dd>
+                    <dt>WBS</dt><dd>Descomposición jerárquica del trabajo.</dd>
+                    <dt>Waterfall</dt><dd>Metodología secuencial.</dd>
+                    <dt>Zero-Shot Prompting</dt><dd>Pedir a IA sin ejemplos.</dd>
+                 </dl>
+             </section>
+
+             <hr class="my-12">
+            
             <footer class="text-center p-10 bg-gray-800 text-white rounded-lg mt-12">
                  <h2 class="text-3xl font-bold mb-4">¡Manual Completado!</h2>
                  <p class="text-lg mb-4">Ahora tienes la metodología PMO Virtual con IA v2.0.</p>
@@ -343,12 +1046,11 @@
         // --- Lógica para Menú Móvil ---
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('toc-sidebar');
-        const content = document.getElementById('content');
-
+        
         function toggleMenu() {
-            sidebar.classList.toggle('hidden-mobile');
-            sidebar.classList.toggle('-translate-x-full');
-            // Añade un overlay o algo para cerrar al hacer clic fuera
+            sidebar.classList.toggle('hidden-mobile'); // Controla la visibilidad
+            sidebar.classList.toggle('-translate-x-full'); // Controla la animación
+            sidebar.classList.toggle('translate-x-0'); // Asegura que se muestre correctamente
         }
 
         menuToggle.addEventListener('click', toggleMenu);
@@ -359,18 +1061,16 @@
         
         const observerOptions = {
             root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.3 // 30% de la sección debe estar visible
+            rootMargin: '-50px 0px -50% 0px', // Activa cuando la sección está en la mitad superior de la pantalla
+            threshold: 0 
         };
 
         const observer = new IntersectionObserver((entries) => {
             let activeSectionId = null;
-
+            // Encuentra la última sección visible en la parte superior
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (!activeSectionId) {
-                        activeSectionId = entry.target.id;
-                    }
+                   activeSectionId = entry.target.id;
                 }
             });
 
@@ -378,28 +1078,34 @@
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${activeSectionId}`) {
                     link.classList.add('active');
+                    // Opcional: Auto-scroll en la barra lateral
+                    // link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
             
-            // Si el scroll está arriba del todo, no activa ninguno
-            if (window.scrollY < 200) {
-                 tocLinks.forEach(link => link.classList.remove('active'));
-            }
+             // Si no hay sección activa (ej. al inicio), desactiva todos
+             if (!activeSectionId && window.scrollY < 200) {
+                  tocLinks.forEach(link => link.classList.remove('active'));
+             }
 
         }, observerOptions);
 
         sections.forEach(section => {
-            observer.observe(section);
+             // Asegúrate de que solo las secciones con ID sean observadas
+             if(section.id) {
+                observer.observe(section);
+             }
         });
         
         // Cerrar menú móvil al hacer clic en un enlace
         tocLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth < 1024) {
+                if (window.innerWidth < 1024 && !sidebar.classList.contains('hidden-mobile')) {
                     toggleMenu();
                 }
             });
         });
+
     </script>
 </body>
 </html>

@@ -86,7 +86,7 @@
         }
         
         /* Estilos para el contenido principal */
-        #content h1, #content h2, #content h3, #content h4 {
+        #content h1, #content h2, #content h3, #content h4, #content h5 {
             color: #2c3e50;
             font-weight: 700;
             margin-top: 2rem;
@@ -97,6 +97,8 @@
         #content h2 { font-size: 2rem; }
         #content h3 { font-size: 1.5rem; background-color: #ecf0f1; padding: 10px; border-left: 5px solid #3498db; }
         #content h4 { font-size: 1.25rem; font-weight: 600; }
+        #content h5 { font-size: 1.1rem; font-weight: 600; color: #34495e; margin-top: 1.5rem; }
+
         
         #content ul {
             list-style-type: disc;
@@ -118,6 +120,20 @@
             margin-right: 8px;
         }
         
+        /* Glosario con <dl> */
+        #glossary-list dt {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        #glossary-list dd {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #bdc3c7;
+        }
+
         /* Botón del menú móvil */
         #menu-toggle {
             display: block; /* Oculto por defecto en CSS, mostrado por Tailwind */
@@ -212,8 +228,9 @@
                 </div>
                 
                 <p class="mt-8 text-gray-500">Versión 2.1 | Octubre 2025</p>
+                <p class="text-gray-500 italic">(Parte 1 de la serie: Cursos Integrados de Gestión e IA)</p>
             </header>
-            
+
             <hr class="my-12 border-t-2 border-gray-300">
 
             <!-- Nota de Copyright -->
@@ -237,7 +254,7 @@
                     <li>Cómo aplicar todo esto en el mundo real con ejemplos completos y herramientas digitales</li>
                     <li>Errores comunes que debes evitar</li>
                 </ul>
-                <p class="mt-4"><strong>Público objetivo:</strong> Personas sin experiencia en gestión de proyectos, Developers, Emprendedores y cualquiera que quiera usar el Manual de PMO Virtual con IA.</p>
+                <p class="mt-4"><strong>Público objetivo:</strong> Personas sin experiencia en gestión de proyectos, Developers que quieren entender PM, Emprendedores que necesitan gestionar proyectos, Cualquiera que quiera usar el Manual de PMO Virtual con IA.</p>
             </section>
 
             <hr class="my-12">
@@ -291,10 +308,24 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <h4>Ejemplos de Proyectos</h4>
+                <ul>
+                    <li><strong>Software:</strong> Desarrollar una app móvil, migrar sistema legacy a cloud, implementar CRM.</li>
+                    <li><strong>Construcción:</strong> Construir un edificio, remodelar una casa.</li>
+                    <li><strong>Eventos:</strong> Organizar una conferencia, lanzar un producto.</li>
+                    <li><strong>Investigación:</strong> Desarrollar una vacuna, investigar mercado.</li>
+                </ul>
+
+                <h4>¿Qué NO es un Proyecto?</h4>
+                <p><strong>Operaciones:</strong> Actividades continuas y repetitivas que sostienen el negocio.</p>
+                <ul>
+                    <li>Atención al cliente (continuo)</li>
+                    <li>Manufactura de productos (repetitivo)</li>
+                    <li>Contabilidad mensual (cíclico)</li>
+                </ul>
             </section>
             
-            <!-- Continue with the rest of the sections from the content... (truncated for brevity, but in full implementation, include all sections from the read content) -->
-
             <section id="2">
                 <h3>2. ¿QUÉ ES GESTIÓN DE PROYECTOS?</h3>
                 <div class="analogia">
@@ -303,6 +334,12 @@
                 
                 <h4>Definición Formal (PMI)</h4>
                 <p><strong>Gestión de Proyectos (Project Management):</strong> La aplicación de conocimientos, habilidades, herramientas y técnicas a las actividades del proyecto para cumplir con los requisitos del proyecto.</p>
+
+                <h4>Definición Simple</h4>
+                <p><strong>Gestión de Proyectos es:</strong> Planificar, organizar y controlar recursos para lograr objetivos específicos en tiempo y presupuesto.</p>
+
+                <h4>¿Por qué es necesaria?</h4>
+                <p>Sin gestión de proyectos, las ideas quedan en "buenas intenciones". La gestión de proyectos transforma el caos en resultados predecibles y exitosos.</p>
 
                 <h4>⚖️ Las 3 Restricciones (Triple Constraint)</h4>
                 <p>Todo proyecto tiene 3 restricciones principales que un Project Manager debe balancear.</p>
@@ -319,18 +356,1094 @@
                         style D fill:#e8f5e8
                         style C fill:#fff3e0,stroke:#ff9800,stroke-width:3px
                 </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Restricción</th>
+                            <th>Pregunta Clave</th>
+                            <th>Componentes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Alcance (Scope)</strong></td>
+                            <td>¿Qué se va a hacer?</td>
+                            <td>Features, funcionalidades, entregables.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Tiempo (Time)</strong></td>
+                            <td>¿Cuánto tiempo tomará?</td>
+                            <td>Cronograma, deadlines, hitos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Costo (Cost)</strong></td>
+                            <td>¿Cuánto costará?</td>
+                            <td>Presupuesto, recursos, gastos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Calidad (Quality)</strong></td>
+                            <td>¿Qué tan bien se hará?</td>
+                            <td>Estándares, testing, criterios de aceptación.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h4>La Regla de Oro</h4>
                 <blockquote>
                     <p><strong>"Si cambias uno de los tres lados del triángulo (alcance, tiempo, costo), al menos uno de los otros dos se verá afectado."</strong></p>
                 </blockquote>
+                <ul>
+                    <li><strong>Escenario 1:</strong> Cliente quiere más features (↑ Alcance) → <strong>Resultado:</strong> ↑ Tiempo o ↑ Costo (o ambos).</li>
+                    <li><strong>Escenario 2:</strong> Cliente quiere terminar antes (↓ Tiempo) → <strong>Resultado:</strong> ↓ Alcance o ↑ Costo (más gente) o ↓ Calidad.</li>
+                    <li><strong>Escenario 3:</strong> Cliente reduce presupuesto (↓ Costo) → <strong>Resultado:</strong> ↓ Alcance o ↑ Tiempo o ↓ Calidad.</li>
+                </ul>
+
+                <h4>🧠 Áreas de Conocimiento (PMBOK)</h4>
+                <p>Según el PMI, la gestión de proyectos se divide en <strong>10 áreas de conocimiento</strong>:</p>
+                <ol class="list-decimal pl-6">
+                    <li>Gestión de la Integración</li>
+                    <li>Gestión del Alcance</li>
+                    <li>Gestión del Cronograma</li>
+                    <li>Gestión de Costos</li>
+                    <li>Gestión de la Calidad</li>
+                    <li>Gestión de Recursos</li>
+                    <li>Gestión de Comunicaciones</li>
+                    <li>Gestión de Riesgos</li>
+                    <li>Gestión de Adquisiciones</li>
+                    <li>Gestión de Stakeholders</li>
+                </ol>
             </section>
 
-            <!-- Add all other sections similarly... (full content would be here) -->
+            <section id="3">
+                <h3>3. ¿QUÉ ES UNA PMO?</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Piensa en una PMO como el Departamento de Calidad en una fábrica: No fabrica los productos, pero define los estándares de calidad, audita que se cumplan y ayuda a los equipos a mejorar.</blockquote>
+                </div>
+                <p><strong>PMO (Project Management Office):</strong> Oficina de Gestión de Proyectos. Un departamento que estandariza los procesos de gobierno relacionados con los proyectos en una organización.</p>
+                
+                <h4>Funciones de una PMO</h4>
+                <ul>
+                    <li><strong>Estandarización:</strong> Define la metodología, crea plantillas y establece procesos.</li>
+                    <li><strong>Governance:</strong> Aprueba proyectos, prioriza iniciativas y asigna recursos.</li>
+                    <li><strong>Soporte:</strong> Entrena a los PMs, provee herramientas y resuelve problemas.</li>
+                    <li><strong>Monitoreo:</strong> Rastrea el progreso de los proyectos y reporta a ejecutivos.</li>
+                </ul>
 
+                <h4>Tipos de PMO</h4>
+                <div class="mermaid">
+                    graph TD
+                        A[PMO Supportive<br/>De Soporte] --> B[Bajo Control<br/>Consultoría Interna]
+                        C[PMO Controlling<br/>De Control] --> D[Medio Control<br/>Auditoría y Cumplimiento]
+                        E[PMO Directive<br/>Directiva] --> F[Alto Control<br/>Gestión Directa]
+
+                        style A fill:#e8f5e8,stroke:#4caf50
+                        style C fill:#fff3e0,stroke:#ff9800
+                        style E fill:#ffebee,stroke:#f44336
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de PMO</th>
+                            <th>Nivel de Control</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Supportive (De Soporte)</strong></td>
+                            <td>Bajo</td>
+                            <td>Provee plantillas, mejores prácticas y entrenamiento. Actúa como consultor.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Controlling (De Control)</strong></td>
+                            <td>Medio</td>
+                            <td>Requiere el cumplimiento de metodologías y audita proyectos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Directive (Directiva)</strong></td>
+                            <td>Alto</td>
+                            <td>Gestiona directamente los proyectos. Los PMs reportan a la PMO.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="4">
+                <h3>4. ROLES EN UN PROYECTO</h3>
+                <p>Todo proyecto exitoso requiere un equipo con roles y responsabilidades claramente definidos.</p>
+                
+                <h4>Roles Clave</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rol</th>
+                            <th>¿Quién es?</th>
+                            <th>Responsabilidades Principales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sponsor (Patrocinador)</strong></td>
+                            <td>Ejecutivo de alto nivel que financia.</td>
+                            <td>Aprobar el proyecto, proveer funding, remover obstáculos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Project Manager (PM)</strong></td>
+                            <td>Responsable de ejecutar el proyecto.</td>
+                            <td>Planificar, gestionar equipo, trackear progreso, comunicar status.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product Owner (PO)</strong></td>
+                            <td>Representante del cliente/usuario.</td>
+                            <td>Definir visión del producto, priorizar backlog, aceptar entregables.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tech Lead / Architect</strong></td>
+                            <td>Líder técnico del equipo.</td>
+                            <td>Diseñar arquitectura técnica, definir stack, code review.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Team Members (Equipo)</strong></td>
+                            <td>Developers, designers, QA, etc.</td>
+                            <td>Ejecutar tareas asignadas, reportar progreso, colaborar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stakeholders (Interesados)</strong></td>
+                            <td>Cualquier persona afectada.</td>
+                            <td>(Varía) Pueden ser internos (empleados) o externos (clientes).</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Diferencia clave:</strong> El <strong>PO</strong> define **qué** se construye. El <strong>PM</strong> define **cómo** y **cuándo** se construye.</p>
+
+                <h4>Matriz RACI</h4>
+                <p>La Matriz RACI es una herramienta para clarificar roles y evitar confusiones.</p>
+                
+                <div class="mermaid">
+                    graph TD
+                        subgraph "Matriz RACI"
+                            A[R = Responsible<br/>Hace el trabajo]
+                            B[A = Accountable<br/>Aprueba y decide]
+                            C[C = Consulted<br/>Da input]
+                            D[I = Informed<br/>Recibe updates]
+                        end
+
+                        style A fill:#e3f2fd,stroke:#1976d2
+                        style B fill:#fff3e0,stroke:#f57c00
+                        style C fill:#e8f5e8,stroke:#388e3c
+                        style D fill:#fce4ec,stroke:#c2185b
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr><th>Tarea</th><th>PM</th><th>Tech Lead</th><th>Developer</th><th>Sponsor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Crear WBS</strong></td><td><strong>R</strong></td><td>C</td><td>C</td><td><strong>A</strong></td></tr>
+                        <tr><td><strong>Diseñar Arquitectura</strong></td><td>C</td><td><strong>R/A</strong></td><td>C</td><td>I</td></tr>
+                        <tr><td><strong>Desarrollar Feature</strong></td><td>C</td><td>C</td><td><strong>R</strong></td><td>I</td></tr>
+                        <tr><td><strong>Aprobar Presupuesto</strong></td><td><strong>R</strong></td><td>C</td><td>I</td><td><strong>A</strong></td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr class="my-12">
+
+            <section id="parte-2">
+                <h1>PARTE 2: LAS 5 FASES DE UN PROYECTO (PMI)</h1>
+                <p>La metodología del PMI divide un proyecto en 5 grupos de procesos o fases. Entender este ciclo de vida es fundamental.</p>
+                <div class="mermaid">
+                    graph TD
+                        A[Iniciación<br/>Initiation] --> B[Planificación<br/>Planning]
+                        B --> C[Ejecución<br/>Execution]
+                        C --> D[Monitoreo y Control<br/>Monitoring & Controlling]
+                        D --> E[Cierre<br/>Closing]
+
+                        style A fill:#e3f2fd,stroke:#1976d2
+                        style B fill:#fff3e0,stroke:#f57c00
+                        style C fill:#e8f5e8,stroke:#388e3c
+                        style D fill:#fce4ec,stroke:#c2185b
+                        style E fill:#f3e5f5,stroke:#7b1fa2
+                </div>
+            </section>
+            
+            <section id="5">
+                <h3>5. FASE 1: INICIACIÓN</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> La fase de Iniciación es como decidir si vas a hacer un viaje. Defines el destino (objetivo), verificas si tienes dinero y tiempo (viabilidad), obtienes aprobación de tu jefe (autorización) e identificas quién va contigo (stakeholders).</blockquote>
+                </div>
+                <p><strong>La fase donde decides SI hacer el proyecto y lo autorizas formalmente.</strong></p>
+                
+                <h4>Objetivos</h4>
+                <ul class="list-decimal pl-6">
+                    <li>Definir el proyecto a alto nivel.</li>
+                    <li>Identificar a los stakeholders clave.</li>
+                    <li>Obtener aprobación formal para proceder.</li>
+                    <li>Autorizar al Project Manager.</li>
+                </ul>
+                
+                <h4>⚠️ ERRORES COMUNES EN INICIACIÓN</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>❌ Ejemplo Incorrecto</th>
+                            <th>✅ Ejemplo Correcto</th>
+                            <th>¿Por qué es un error?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Objetivos Vagos</strong></td>
+                            <td>"Mejorar el sitio web"</td>
+                            <td>"Reducir el tiempo de carga de 5s a 2s en 3 meses"</td>
+                            <td>Sin un objetivo medible, nunca sabrás si fue exitoso.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>No Identificar Stakeholders</strong></td>
+                            <td>Empezar el proyecto sin hablar con Ventas.</td>
+                            <td>Mapear todos los departamentos afectados (Ventas, Mktg).</td>
+                            <td>Un stakeholder ignorado puede bloquear el proyecto más adelante.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saltarse el Project Charter</strong></td>
+                            <td>"¡Empecemos a programar!"</td>
+                            <td>Crear un Project Charter y obtener la firma del Sponsor.</td>
+                            <td>Sin un Charter, el proyecto no existe oficialmente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>✅ CHECKLIST EJECUTABLE: FASE DE INICIACIÓN</h4>
+                <ul class="checklist">
+                    <li>[ ] Idea de proyecto claramente articulada.</li>
+                    <li>[ ] Análisis de viabilidad (técnico, financiero, mercado).</li>
+                    <li>[ ] Project Charter creado.</li>
+                    <li>[ ] Objetivos SMART establecidos.</li>
+                    <li>[ ] Mapa de stakeholders creado.</li>
+                    <li>[ ] Firma del Sponsor obtenida en el Project Charter.</li>
+                    <li>[ ] Kick-off meeting programada.</li>
+                </ul>
+            </section>
+            
+            <section id="6">
+                <h3>6. FASE 2: PLANIFICACIÓN</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Planificación = Planificar un viaje en detalle. Defines la ruta exacta (WBS), decides qué harás cada día (cronograma), calculas gastos (presupuesto) y haces un plan B (riesgos).</blockquote>
+                </div>
+                <p><strong>La fase donde defines CÓMO vas a ejecutar el proyecto en detalle.</strong> Es la fase más crítica.</p>
+                
+                <h4>⚠️ ERRORES COMUNES EN PLANIFICACIÓN</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>❌ Ejemplo Incorrecto</th>
+                            <th>✅ Ejemplo Correcto</th>
+                            <th>¿Por qué es un error?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estimaciones Optimistas</strong></td>
+                            <td>"¡Podemos construir ese SaaS en 3 semanas!"</td>
+                            <td>Usar datos históricos y añadir un buffer (20-30%).</td>
+                            <td>Es la principal causa de retrasos y sobrecostos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>No Involucrar al Equipo</strong></td>
+                            <td>El PM crea el plan solo y se lo presenta al equipo.</td>
+                            <td>El PM facilita sesiones donde el equipo técnico estima.</td>
+                            <td>El equipo que ejecuta es quien mejor puede estimar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WBS Incompleto</strong></td>
+                            <td>El WBS solo incluye tareas de desarrollo.</td>
+                            <td>El WBS incluye diseño, testing, documentación, reuniones, etc.</td>
+                            <td>Si no está en el WBS, no se hará.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>✅ CHECKLIST EJECUTABLE: FASE DE PLANIFICACIÓN</h4>
+                <ul class="checklist">
+                    <li>[ ] WBS creado con al menos 3 niveles.</li>
+                    <li>[ ] Matriz RACI definida.</li>
+                    <li>[ ] Cronograma Gantt creado.</li>
+                    <li>[ ] Ruta crítica identificada.</li>
+                    <li>[ ] Presupuesto consolidado con reservas.</li>
+                    <li>[ ] Registro de riesgos creado (con mitigaciones).</li>
+                    <li>[ ] Plan de Calidad y Comunicaciones definido.</li>
+                    <li>[ ] Baseline (línea base) formalmente establecida.</li>
+                </ul>
+            </section>
+            
+            <section id="7">
+                <h3>7. FASE 3: EJECUCIÓN</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Ejecución = Estar en el viaje. Sigues la ruta planeada (WBS), manejas el auto (diriges al equipo) y haces las actividades que planeaste (ejecutas las tareas).</blockquote>
+                </div>
+                <p><strong>La fase donde HACES el trabajo definido en el plan.</strong> Aquí es donde el equipo construye los entregables.</p>
+                
+                <h4>⚠️ ERRORES COMUNES EN EJECUCIÓN</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>❌ Ejemplo Incorrecto</th>
+                            <th>✅ Ejemplo Correcto</th>
+                            <th>¿Por qué es un error?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scope Creep</strong></td>
+                            <td>"El cliente pidió un pequeño cambio, lo agregaré rápido."</td>
+                            <td>"Documentaré el cambio en un Change Request para el CCB."</td>
+                            <td>Los "pequeños" cambios se acumulan y destruyen el plan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Micromanagement</strong></td>
+                            <td>El PM le pregunta a un developer cada 30 min por su progreso.</td>
+                            <td>El PM confía en su equipo y se enfoca en remover obstáculos.</td>
+                            <td>Destruye la moral, la confianza y la productividad.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mala Comunicación</strong></td>
+                            <td>Un dev se bloquea 2 días y no le dice a nadie por miedo.</td>
+                            <td>El dev comunica el bloqueo en el daily stand-up.</td>
+                            <td>Convierte problemas pequeños en crisis.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>✅ CHECKLIST EJECUTABLE: FASE DE EJECUCIÓN</h4>
+                <ul class="checklist">
+                    <li>[ ] Realizar reuniones de seguimiento (e.g., Daily Stand-ups).</li>
+                    <li>[ ] El equipo ejecuta las tareas del WBS.</li>
+                    <li>[ ] Registrar el progreso y el tiempo empleado.</li>
+                    <li>[ ] Realizar revisiones de calidad (code reviews, peer reviews).</li>
+                    <li>[ ] Gestionar y resolver los problemas (issues) que surjan.</li>
+                    <li>[ ] Procesar las solicitudes de cambio a través del proceso formal.</li>
+                </ul>
+            </section>
+            
+            <section id="8">
+                <h3>8. FASE 4: MONITOREO Y CONTROL</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Monitoreo y Control = El GPS y el tablero de tu auto durante el viaje. Compara la ruta planeada con tu ubicación real, te alerta si te desviaste y recalcula la ruta.</blockquote>
+                </div>
+                <p><strong>La fase que corre EN PARALELO con la Ejecución para asegurar que todo va según el plan.</strong></p>
+                
+                <h4>Burndown Chart</h4>
+                <div class="mermaid">
+                    graph LR
+                        subgraph "Burndown Chart"
+                            A[Día 1<br/>100 tareas] --> B[Día 2<br/>80 tareas]
+                            B --> C[Día 3<br/>60 tareas]
+                            C --> D[Día 4<br/>40 tareas]
+                            D --> E[Día 5<br/>20 tareas]
+                            E --> F[Día 6<br/>0 tareas]
+
+                            A2[Día 1<br/>Ideal] --> B2[Día 2<br/>Ideal]
+                            B2 --> C2[Día 3<br/>Ideal]
+                            C2 --> D2[Día 4<br/>Ideal]
+                            D2 --> E2[Día 5<br/>Ideal]
+                            E2 --> F2[Día 6<br/>Ideal]
+
+                            style A stroke:#4caf50,stroke-width:3px
+                            style F stroke:#4caf50,stroke-width:3px
+                            style A2 stroke:#f44336,stroke-dasharray: 5 5
+                            style F2 stroke:#f44336,stroke-dasharray: 5 5
+                        end
+                </div>
+
+                <h4>⚠️ ERRORES COMUNES EN MONITOREO Y CONTROL</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>❌ Ejemplo Incorrecto</th>
+                            <th>✅ Ejemplo Correcto</th>
+                            <th>¿Por qué es un error?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ignorar Desviaciones</strong></td>
+                            <td>"Solo vamos 5% por encima del presupuesto. Ya se arreglará."</td>
+                            <td>"Detectamos una desviación del 5%. Analicemos la causa raíz."</td>
+                            <td>Las pequeñas desviaciones, si no se controlan, crecen.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>"Matar al Mensajero"</strong></td>
+                            <td>El PM se enoja con el dev que reporta un retraso.</td>
+                            <td>El PM agradece la transparencia y busca una solución.</td>
+                            <td>Si castigas, la gente ocultará los problemas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control sin Acción</strong></td>
+                            <td>El PM crea reportes que muestran el retraso, pero no actúa.</td>
+                            <td>El PM presenta el reporte junto con un plan de acción.</td>
+                            <td>El propósito de monitorear es actuar para solucionarlo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>✅ CHECKLIST EJECUTABLE: FASE DE MONITOREO Y CONTROL</h4>
+                <ul class="checklist">
+                    <li>[ ] Recolectar datos de progreso real.</li>
+                    <li>[ ] Comparar el progreso real contra la línea base.</li>
+                    <li>[ ] Analizar las variaciones (desviaciones).</li>
+                    <li>[ ] Desarrollar acciones correctivas o preventivas.</li>
+                    <li>[ ] Gestionar las solicitudes de cambio (Change Requests).</li>
+                    <li>[ ] Validar los entregables completados con el cliente/sponsor.</li>
+                </ul>
+            </section>
+            
+            <section id="9">
+                <h3>9. FASE 5: CIERRE</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Cierre = Regresar del viaje. Muestras las fotos (aceptación formal), devuelves el auto rentado (cerrar contratos), deshaces las maletas (liberar recursos) y escribes reseñas (lecciones aprendidas).</blockquote>
+                </div>
+                <p><strong>La fase donde formalizas la finalización del proyecto.</strong> Es crucial para transferir el valor y aprender de la experiencia.</p>
+                
+                <h4>⚠️ ERRORES COMUNES EN CIERRE</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>❌ Ejemplo Incorrecto</th>
+                            <th>✅ Ejemplo Correcto</th>
+                            <th>¿Por qué es un error?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>No Cerrar Formalmente</strong></td>
+                            <td>El proyecto "simplemente termina" y el equipo se disuelve.</td>
+                            <td>El PM obtiene un documento de aceptación final firmado.</td>
+                            <td>Sin cierre formal, el proyecto queda en un limbo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saltarse Lecciones Aprendidas</strong></td>
+                            <td>"No hay tiempo, empecemos el siguiente proyecto."</td>
+                            <td>El PM agenda una reunión de retrospectiva con el equipo.</td>
+                            <td>La organización está condenada a repetir los mismos errores.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>No Celebrar</strong></td>
+                            <td>El equipo termina y al día siguiente empieza uno nuevo.</td>
+                            <td>El PM organiza una cena o evento para celebrar el logro.</td>
+                            <td>La celebración es vital para la moral y el cierre psicológico.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>✅ CHECKLIST EJECUTABLE: FASE DE CIERRE</h4>
+                <ul class="checklist">
+                    <li>[ ] Obtener la aceptación formal y firmada del Sponsor/Cliente.</li>
+                    <li>[ ] Transferir la propiedad de los entregables al cliente o a operaciones.</li>
+                    <li>[ ] Cerrar todos los contratos con proveedores.</li>
+                    <li>[ ] Realizar la reunión de lecciones aprendidas (retrospectiva).</li>
+                    <li>[ ] Archivar toda la documentación del proyecto.</li>
+                    <li>[ ] Liberar a todos los miembros del equipo.</li>
+                    <li>[ ] ¡Celebrar los logros del equipo! 🎉</li>
+                </ul>
+            </section>
+
+            <hr class="my-12">
+
+            <section id="parte-3">
+                <h1>PARTE 3: HERRAMIENTAS Y TÉCNICAS</h1>
+            </section>
+            
+            <section id="10">
+                <h3>10. PROJECT CHARTER</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Project Charter = Acta de nacimiento del proyecto. Sin este documento, el proyecto no existe oficialmente.</blockquote>
+                </div>
+                <p>Documento que <strong>autoriza formalmente el proyecto</strong> y le da al Project Manager la autoridad para usar los recursos.</p>
+                <h4>Contenido Típico</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sección</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Propósito y Justificación</strong></td>
+                            <td>¿Por qué hacemos este proyecto? ¿Qué valor aporta?</td>
+                            <td>Mejorar la experiencia de usuario y aumentar conversiones.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Objetivos SMART</strong></td>
+                            <td>Metas Específicas, Medibles, Alcanzables, Relevantes y con Tiempo.</td>
+                            <td>"Reducir tiempo de carga de 5s a 2s en 3 meses".</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alcance de Alto Nivel</strong></td>
+                            <td>Qué SÍ incluye (in scope) y qué NO incluye (out of scope).</td>
+                            <td><strong>In:</strong> Rediseño de homepage. <strong>Out:</strong> App móvil.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stakeholders Principales</strong></td>
+                            <td>Lista de personas y grupos clave.</td>
+                            <td>CEO, CMO, Equipo de Ventas, Equipo de Desarrollo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Riesgos de Alto Nivel</strong></td>
+                            <td>3-5 riesgos principales identificados inicialmente.</td>
+                            <td>Retraso en la entrega del diseño, falta de disponibilidad del equipo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supuestos y Restricciones</strong></td>
+                            <td>Cosas que asumes verdaderas y limitaciones que debes respetar.</td>
+                            <td><strong>Supuesto:</strong> El equipo de diseño estará disponible. <strong>Restricción:</strong> Presupuesto máximo de $50K.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cronograma de Hitos</strong></td>
+                            <td>Fechas clave de alto nivel.</td>
+                            <td>Mes 1: Diseño completado. Mes 2: Desarrollo completado.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Presupuesto Estimado</strong></td>
+                            <td>Estimación de alto nivel del costo total.</td>
+                            <td>~$50,000 USD.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Criterios de Éxito</strong></td>
+                            <td>¿Cómo sabremos que el proyecto fue exitoso?</td>
+                            <td>Tiempo de carga &lt;2s, Conversión &gt;5%, A tiempo y en presupuesto.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Autorización</strong></td>
+                            <td>Firma del Sponsor que aprueba el inicio.</td>
+                            <td>Firma de Juan Pérez, CMO.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="11">
+                <h3>11. WBS (WORK BREAKDOWN STRUCTURE / EDT)</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> WBS = Dividir un proyecto grande en pedazos pequeños y manejables. Es el mapa de "todo" el trabajo que se debe hacer.</blockquote>
+                </div>
+                <p>Descomposición jerárquica orientada a entregables del trabajo que debe ejecutar el equipo.</p>
+                
+                <h4>Estructura del WBS</h4>
+                <div class="mermaid">
+                    graph TD
+                        A[Proyecto App Delivery] --> B[1. Diseño]
+                        A --> C[2. Desarrollo Backend]
+                        A --> D[3. Desarrollo Frontend]
+                        A --> E[4. Testing]
+                        A --> F[5. Despliegue]
+
+                        B --> B1[1.1 Wireframes]
+                        B --> B2[1.2 UI/UX]
+
+                        C --> C1[2.1 API REST]
+                        C --> C2[2.2 Base de Datos]
+
+                        D --> D1[3.1 App iOS]
+                        D --> D2[3.2 App Android]
+
+                        E --> E1[4.1 Unit Tests]
+                        E --> E2[4.2 Integration Tests]
+
+                        F --> F1[5.1 Configuración Servidores]
+                        F --> F2[5.2 Deploy Producción]
+
+                        style A fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+                </div>
+
+                <h4>Reglas Clave</h4>
+                <ul>
+                    <li><strong>Regla del 100%:</strong> El WBS debe incluir el 100% del trabajo definido en el alcance. Ni más, ni menos.</li>
+                    <li><strong>Paquetes de Trabajo:</strong> El nivel más bajo del WBS. Deben ser lo suficientemente pequeños para ser estimados (generalmente 4-80 horas).</li>
+                    <li><strong>Orientado a Entregables:</strong> El WBS se enfoca en "qué" se va a entregar (sustantivos), no en "cómo" (verbos).</li>
+                </ul>
+            </section>
+            
+            <section id="12">
+                <h3>12. CRONOGRAMA GANTT</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Gantt = Un calendario visual del proyecto. Muestra qué hay que hacer, quién es el responsable y cuándo debe hacerse.</blockquote>
+                </div>
+                <p>Un tipo de gráfico de barras que ilustra el cronograma de un proyecto.</p>
+                
+                <div class="mermaid">
+                    gantt
+                        title Cronograma Proyecto App Delivery
+                        dateFormat YYYY-MM-DD
+                        section Diseño
+                        Wireframes          :done, wire, 2025-01-01, 2025-01-05
+                        UI/UX Design        :done, ui, after wire, 5d
+                        section Desarrollo
+                        Backend API         :active, backend, 2025-01-06, 2025-01-20
+                        Frontend iOS        :frontend, 2025-01-11, 2025-01-25
+                        Frontend Android    :android, 2025-01-11, 2025-01-25
+                        section Testing
+                        Unit Tests          :test1, after backend, 3d
+                        Integration Tests   :test2, after frontend, 5d
+                        section Despliegue
+                        Deploy Staging      :deploy1, after test1, 1d
+                        Deploy Production   :milestone, deploy2, after test2, 0d
+                </div>
+
+                <h4>Elementos Clave</h4>
+                <ul>
+                    <li><strong>Tareas:</strong> Las actividades a realizar (eje Y).</li>
+                    <li><strong>Línea de Tiempo:</strong> El horizonte del proyecto (eje X).</li>
+                    <li><strong>Barras:</strong> Representan la duración de cada tarea.</li>
+                    <li><strong>Dependencias (Flechas):</strong> Muestran la relación entre tareas.</li>
+                    <li><strong>Hitos (Diamantes):</strong> Eventos importantes sin duración (e.g., "Diseño Aprobado").</li>
+                </ul>
+            </section>
+            
+            <section id="13">
+                <h3>13. RUTA CRÍTICA</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> La Ruta Crítica es como la fila más lenta en el control de seguridad del aeropuerto. No importa qué tan rápido vayas antes o después, la velocidad de esa fila es la que determina a qué hora llegarás a tu puerta de embarque.</blockquote>
+                </div>
+                <p><strong>Ruta Crítica = El camino más largo de principio a fin del proyecto.</strong> Cualquier retraso en una tarea de la ruta crítica retrasa todo el proyecto.</p>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Inicio] --> B(Tarea A<br/>5 días)
+                        A --> C(Tarea B<br/>3 días)
+
+                        B --> D(Tarea C<br/>4 días)
+                        C --> D
+
+                        D --> E(Tarea D<br/>2 días)
+                        D --> F(Tarea E<br/>6 días)
+
+                        E --> G[Fin]
+                        F --> G
+
+                        %% Marcando la Ruta Crítica: A -> B -> D -> F -> G
+                        linkStyle 0 stroke:#f00,stroke-width:3px
+                        linkStyle 2 stroke:#f00,stroke-width:3px
+                        linkStyle 4 stroke:#f00,stroke-width:3px
+                        linkStyle 6 stroke:#f00,stroke-width:3px
+                </div>
+                
+                <h4>Holgura (Float o Slack)</h4>
+                <ul>
+                    <li>Las tareas que <strong>están en la ruta crítica</strong> tienen <strong>cero holgura</strong>. No pueden retrasarse.</li>
+                    <li>Las tareas que <strong>no están en la ruta crítica</strong> tienen <strong>holgura</strong>. Es el tiempo que pueden retrasarse sin afectar la fecha final del proyecto.</li>
+                </ul>
+            </section>
+            
+            <section id="14">
+                <h3>14. GESTIÓN DE RIESGOS</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> La Gestión de Riesgos es como pensar en qué podría salir mal en un viaje (vuelos cancelados, mal tiempo) y hacer un plan para evitarlo o solucionarlo.</blockquote>
+                </div>
+                <p><strong>Gestión de Riesgos = Pensar en qué podría salir mal y hacer un plan para evitarlo o solucionarlo.</strong></t>
+                
+                <h4>Tipos de Riesgos</h4>
+                <ul>
+                    <li><strong>Negativos (Amenazas):</strong> Eventos que tendrían un impacto negativo (e.g., un desarrollador clave renuncia).</li>
+                    <li><strong>Positivos (Oportunidades):</strong> Eventos que tendrían un impacto positivo (e.g., una nueva tecnología que acelera el desarrollo).</li>
+                </ul>
+
+                <h4>Proceso de Gestión de Riesgos</h4>
+                <ol class="list-decimal pl-6">
+                    <li><strong>Identificar Riesgos:</strong> Brainstorming de todo lo que podría salir mal.</li>
+                    <li><strong>Analizar Riesgos:</strong> Evaluar la probabilidad y el impacto.</li>
+                    <li><strong>Planificar Respuesta a Riesgos:</strong> Decidir qué hacer.</li>
+                    <li><strong>Monitorear Riesgos:</strong> Vigilar los riesgos a lo largo del proyecto.</li>
+                </ol>
+
+                <h4>Matriz de Probabilidad e Impacto</h4>
+                <p>Una herramienta visual para priorizar riesgos.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Probabilidad</th>
+                            <th>Impacto Bajo</th>
+                            <th>Impacto Medio</th>
+                            <th>Impacto Alto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Alta</strong></td>
+                            <td>Prioridad Media</td>
+                            <td><strong>Prioridad Alta</strong></td>
+                            <td><strong>Prioridad Crítica</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Media</strong></td>
+                            <td>Prioridad Baja</td>
+                            <td>Prioridad Media</td>
+                            <td><strong>Prioridad Alta</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baja</strong></td>
+                            <td>Prioridad Muy Baja</td>
+                            <td>Prioridad Baja</td>
+                            <td>Prioridad Media</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Estrategias de Respuesta a Riesgos (Negativos)</h4>
+                <ul>
+                    <li><strong>Evitar:</strong> Cambiar el plan para eliminar el riesgo.</li>
+                    <li><strong>Transferir:</strong> Pasar el riesgo a un tercero (e.g., contratar un seguro).</li>
+                    <li><strong>Mitigar:</strong> Reducir la probabilidad o el impacto del riesgo.</li>
+                    <li><strong>Aceptar:</strong> No hacer nada y aceptar las consecuencias si ocurre.</li>
+                </ul>
+            </section>
+
+            <section id="15">
+                <h3>15. GESTIÓN de CAMBIOS</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> La Gestión de Cambios es como tener un sistema formal para aprobar un desvío en tu viaje planeado. No puedes simplemente "tomar un atajo" sin ver cómo afecta tu hora de llegada y tu gasolina (tiempo y costo).</blockquote>
+                </div>
+                <p><strong>Gestión de Cambios = Un sistema para evitar el "scope creep" (corrupción del alcance).</strong></p>
+                
+                <h4>¿Por qué es importante?</h4>
+                <p>Sin un proceso de gestión de cambios, los "pequeños" cambios se acumulan, causando retrasos y sobrecostos. Protege al proyecto de la expansión no controlada.</p>
+                
+                <h4>Proceso de Control de Cambios</h4>
+                <div class="mermaid">
+                    graph TD
+                        A[Solicitud de Cambio] --> B{Análisis de Impacto};
+                        B --> C[Decisión del CCB];
+                        C -- Aprobado --> D[Actualizar Plan];
+                        D --> E[Implementar y Comunicar];
+                        C -- Rechazado --> E;
+                        style C fill:#fff3e0,stroke:#f57c00
+                </div>
+                <ol class="list-decimal pl-6">
+                    <li><strong>Solicitud de Cambio (Change Request):</strong> El stakeholder presenta una solicitud formal.</li>
+                    <li><strong>Análisis de Impacto:</strong> El PM analiza el impacto del cambio en el alcance, tiempo, costo y calidad.</li>
+                    <li><strong>Decisión del CCB (Change Control Board):</strong> Un comité (que incluye al Sponsor) aprueba o rechaza el cambio.</li>
+                    <li><strong>Actualizar Plan:</strong> Si se aprueba, se actualiza la línea base del proyecto (WBS, Gantt, presupuesto).</li>
+                    <li><strong>Implementar y Comunicar:</strong> Se implementa el cambio y se comunica la decisión a todos.</li>
+                </ol>
+            </section>
+            
+            <hr class="my-12">
+
+            <section id="parte-4">
+                <h1>PARTE 4: APLICACIÓN PRÁCTICA</h1>
+            </section>
+
+            <section id="16">
+                <h3>16. EJEMPLO COMPLETO: APP DE DELIVERY "QuickBite"</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Este ejemplo es como un viaje completo: desde la idea (Iniciación) hasta la celebración del destino (Cierre).</blockquote>
+                </div>
+                <p>Para conectar toda la teoría, sigamos un proyecto ficticio de principio a fin: la creación de una <strong>App de Delivery de Comida llamada "QuickBite"</strong>.</p>
+                
+                <h4>FASE 1: INICIACIÓN</h4>
+                <ul>
+                    <li><strong>Idea:</strong> Un emprendedor ve una oportunidad para una app de delivery de restaurantes locales que no están en las grandes plataformas.</li>
+                    <li><strong>Análisis de Viabilidad:</strong> Se determina que es técnicamente posible y que hay un nicho de mercado viable.</li>
+                    <li><strong>Project Charter:</strong> Se crea el siguiente documento para formalizar el proyecto.</li>
+                </ul>
+                <div class="p-4 bg-gray-200 border-l-4 border-gray-500 rounded-r-md">
+                    <h5 class="font-bold">PROJECT CHARTER: QuickBite MVP</h5>
+                    <ul class="list-disc pl-5">
+                        <li><strong>Propósito:</strong> Conectar a usuarios con restaurantes locales.</li>
+                        <li><strong>Objetivos SMART:</strong> Lanzar un MVP funcional en 4 meses en "Metroville", con 10 restaurantes y lograr 500 usuarios en el primer mes.</li>
+                        <li><strong>Alcance:</strong> App para clientes (iOS/Android) y portal para restaurantes. <strong>Fuera de alcance:</strong> Programa de lealtad, flota de delivery propia.</li>
+                        <li><strong>Presupuesto Estimado:</strong> $75,000 USD.</li>
+                        <li><strong>Sponsor:</strong> Inversor Ángel. | <strong>PM Asignado:</strong> Ana.</li>
+                    </ul>
+                </div>
+
+                <h4 class="mt-6">FASE 2: PLANIFICACIÓN</h4>
+                <p>Ana, la PM, lidera la planificación con su equipo.</p>
+                <ul>
+                    <li><strong>WBS:</strong> Descomponen el trabajo (Diseño, Backend, Frontend iOS, Frontend Android, Testing).</li>
+                    <li><strong>Cronograma Gantt:</strong> Se crea un cronograma detallado. Se identifica que el <strong>desarrollo del backend es la ruta crítica</strong>.</li>
+                    <li><strong>Presupuesto:</strong> Se detallan los costos: salarios del equipo ($50k), marketing ($10k), infraestructura cloud ($5k), y una reserva de contingencia ($10k).</li>
+                    <li><strong>Gestión de Riesgos:</strong> Se identifica un riesgo clave: "Baja adopción por parte de los restaurantes". Se planifica una <strong>mitigación</strong>: crear un video demo y ofrecer una comisión del 0% los primeros 3 meses.</li>
+                </ul>
+                
+                <h4 class="mt-6">FASE 3: EJECUCIÓN</h4>
+                <ul>
+                    <li>El equipo de desarrollo comienza a programar el backend y la app móvil.</li>
+                    <li>El equipo de diseño finaliza la interfaz de usuario.</li>
+                    <li>Ana realiza <strong>daily stand-ups</strong> para sincronizar al equipo.</li>
+                    <li>Se contrata a un fotógrafo para las fotos de los menús (Gestión de Adquisiciones).</li>
+                </ul>
+
+                <h4 class="mt-6">FASE 4: MONITOREO Y CONTROL</h4>
+                <ul>
+                    <li><strong>Monitoreo:</strong> A la mitad del segundo mes, Ana revisa el <strong>Burndown Chart</strong> y nota que el desarrollo del backend está un 15% retrasado.</li>
+                    <li><strong>Análisis:</strong> El desarrollador principal tuvo una emergencia familiar.</li>
+                    <li><strong>Acción Correctiva:</strong> Ana habla con el equipo y deciden aplicar <strong>fast-tracking</strong>: el desarrollo de la app móvil (que iba adelantado) comienza a trabajar con datos simulados (mock data) mientras el backend se pone al día. Se comunica la situación al Sponsor.</li>
+                    <li><strong>Control de Cambios:</strong> Un stakeholder sugiere añadir un chat en vivo. Se evalúa el impacto (3 semanas y $8k adicionales) y el <strong>CCB decide rechazarlo</strong> para el MVP, pero lo agrega al backlog para una futura versión.</li>
+                </ul>
+                
+                <h4 class="mt-6">FASE 5: CIERRE</h4>
+                <ul>
+                    <li><strong>Aceptación Formal:</strong> A los 4 meses, la app está lista, probada (UAT), y el Sponsor firma el documento de aceptación.</li>
+                    <li><strong>Lecciones Aprendidas:</strong> El equipo realiza una retrospectiva. Una lección clave fue que subestimaron el tiempo necesario para integrar la pasarela de pagos. Se documenta.</li>
+                    <li><strong>Archivo y Cierre:</strong> Toda la documentación se archiva, se cierran contratos y se liberan los recursos.</li>
+                    <li><strong>Celebración:</strong> El equipo celebra el lanzamiento exitoso del MVP.</li>
+                </ul>
+            </section>
+
+            <section id="17">
+                <h3>17. CASOS DE USO POR INDUSTRIA</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Adaptar PM a industrias es como usar el mismo mapa para diferentes destinos: el camino es similar, pero el terreno cambia (regulaciones, velocidad, riesgos).</blockquote>
+                </div>
+                
+                <h4>📋 Resumen Ejecutivo</h4>
+                <p>Esta sección demuestra cómo adaptar las metodologías de gestión de proyectos a diferentes industrias. Cada ejemplo incluye un objetivo SMART, fases clave, riesgos y un checklist.</p>
+
+                <h5 class="mt-6">💻 Tecnología y Software</h5>
+                <p><strong>Ejemplo: Desarrollo de una App de Finanzas Personales</strong></p>
+                <ul>
+                    <li><strong>Objetivo SMART:</strong> Lanzar una app móvil que permita a 5,000 usuarios gestionar sus presupuestos en 4 meses, con un presupuesto de $150,000.</li>
+                    <li><strong>Fases Clave:</strong> Desarrollo ágil con sprints de 2 semanas. Monitoreo con Daily stand-ups y Burndown Charts.</li>
+                    <li><strong>Riesgos Comunes:</strong> Cambios en APIs de terceros, retrasos en certificaciones de seguridad.</li>
+                    <li><strong>Checklist Ejecutable:</strong> [ ] Requisitos funcionales documentados. [ ] Arquitectura técnica definida. [ ] Plan de testing automatizado. [ ] MVP lanzado.</li>
+                </ul>
+
+                <h5 class="mt-6">🏗️ Construcción e Infraestructura</h5>
+                <p><strong>Ejemplo: Construcción de un Centro Comercial Pequeño</strong></p>
+                <ul>
+                    <li><strong>Objetivo SMART:</strong> Completar la construcción de 5,000 m² en 12 meses, con un presupuesto de $2.5M, cumpliendo normativas.</li>
+                    <li><strong>Fases Clave:</strong> Metodología Waterfall. Planificación con WBS detallado y Ruta Crítica. Monitoreo con inspecciones semanales.</li>
+                    <li><strong>Riesgos Comunes:</strong> Condiciones climáticas adversas, retrasos en entregas de materiales, accidentes.</li>
+                    <li><strong>Checklist Ejecutable:</strong> [ ] Permisos de construcción obtenidos. [ ] Contratos con subcontratistas firmados. [ ] Cronograma con ruta crítica identificada.</li>
+                </ul>
+                
+                <h5 class="mt-6">🏥 Salud y Farmacéutica</h5>
+                <p><strong>Ejemplo: Implementación de Historias Clínicas Electrónicas</strong></p>
+                <ul>
+                    <li><strong>Objetivo SMART:</strong> Digitalizar 10,000 historias clínicas en 8 meses, con presupuesto de $500,000 y reducción del 30% en errores.</li>
+                    <li><strong>Fases Clave:</strong> Foco en cumplimiento (HIPAA/GDPR). Planificación de migración de datos y capacitación del personal.</li>
+                    <li><strong>Riesgos Comunes:</strong> Resistencia al cambio por parte del personal médico, problemas de privacidad de datos.</li>
+                    <li><strong>Checklist Ejecutable:</strong> [ ] Plan de migración de datos aprobado. [ ] Capacitación del 100% del personal médico. [ ] Pruebas de seguridad realizadas.</li>
+                </ul>
+
+                <h5 class="mt-6">📈 Marketing y Publicidad</h5>
+                <p><strong>Ejemplo: Lanzamiento de Campaña Digital Global</strong></p>
+                <ul>
+                    <li><strong>Objetivo SMART:</strong> Generar 50,000 leads cualificados en 3 meses para un nuevo producto SaaS, con un presupuesto de $200,000.</li>
+                    <li><strong>Fases Clave:</strong> Estrategia multicanal (SEO, SEM, social media). Ejecución con creación de contenido. Monitoreo diario de métricas (CTR, conversiones).</li>
+                    <li><strong>Riesgos Comunes:</strong> Cambios en algoritmos de plataformas, competencia agresiva, bajo rendimiento de anuncios.</li>
+                    <li><strong>Checklist Ejecutable:</strong> [ ] Buyer persona definido. [ ] Calendario de contenido creado. [ ] Herramientas de analytics configuradas.</li>
+                </ul>
+                <!-- ... (Se pueden añadir más industrias del MD original si es necesario) ... -->
+            </section>
+
+            <section id="18">
+                <h3>18. HERRAMIENTAS DIGITALES RECOMENDADAS</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Las herramientas son como tu kit de viaje: elige las gratuitas para empezar (Trello, Notion), las pagas para escalar (Jira, Smartsheet).</blockquote>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tarea de PM</th>
+                            <th>Herramientas Gratuitas / Freemium</th>
+                            <th>Herramientas de Pago (Profesionales)</th>
+                            <th>¿Cuándo usar cada una?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gestión de Tareas y WBS</strong></td>
+                            <td>Trello, Asana (Free), Notion</td>
+                            <td>Jira, ClickUp, Monday.com</td>
+                            <td>Empieza con Trello/Notion. Escala a Jira/ClickUp para proyectos complejos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cronograma Gantt</strong></td>
+                            <td>GanttProject (Open Source), Plantillas de Google Sheets</td>
+                            <td>Smartsheet, Microsoft Project, TeamGantt</td>
+                            <td>Google Sheets funciona para proyectos pequeños. Usa Smartsheet/MS Project para dependencias complejas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Colaboración y Documentación</strong></td>
+                            <td>Notion, Google Workspace, Slab</td>
+                            <td>Confluence, Coda</td>
+                            <td>Notion es rey para startups. Confluence es el estándar corporativo (con Jira).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diagramas y Flujos</strong></td>
+                            <td>draw.io (diagrams.net), Mermaid (en Markdown)</td>
+                            <td>Miro, Lucidchart, Whimsical</td>
+                            <td>Mermaid (como aquí) para diagramas en tu doc. Miro/Lucidchart para brainstorming.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Stack Inicial Recomendado (Costo: $0)</h4>
+                <ul>
+                    <li><strong>Gestión de Tareas y WBS:</strong> Trello o Notion.</li>
+                    <li><strong>Cronograma Gantt:</strong> Plantilla de Google Sheets.</li>
+                    <li><strong>Documentación:</strong> Notion o Google Docs.</li>
+                    <li><strong>Diagramas:</strong> diagrams.net.</li>
+                </ul>
+            </section>
+
+            <hr class="my-12">
+            
+            <section id="parte-5">
+                <h1>PARTE 5: GLOSARIO Y RECURSOS</h1>
+            </section>
+            
+            <section id="19">
+                <h3>19. GLOSARIO COMPLETO DE TÉRMINOS (A-Z)</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> El glosario es como un diccionario de viaje: define términos para navegar sin perderte.</blockquote>
+                </div>
+                <dl id="glossary-list">
+                    <dt>Acceptance Criteria (Criterios de Aceptación)</dt>
+                    <dd>Condiciones específicas y medibles que debe cumplir un entregable para ser aceptado formalmente. <strong>Ej:</strong> "El usuario debe poder registrarse en menos de 30 segundos".</dd>
+                    
+                    <dt>Agile (Ágil)</dt>
+                    <dd>Metodología iterativa e incremental enfocada en la flexibilidad, la colaboración y la entrega rápida de valor. <strong>Ej:</strong> Desarrollo con Sprints de 2 semanas.</dd>
+
+                    <dt>Baseline (Línea Base)</dt>
+                    <dd>Versión aprobada del plan (alcance, tiempo y costo) que se usa como punto de referencia para medir el desempeño.</dd>
+
+                    <dt>Burndown Chart</dt>
+                    <dd>Gráfico que muestra el trabajo restante contra el tiempo en proyectos ágiles. Ideal para visualizar el progreso.</dd>
+
+                    <dt>Change Control Board (CCB)</dt>
+                    <dd>Grupo de stakeholders clave que aprueba o rechaza las solicitudes de cambio al proyecto.</dd>
+                    
+                    <dt>Constraint (Restricción)</dt>
+                    <dd>Una limitación o condición que afecta el proyecto. <strong>Ej:</strong> "El presupuesto no puede exceder $50K".</dd>
+
+                    <dt>Critical Path (Ruta Crítica)</dt>
+                    <dd>La secuencia más larga de tareas dependientes que determina la duración total del proyecto. Cualquier retraso en estas tareas retrasa todo el proyecto.</dd>
+
+                    <dt>Deliverable (Entregable)</dt>
+                    <dd>Cualquier producto, resultado o capacidad única y verificable que debe producirse. <strong>Ej:</strong> Un informe final, una app funcional.</dd>
+
+                    <dt>Earned Value Management (EVM)</dt>
+                    <dd>Técnica avanzada para medir el rendimiento comparando trabajo planeado, trabajo completado y costo real.</dd>
+
+                    <dt>Float (Holgura o Slack)</dt>
+                    <dd>El tiempo que una tarea (que no está en la ruta crítica) puede retrasarse sin afectar la fecha de finalización del proyecto.</dd>
+
+                    <dt>Gantt Chart</dt>
+                    <dd>Gráfico de barras que muestra el cronograma del proyecto, tareas, duraciones y dependencias.</dd>
+
+                    <dt>Issue (Problema)</dt>
+                    <dd>Un obstáculo que está ocurriendo *actualmente* e impide el progreso. (A diferencia de un Riesgo, que es futuro e incierto). <strong>Ej:</strong> "El servidor de pruebas está caído".</dd>
+
+                    <dt>Kanban</dt>
+                    <dd>Método visual para gestionar el flujo de trabajo usando un tablero con columnas (e.g., To Do, In Progress, Done).</dd>
+
+                    <dt>Kickoff Meeting (Reunión de Lanzamiento)</dt>
+                    <dd>Reunión inicial para alinear al equipo y a los stakeholders sobre los objetivos, roles y plan del proyecto.</dd>
+
+                    <dt>Lessons Learned (Lecciones Aprendidas)</dt>
+                    <dd>El conocimiento ganado durante un proyecto que se documenta para mejorar futuros proyectos. Se realiza en la Fase de Cierre.</dd>
+
+                    <dt>Milestone (Hito)</dt>
+                    <dd>Un punto o evento significativo en un proyecto, sin duración. <strong>Ej:</strong> "Lanzamiento Beta", "Aprobación del Diseño Final".</dd>
+                    
+                    <dt>PMBOK (Project Management Body of Knowledge)</dt>
+                    <dd>La guía de estándares y mejores prácticas para la gestión de proyectos publicada por el PMI.</dd>
+
+                    <dt>Project Charter</dt>
+                    <dd>El "acta de nacimiento" del proyecto. Documento que autoriza formalmente su existencia y le da autoridad al PM.</dd>
+
+                    <dt>Risk (Riesgo)</dt>
+                    <dd>Un evento o condición *incierta* que, si ocurre, tiene un efecto positivo (oportunidad) o negativo (amenaza) en el proyecto.</dd>
+
+                    <dt>Scope Creep (Corrupción del Alcance)</dt>
+                    <dd>La expansión no controlada del alcance del proyecto sin los ajustes correspondientes en tiempo, costo y recursos. El enemigo #1.</dd>
+
+                    <dt>Scrum</dt>
+                    <dd>Un framework de trabajo ágil para desarrollar productos complejos, basado en iteraciones llamadas Sprints.</dd>
+
+                    <dt>Stakeholder (Interesado)</dt>
+                    <dd>Individuo, grupo u organización que puede afectar, ser afectado o percibirse a sí mismo como afectado por el proyecto.</dd>
+
+                    <dt>WBS (Work Breakdown Structure)</dt>
+                    <dd>La descomposición jerárquica del 100% del trabajo a ser realizado por el equipo.</dd>
+
+                    <dt>Waterfall (Cascada)</dt>
+                    <dd>Metodología de gestión de proyectos secuencial y tradicional, donde cada fase debe completarse antes de que comience la siguiente.</dd>
+                </dl>
+            </section>
+
+            <section id="20">
+                <h3>20. PREGUNTAS FRECUENTES (FAQ)</h3>
+                <div class="analogia">
+                    <blockquote><strong>Analogía:</strong> Las FAQ son como preguntas comunes en un viaje: resuelven dudas rápidas.</blockquote>
+                </div>
+                <dl class="space-y-6">
+                    <div>
+                        <dt class="font-semibold text-lg">1. ¿Cuál es la diferencia entre un PM y un PO?</dt>
+                        <dd class="pl-4 border-l-2 border-gray-300 ml-2 mt-1">El <strong>Product Owner (PO)</strong> se enfoca en el <strong>QUÉ</strong>: define la visión del producto y prioriza las funcionalidades. Es la voz del cliente. El <strong>Project Manager (PM)</strong> se enfoca en el <strong>CÓMO y CUÁNDO</strong>: gestiona el cronograma, el presupuesto y los recursos. Es el director de la orquesta.</dd>
+                    </div>
+                    <div>
+                        <dt class="font-semibold text-lg">2. ¿Agile es siempre mejor que Waterfall?</dt>
+                        <dd class="pl-4 border-l-2 border-gray-300 ml-2 mt-1">No. Son herramientas diferentes. <strong>Agile</strong> es mejor para proyectos con alta incertidumbre y requisitos cambiantes (e.g., desarrollo de software). <strong>Waterfall</strong> es mejor para proyectos con requisitos claros y estables desde el inicio (e.g., construcción de un puente).</dd>
+                    </div>
+                    <div>
+                        <dt class="font-semibold text-lg">3. ¿Realmente necesito un WBS para un proyecto pequeño?</dt>
+                        <dd class="pl-4 border-l-2 border-gray-300 ml-2 mt-1">¡Sí! Incluso un WBS simple (como una lista con viñetas) te obliga a pensar en *todo* el trabajo necesario y previene olvidos. Si no está en el WBS, no se hace.</dd>
+                    </div>
+                    <div>
+                        <dt class="font-semibold text-lg">4. ¿Qué es lo más importante que debe hacer un PM?</dt>
+                        <dd class="pl-4 border-l-2 border-gray-300 ml-2 mt-1">La <strong>comunicación</strong>. Un PM pasa el 90% de su tiempo comunicando: alineando al equipo, gestionando expectativas de los stakeholders, reportando progreso y resolviendo problemas.</dd>
+                    </div>
+                    <div>
+                        <dt class="font-semibold text-lg">5. ¿Cómo evito el scope creep?</dt>
+                        <dd class="pl-4 border-l-2 border-gray-300 ml-2 mt-1">Con un <strong>proceso de gestión de cambios formal</strong>. Cualquier cambio, sin importar cuán pequeño, debe pasar por una solicitud, un análisis de impacto (en tiempo y costo) y una aprobación formal por un <strong>Change Control Board (CCB)</strong>.</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section id="21">
+                <h3>21. RECURSOS ADICIONALES</h3>
+                
+                <h4 class="mt-4">Libros Recomendados</h4>
+                <ul>
+                    <li><strong>PMBOK® Guide (PMI):</strong> La biblia oficial de la gestión de proyectos. Es denso, pero es la referencia estándar.</li>
+                    <li><strong>"The Fast Forward MBA in Project Management" por Eric Verzuh:</strong> Una excelente introducción práctica y fácil de leer.</li>
+                    <li><strong>"Making Things Happen" por Scott Berkun:</strong> Una perspectiva honesta y del mundo real sobre la gestión de proyectos en tech.</li>
+                </ul>
+
+                <h4 class="mt-4">Certificaciones</h4>
+                <ul>
+                    <li><strong>CAPM® (Certified Associate in Project Management):</strong> La certificación de nivel de entrada del PMI, ideal para principiantes.</li>
+                    <li><strong>PMP® (Project Management Professional):</strong> La certificación más reconocida a nivel mundial. Requiere 3+ años de experiencia.</li>
+                    <li><strong>PMI-ACP® (Agile Certified Practitioner):</strong> Certificación de PMI para practicantes de metodologías ágiles.</li>
+                </ul>
+
+                <h4 class="mt-4">Cursos Online</h4>
+                <ul>
+                    <li><strong>Coursera:</strong> Google Project Management: Professional Certificate.</li>
+                    <li><strong>LinkedIn Learning:</strong> Project Management Foundations.</li>
+                    <li><strong>Udemy:</strong> PMP Exam Prep Seminar por Joseph Phillips.</li>
+                </ul>
+            </section>
+            
+            <hr class="my-12">
+            
             <footer class="text-center p-10 bg-gray-800 text-white rounded-lg mt-12">
                 <h2 class="text-3xl font-bold mb-4">¡Felicidades!</h2>
                 <p class="text-lg mb-4">Has completado el Manual de Fundamentos de Gestión de Proyectos v2.1.</p>
+                <p class="text-lg mb-2">Este no es solo un documento, es una <strong>caja de herramientas mental</strong>.</p>
+                <p class="text-lg mb-6">Recuerda: la gestión de proyectos se trata de <strong>crear un plan sólido para poder adaptarte inteligentemente cuando la realidad golpee</strong>.</p>
                 <p class="text-xl italic font-semibold">"El conocimiento es el mapa, pero la acción es el viaje."</p>
                 <p class="mt-6 text-blue-300">¡Éxito en tus proyectos! 🎯</p>
             </footer>
@@ -345,10 +1458,12 @@
         // --- Lógica para Menú Móvil ---
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('toc-sidebar');
+        const content = document.getElementById('content');
 
         function toggleMenu() {
             sidebar.classList.toggle('hidden-mobile');
             sidebar.classList.toggle('-translate-x-full');
+            // Añade un overlay o algo para cerrar al hacer clic fuera
         }
 
         menuToggle.addEventListener('click', toggleMenu);
@@ -400,6 +1515,8 @@
                 }
             });
         });
+
     </script>
 </body>
 </html>
+

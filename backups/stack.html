@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stack de IA para Gestión de Proyectos</title>
+    <title>STACKS DE IA PARA PMO VIRTUAL</title>
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,17 +53,22 @@
             margin: 20px 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-radius: 8px;
-            overflow: hidden;
+            overflow-x: auto; /* Permitir scroll horizontal en tablas anchas */
+            display: block; /* Necesario para overflow-x */
         }
         th, td {
             border: 1px solid #bdc3c7;
             padding: 12px;
             text-align: left;
             vertical-align: top; /* Mejor alineación en tablas complejas */
+            white-space: normal; /* Asegurar que el texto se ajuste */
         }
         th {
             background-color: #34495e;
             color: white;
+            position: sticky; /* Fijar encabezados */
+            top: 0;
+            z-index: 10;
         }
         tbody tr:nth-child(even) {
             background-color: #f8f9fa;
@@ -72,7 +77,7 @@
             background-color: #ecf0f1;
         }
 
-        /* Estilo de analogía similar al manual anterior */
+        /* Estilo de analogía */
         .analogia {
             background-color: #e0f2fe; /* light-blue-100 */
             padding: 1.25rem; /* p-5 */
@@ -95,12 +100,13 @@
             margin-bottom: 1rem;
             scroll-margin-top: 80px; /* Offset para el scroll-spy */
         }
-        #content h1 { font-size: 2.5rem; border-bottom: 3px solid #0284c7; padding-bottom: 10px; } /* Azul más acorde a IA */
+        #content h1 { font-size: 2.5rem; border-bottom: 3px solid #0284c7; padding-bottom: 10px; } 
         #content h2 { font-size: 2rem; }
-        #content h3 { font-size: 1.5rem; background-color: #e0f2fe; padding: 10px; border-left: 5px solid #0284c7; } /* Azul IA */
+        #content h3 { font-size: 1.5rem; background-color: #e0f2fe; padding: 10px; border-left: 5px solid #0284c7; } 
         #content h4 { font-size: 1.25rem; font-weight: 600; }
         #content h5 { font-size: 1.1rem; font-weight: 600; color: #34495e; margin-top: 1.5rem; }
         #content h6 { font-size: 1rem; font-weight: 600; color: #52667a; margin-top: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
 
         #content ul, #content ol {
             padding-left: 2rem;
@@ -154,7 +160,7 @@
 
         /* Botón del menú móvil */
         #menu-toggle {
-            display: block; /* Oculto por defecto en CSS, mostrado por Tailwind */
+            display: block; 
         }
         
         /* Barra lateral móvil */
@@ -169,8 +175,7 @@
             #toc-sidebar.hidden-mobile {
                 display: block;
             }
-            /* Ajuste de ancho de tabla en escritorio */
-             table { display: table; } 
+            table { display: table; } /* Ancho completo en escritorio */
         }
     </style>
 </head>
@@ -187,68 +192,74 @@
         
         <!-- Barra Lateral de Navegación (TOC) -->
         <aside id="toc-sidebar" class="hidden-mobile lg:block fixed top-0 left-0 h-screen w-full lg:w-[300px] bg-white border-r border-gray-200 p-8 overflow-y-auto z-40 transition-transform transform -translate-x-full lg:translate-x-0">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Índice Stack de IA</h3>
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Índice Stacks IA</h3>
             <nav id="toc-nav" class="space-y-1 text-sm">
+                <a href="#intro" class="toc-link block font-semibold text-gray-700 hover:text-blue-500 transition-all duration-200">Introducción</a>
                 <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P0: Fundamentos IA</h4>
-                    <a href="#0.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">0.1 Intro IA para PM</a>
-                    <a href="#0.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">0.2 Prompt Engineering</a>
-                    <a href="#0.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">0.3 Stack de IAs</a>
-                    <a href="#0.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">0.4 Elegir la IA</a>
-                    <a href="#0.5" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">0.5 Automatización PM</a>
+                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">1. Fundamentos IA</h4>
+                    <a href="#tokens" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.1 Tokens Explicados</a>
+                    <a href="#costs" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.2 Costos (Fijo vs Tokens)</a>
+                    <a href="#ai-types" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.3 Tipos de IA</a>
+                    <a href="#getting-started-basics" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.4 Cómo Empezar (Checklist)</a>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P1: ¿Qué es PMO IA?</h4>
-                    <a href="#1.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.1 Definición</a>
-                    <a href="#1.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.2 vs Tradicional</a>
-                    <a href="#1.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.3 Principios</a>
-                    <a href="#1.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.4 Estructura</a>
-                    <a href="#1.5" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">1.5 Roles Humano-IA</a>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P2: Metodología PMI+IA</h4>
-                    <a href="#2.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">2.1 F1: Iniciación</a>
-                    <a href="#2.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">2.2 F2: Planificación</a>
-                    <a href="#2.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">2.3 F3: Ejecución</a>
-                    <a href="#2.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">2.4 F4: Monitoreo</a>
-                    <a href="#2.5" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">2.5 F5: Cierre</a>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P3: Templates y Prompts</h4>
-                    <a href="#3.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.1 Templates Docs</a>
-                    <a href="#3.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.2 Biblioteca Prompts</a>
-                    <a href="#3.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.3 Prompts Avanzados</a>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P4: Casos y Playbooks</h4>
-                    <a href="#4.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.1 Caso: SaaS B2B</a>
-                    <a href="#4.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.2 Caso: App E-comm</a>
-                     <a href="#caso-hr" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">4.2.1 Caso: Sistema HR</a>
-                     <a href="#caso-marketing" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">4.2.2 Caso: Campaña Mkt</a>
-                     <a href="#caso-salud" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">4.2.3 Caso: Historias Clínicas</a>
-                    <a href="#4.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.3 Playbook: Arq. Claude</a>
-                    <a href="#4.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.4 Playbook: Dev Cursor</a>
-                    <a href="#4.5" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.5 Playbook: Test IA</a>
+                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">2. Lista IAs (~25)</h4>
+                    <a href="#cat1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 1: LLMs Conversacionales (8)</a>
+                     <a href="#chatgpt" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">ChatGPT</a>
+                     <a href="#claude" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Claude</a>
+                     <a href="#gemini" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Gemini</a>
+                     <a href="#grok" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Grok</a>
+                     <a href="#llama3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Llama 3</a>
+                     <a href="#ernie" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Ernie Bot</a>
+                     <a href="#qwen" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Qwen</a>
+                     <a href="#perplexity" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Perplexity AI</a>
+                    <a href="#cat2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 2: CLI (4)</a>
+                     <a href="#gemini-cli" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Gemini CLI</a>
+                     <a href="#grok-cli" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Grok CLI</a>
+                     <a href="#ollama-cli" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Ollama CLI</a>
+                     <a href="#hf-cli" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Hugging Face CLI</a>
+                    <a href="#cat3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 3: Agenticas (5)</a>
+                     <a href="#crewai" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">CrewAI</a>
+                     <a href="#autogpt" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Auto-GPT</a>
+                     <a href="#langchain" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">LangChain</a>
+                     <a href="#babyagi" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">BabyAGI</a>
+                     <a href="#superagi" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">SuperAGI</a>
+                    <a href="#cat4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 4: Multimedia (4)</a>
+                     <a href="#runway" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Runway ML</a>
+                     <a href="#elevenlabs" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">ElevenLabs</a>
+                     <a href="#midjourney" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Midjourney</a>
+                     <a href="#stablediff" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Stable Diffusion</a>
+                    <a href="#cat5" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 5: VS Code Ext (5)</a>
+                     <a href="#kilocode" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Kilo Code</a>
+                     <a href="#copilot" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">GitHub Copilot</a>
+                     <a href="#codeium" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Codeium</a>
+                     <a href="#continuedev" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Continue.dev</a>
+                     <a href="#codewhisperer" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">CodeWhisperer</a>
+                    <a href="#cat6" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">Cat 6: Otras Versátiles (5)</a>
+                     <a href="#manusai" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Manus AI</a>
+                     <a href="#perplexity2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Perplexity AI (again)</a>
+                     <a href="#llamaindex" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">LlamaIndex</a>
+                     <a href="#huggingface" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Hugging Face Hub</a>
+                     <a href="#tabnine" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Tabnine (VS Code Ext)</a>
                 </div>
                  <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P5: Prácticas y Debug</h4>
-                    <a href="#5.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.1 Best Practices IA</a>
-                    <a href="#5.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.2 Troubleshooting</a>
-                    <a href="#5.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.3 Calidad Código IA</a>
-                    <a href="#5.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.4 Ejercicios Prácticos</a>
-                      <a href="#ejercicio1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">E1: Prompts</a>
-                      <a href="#ejercicio2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">E2: Elegir IA</a>
-                      <a href="#ejercicio3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">E3: Debug Prompts</a>
-                      <a href="#ejercicio4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">E4: Mini Proyecto</a>
+                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">3. Stacks por Sector</h4>
+                    <a href="#stack-dev" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.1 Desarrollo</a>
+                    <a href="#stack-mkt" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.2 Marketing</a>
+                    <a href="#stack-salud" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.3 Salud</a>
+                    <a href="#stack-edu" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">3.4 Educación</a>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">4. Ejemplos Prácticos</h4>
+                    <a href="#workflow-dev" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.1 Workflow Desarrollo</a>
+                    <a href="#workflow-mkt" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.2 Workflow Marketing</a>
+                    <a href="#workflow-salud" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.3 Workflow Salud</a>
+                    <a href="#workflow-edu" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">4.4 Workflow Educación</a>
                 </div>
                  <div>
-                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">P6: Recursos</h4>
-                    <a href="#6.1" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">6.1 Cómo Empezar</a>
-                    <a href="#6.2" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">6.2 Métricas de Éxito</a>
-                    <a href="#6.3" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">6.3 Recursos Adicionales</a>
-                     <a href="#anexo-c" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Anexo C: Recursos</a>
-                     <a href="#glosario-ia-pm" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-4">Glosario IA + PM</a>
-                    <a href="#6.4" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">6.4 Mejora Continua</a>
+                    <h4 class="font-semibold text-gray-700 mt-3 mb-1">5. Glosario y Recursos</h4>
+                    <a href="#glossary-basics" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.1 Glosario Básico</a>
+                    <a href="#resources-deepen" class="toc-link block text-gray-500 hover:text-blue-500 transition-all duration-200 pl-2">5.2 Recursos Adicionales</a>
                 </div>
             </nav>
         </aside>
@@ -257,83 +268,640 @@
         <main id="content" class="lg:pl-[300px] p-6 md:p-12 max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
             
             <!-- Portada -->
-            <header class="mb-12 text-center">
-                 <h1 class="text-5xl font-extrabold text-sky-700">Stack de IA para Gestión de Proyectos</h1>
-                 <p class="text-2xl italic text-gray-600 mt-4">Guía Completa de Herramientas y Workflows con IA</p>
-                 
-                 <div class="mt-10 inline-block text-left">
-                     <p class="font-semibold text-gray-500">Autor Principal:</p>
-                     <p class="text-3xl font-bold text-gray-900">Randhy Paul Rodriguez Santos</p>
-                 </div>
-                 <div class="mt-4 inline-block text-left ml-8">
-                     <p class="font-semibold text-gray-500">Colaborador y Editor:</p>
-                     <p class="text-3xl font-bold text-gray-900">Manus AI</p>
-                 </div>
-                 
-                 <p class="mt-8 text-gray-500">Versión 2.0 - Edición Definitiva | Octubre 2025</p>
+            <header class="mb-12">
+                 <h1 class="text-5xl font-extrabold text-sky-700">STACK DE INTELIGENCIA ARTIFICIAL</h1>
+                 <p class="text-2xl italic text-gray-600 mt-4">Guía Completa: Fundamentos, IAs del Mercado, Uso Práctico y Configuraciones por Sector</p>
+
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                    <div>
+                        <p class="font-semibold text-gray-500">Autor Principal:</p>
+                        <p class="text-2xl font-bold text-gray-900">Randhy Paul Rodriguez Santos</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-500">Colaborador y Editor:</p>
+                        <p class="text-2xl font-bold text-gray-900">Manus AI</p>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-gray-500">Versión 2.0 | Octubre 2025</p>
+                <p class="text-gray-500 italic">(Complemento a la serie: Cursos Integrados de Gestión e IA)</p>
             </header>
-            
+
             <hr class="my-12 border-t-2 border-gray-300">
 
             <!-- Nota de Copyright -->
-            <section class="mb-12 p-6 bg-white rounded-lg shadow-sm border border-gray-200 text-sm">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Nota de Copyright y Descargo de Responsabilidad</h3>
-                <p class="text-gray-600 mb-4">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
-                <p class="text-gray-600 mb-4">Ninguna parte de esta publicación puede ser reproducida, distribuida o transmitida en cualquier forma o por cualquier medio, incluyendo fotocopias, grabaciones u otros métodos electrónicos o mecánicos, sin el permiso previo por escrito del autor, excepto en el caso de breves citas incorporadas en revisiones críticas y ciertos otros usos no comerciales permitidos por la ley de derechos de autor.</p>
-                 <p class="text-gray-600">Este manual es una obra independiente creada por Randhy Paul Rodriguez Santos. Aunque se hace referencia a conceptos y terminología estandarizados por el Project Management Institute, Inc. (PMI), como los que se encuentran en la Guía del PMBOK®, este trabajo no ha sido preparado, revisado, aprobado o respaldado por el PMI. Todos los nombres de productos, logotipos y marcas son propiedad de sus respectivos dueños. El uso de estos nombres no implica respaldo.</p>
+            <section class="mb-12 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                <h3 class="text-xl font-semibold mb-4">Nota de Copyright y Descargo de Responsabilidad</h3>
+                <p class="text-sm text-gray-600 mb-4">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
+                <p class="text-sm text-gray-600 mb-4">Ninguna parte de esta publicación puede ser reproducida, distribuida o transmitida en cualquier forma o por cualquier medio, incluyendo fotocopias, grabaciones u otros métodos electrónicos o mecánicos, sin el permiso previo por escrito del autor, excepto en el caso de breves citas incorporadas en revisiones críticas y ciertos otros usos no comerciales permitidos por la ley de derechos de autor.</p>
+                <p class="text-sm text-gray-600">Este manual es una obra independiente creada por Randhy Paul Rodriguez Santos. Todos los nombres de productos, logotipos y marcas mencionados son propiedad de sus respectivos dueños. El uso de estos nombres no implica respaldo.</p>
             </section>
 
-             <!-- Visión del Manual -->
-             <section id="vision" class="mb-12">
-                 <h3>🎯 VISIÓN DEL MANUAL</h3>
-                 <p class="text-xl font-semibold text-sky-700 mb-4">Democratizar la gestión de proyectos profesional mediante Inteligencia Artificial.</p>
-                 <p>Este manual está diseñado para profesionales de gestión de proyectos, desarrolladores, emprendedores y líderes técnicos que desean aprovechar el poder de la Inteligencia Artificial para gestionar proyectos de forma más eficiente, sin necesidad de ser expertos en IA.</p>
-                 <p class="mt-4 font-semibold">Después de leer y aplicar este manual, serás capaz de:</p>
-                 <ul class="checklist mt-4 space-y-2 text-lg">
-                     <li>Gestionar proyectos complejos con metodología PMI adaptada a IA</li>
-                     <li>Trabajar efectivamente con múltiples IAs (Claude, ChatGPT, Cursor, etc.)</li>
-                     <li>Escribir prompts profesionales que generen resultados de alta calidad</li>
-                     <li>Reducir el tiempo de desarrollo en un 50-70%</li>
-                     <li>Aumentar la productivity del equipo en 2-3x</li>
-                     <li>Mantener altos estándares de calidad con código generado por IA</li>
+            <!-- Propósito -->
+            <section id="proposito" class="mb-12">
+                <h3>🎯 PROPÓSITO DE ESTA GUÍA</h3>
+                <p>Esta guía complementa los manuales de <strong>Fundamentos de Gestión de Proyectos</strong> y <strong>PMO Virtual con IA</strong>, proporcionando un catálogo completo y práctico de las herramientas de Inteligencia Artificial disponibles en 2025.</p>
+                <p class="mt-4 font-semibold">Después de leer esta guía entenderás:</p>
+                <ul class="checklist mt-4 space-y-2 text-lg">
+                    <li>El ecosistema completo de IAs disponibles (~25 herramientas)</li>
+                    <li>Cómo funcionan los tokens, costos y modelos de pricing</li>
+                    <li>Qué IA usar para cada tarea específica</li>
+                    <li>Stacks optimizados por sector (desarrollo, marketing, salud, educación)</li>
+                    <li>Prompts prácticos para trabajo diario</li>
+                    <li>Cómo integrar IAs en tu flujo de gestión de proyectos</li>
+                </ul>
+                <p class="mt-4"><strong>Público objetivo:</strong> Project Managers, Developers, Emprendedores y profesionales que quieren dominar el stack moderno de IA para gestión de proyectos.</p>
+            </section>
+
+            <hr class="my-12">
+
+            <section id="intro">
+                <h3>Introducción</h3>
+                <p>Este documento es el complemento definitivo y expandido al manual "PMO VIRTUAL CON IA v2.0", diseñado para proporcionar una visión completa y accesible del ecosistema de Inteligencia Artificial (IA) aplicada a la gestión de proyectos...</p>
+                 <div class="analogia">
+                     <blockquote><strong>Analogía Inicial:</strong> La IA es como una "orquesta digital en una expedición": tú (PM) eres el explorador jefe, los tokens son el combustible... Manus AI actúa como el editor maestro, refinando la partitura (docs), mientras IAs chinas como Ernie aportan melodías globales para diversidad cultural.</blockquote>
+                 </div>
+                 <h5>Diagrama Mermaid: Estructura del Documento y Flujo de Uso IA en PMO</h5>
+                 <div class="mermaid">
+                     graph TD
+                        A[Introducción: Visión y Analogía] --> B[Fundamentos Básicos]
+                        B --> C[Lista Detallada 25 IAs]
+                        C --> D[Guías de Uso]
+                        D --> E[Stacks por Sector]
+                        E --> F[Ejemplos Prácticos]
+                        F --> G[Glosario y Recursos]
+
+                        User[Usuario: Prompt Inicial] --> Conv[Conversacionales: ChatGPT/Claude/Gemini]
+                        Conv --> Agent[Agenticas: CrewAI/LangChain/Auto-GPT]
+                        Agent --> CLI[CLI: Gemini CLI/Grok CLI/Ollama]
+                        CLI --> Multi[Multimedia: Runway/ElevenLabs/Midjourney]
+                        Multi --> Ext[Extensions VS Code: Copilot/Codeium/Continue]
+                        Ext --> Kilo[Kilo Code: Refactor Patrones Local]
+                        Kilo --> Chinas[IAs Chinas: Ernie/Qwen]
+                        Chinas --> Manus[Manus AI: Edición Docs]
+                        Manus --> Output[Output Final: Proyecto Viable]
+
+                        style A fill:#e3f2fd
+                        style B fill:#fff3e0
+                        style C fill:#e8f5e8
+                        style D fill:#fce4ec
+                        style E fill:#f3e5f5
+                        style F fill:#e0f2f1
+                        style G fill:#fff9c4
+                        style Conv fill:#ff9800
+                        style Agent fill:#ff9800
+                        style CLI fill:#ff9800
+                        style Multi fill:#ff9800
+                        style Ext fill:#ff9800
+                        style Kilo fill:#ff9800
+                        style Chinas fill:#ff9800
+                        style Manus fill:#ff9800
+                        style Output fill:#4caf50
+                 </div>
+            </section>
+            
+            <hr class="my-12">
+
+            <section id="basics">
+                <h2>1. Fundamentos Básicos de IA: Lo que la Gente Entiende Poco</h2>
+                 <p>La Inteligencia Artificial (IA) no es un "robot mágico"... Piensa en IA como un "aprendiz superdotado": le das instrucciones claras (prompts), y usa patrones aprendidos para producir outputs, pero siempre necesita validación humana para evitar errores.</p>
+            </section>
+            
+            <section id="tokens">
+                 <h3>1.1 Qué son los Tokens (Explicación Simple, Profunda y Práctica)</h3>
+                <p>Tokens son las "unidades básicas de pensamiento" de la IA: cada palabra o parte de palabra que procesa... (ej. "inteligencia" = "intel" + "igencia").</p>
+                 <h4>Cómo Funcionan:</h4>
+                 <p>Input prompt → IA divide en tokens → Procesa modelo (predice siguiente token) → Genera output...</p>
+                 <h4>Cálculo Práctico y Ejemplos:</h4>
+                 <p>Usa Tokenizer OpenAI (web) o Tiktoken (Python). Ejemplo:</p>
+                 <ol>
+                    <li>Prompt: "Genera WBS app PMO 20 tareas." ≈ 500 tokens input.</li>
+                    <li>Respuesta: Lista detallada ≈ 800 tokens output.</li>
+                    <li>Total: ≈ 1300 tokens.</li>
+                    <li>Costo GPT-4o: Input $0.005/1K = $0.0025; Output $0.015/1K = $0.012; Total ≈ $0.0145.</li>
+                 </ol>
+                 <p>Tip: Prompts cortos (<500 tokens) baratos; largos (contexto) precisos pero caros.</p>
+            </section>
+
+            <section id="costs">
+                 <h3>1.2 Costos Detallados (Fijos vs. Por Tokens)</h3>
+                 <ul>
+                    <li><strong>Fijos:</strong> Suscripción mensual (ChatGPT Plus $20/mes). Ventaja: Predictible. Desventaja: Pagas aunque uses poco.</li>
+                    <li><strong>Por Tokens:</strong> Pago por uso (OpenAI GPT-4o: $0.005/1K input, $0.015/1K output; Claude: ~$0.01/1K combinado). Ventaja: Solo pagas lo usado. Desventaja: Menos predictible sin medir.</li>
+                 </ul>
+                 <p>Calculadora: Prompt 1000 palabras (~1300 tokens) + respuesta 1000 = ~2600 tokens ≈ $0.026.</p>
+                 <p>Tip: Usa dashboards API (OpenAI/Claude) para track; resume contexto para ahorrar.</p>
+            </section>
+
+            <section id="ai-types">
+                 <h3>1.3 Tipos de IA (Conversacionales vs. Agenticas y Más, con Analogías)</h3>
+                 <ul>
+                    <li><strong>Conversacionales (LLMs):</strong> "Chat con experto" (ChatGPT). Ayuda: Brainstorm, docs.</li>
+                    <li><strong>Agenticas:</strong> "Agentes secretos con misión" (CrewAI). Ayuda: Automatiza flujos complejos.</li>
+                    <li><strong>CLI:</strong> "Ninjas en terminal" (Gemini CLI). Ayuda: Ops PMO batch.</li>
+                    <li><strong>Multimedia:</strong> "Artistas digitales" (Runway). Ayuda: Prototipos, demos.</li>
+                    <li><strong>Asistentes Código/Ext VS Code:</strong> "Gadgets en tu taller" (Copilot). Ayuda: Desarrollo fluido.</li>
+                    <li><strong>IAs Chinas:</strong> "Traductores culturales globales" (Ernie). Ayuda: Diversidad, global.</li>
+                    <li><strong>Otras Versátiles:</strong> Kilo Code (refactor local), Manus AI (edición docs), Perplexity (búsqueda real-time), etc.</li>
+                 </ul>
+            </section>
+
+            <section id="getting-started-basics">
+                 <h3>1.4 Cómo Empezar con IA (Checklist Interactiva Detallada para Principiantes)</h3>
+                 <ul class="checklist">
+                    <li>[ ] **Aprende Tokens:** Prueba tokenizer OpenAI (web gratis).</li>
+                    <li>[ ] **Setup Básico (1h):** Regístrate ChatGPT free, instala VS Code + Codeium + Continue.dev (gratis). Descarga Ollama (local gratis).</li>
+                    <li>[ ] **Prueba Conversacional:** ChatGPT "Genera idea PMO app salud, explica tokens usados".</li>
+                    <li>[ ] **Prueba Agentica:** Instala LangChain (pip gratis), prueba loop simple.</li>
+                    <li>[ ] **Mide Costos:** Calcula costo prompt típico (~$0.01-0.05).</li>
+                    <li>[ ] **Evita Errores:** Corta prompts (<500 tokens gratis), limita loops agents (max 5), especifica rol, valida outputs.</li>
+                    <li>[ ] **Integra Múltiples:** Prueba chain simple (ChatGPT idea → Claude diseño → Cursor código). Mide tokens total.</li>
+                    <li>[ ] **Para PMO Práctica:** Asigna IAs por fase (ver secciones stacks).</li>
+                 </ul>
+                  <h5>Diagrama Mermaid: Flujo Tokens y Tipos IA en PMO</h5>
+                 <div class="mermaid">
+                     graph LR
+                        UserPrompt[Usuario: Prompt PMO 500 tokens] --> Tokenizer[Tokenizer: Divide en tokens]
+                        Tokenizer --> LLM[LLM Procesa: Predice tokens]
+                        LLM --> Output[Output: WBS generado 800 tokens]
+                        Output --> Cost[Costos: Fijo $20/mes o Por Tokens]
+                        LLM --> Type[Tipos IA: Conv/Agent/CLI/Multi]
+                        Type --> Conv[Conversacional: ChatGPT/Claude]
+                        Type --> Agent[Agentica: CrewAI/LangChain]
+                        Type --> CLI2[CLI: Gemini CLI/Ollama]
+                        Type --> Multi[Multimedia: Runway/ElevenLabs]
+                        Conv --> PMO[Ayuda PMO]
+                        Agent --> PMO
+                        CLI2 --> PMO
+                        Multi --> PMO
+                        Cost --> Tip[Tip: Calcula tokens con Tokenizer]
+                        LLM --> Input[Input Tokens: 500]
+                        Output --> OutputTokens[Output Tokens: 800]
+                        Input --> TotalTokens[Total: 1300 tokens]
+
+                        style UserPrompt fill:#e3f2fd
+                        style LLM fill:#fff3e0
+                        style Output fill:#e8f5e8
+                        style PMO fill:#4caf50
+                 </div>
+            </section>
+            
+            <hr class="my-12">
+
+            <section id="ai-list">
+                 <h2>2. Lista Detallada de IAs Útiles del Mercado (~25 Versátiles)</h2>
+                 <p>Lista top 25 en 2025, priorizando versátiles para PMO (desarrollo 60%, marketing 20%, salud 15%, educación 15%)...</p>
+            </section>
+
+            <section id="cat1">
+                 <h3>Cat 1: LLMs Conversacionales (Base para Prompts, 8 IAs)</h3>
+                 <section id="chatgpt">
+                     <h4>1. ChatGPT (OpenAI)</h4>
+                     <p>LLM multimodal líder...</p>
+                     <p><strong>Función técnica:</strong> Procesa input tokens GPT-4o, genera output (contexto 128K)...</p>
+                     <p><strong>Ayuda PMO:</strong> Brainstorm (Iniciación), docs negocio (Planificación)...</p>
+                     <p><strong>Costo:</strong> Gratis (GPT-3.5, <50 consultas/día); Plus $20/mes (GPT-4o, ilimitado básico, API tokens ~$0.026/2600 tokens).</p>
+                     <code class="prompt">Conversacional: "Actúa como PM senior. Genera 5 ideas campaña mkt salud..."</code>
+                     <code class="prompt">Agentico: "Usa tools simular ROI idea educación..."</code>
+                     <p><strong>Uso:</strong> Web/app, API bots PMO...</p>
+                 </section>
+                 <section id="claude">
+                     <h4>2. Claude (Anthropic)</h4>
+                     <p>LLM seguro y preciso...</p>
+                     <p><strong>Función técnica:</strong> Razonamiento multi-paso (CoT), contexto 200K...</p>
+                     <p><strong>Ayuda PMO:</strong> Arquitectura (Planificación), code review (Ejecución)...</p>
+                     <p><strong>Costo:</strong> Gratis (8K tokens, límite); Pro $20/mes (ilimitado, tokens ~$0.026/2600 tokens).</p>
+                      <code class="prompt">Conversacional: "Razonamiento paso a paso: Diseña WBS sistema HR..."</code>
+                     <code class="prompt">Agentico: "Simula loop: Analiza riesgo PMO, genera mitigación..."</code>
+                     <p><strong>Uso:</strong> Web/API, análisis profundo PMO...</p>
+                 </section>
+                 <section id="gemini">
+                     <h4>3. Gemini (Google)</h4>
+                     <p>LLM multimodal avanzado...</p>
+                     <p><strong>Función técnica:</strong> Procesa texto/imagen/video, integra Google services...</p>
+                     <p><strong>Ayuda PMO:</strong> Investigación visual (Iniciación), prototipos (Ejecución)...</p>
+                     <p><strong>Costo:</strong> Gratis (32K tokens); Advanced $20/mes (1M tokens, API tokens ~$0.0065/2600 tokens).</p>
+                     <code class="prompt">Prompt: "Analiza imagen UI dashboard mkt, sugiere mejoras..."</code>
+                     <p><strong>Uso:</strong> Web/CLI, API Google PMO data-driven...</p>
+                 </section>
+                  <section id="grok">
+                     <h4>4. Grok (xAI)</h4>
+                     <p>LLM conversacional con datos real-time (X/Twitter)...</p>
+                     <p><strong>Función técnica:</strong> Predicción tokens con datos dinámicos...</p>
+                     <p><strong>Ayuda PMO:</strong> Tendencias mercado (Iniciación), monitoreo social (Monitoreo)...</p>
+                     <p><strong>Costo:</strong> $16/mes Premium+ (tokens fijo, ~$0/consulta).</p>
+                      <code class="prompt">Conversacional: "Investiga trends IA salud 2025 para riesgos PMO..."</code>
+                     <code class="prompt">Agentico: "Simula impacto trend mkt, loop real-time..."</code>
+                     <p><strong>Uso:</strong> Web, integra social listening PMO...</p>
+                 </section>
+                 <section id="llama3">
+                     <h4>5. Llama 3 (Meta)</h4>
+                     <p>LLM open-source gratuito...</p>
+                     <p><strong>Función técnica:</strong> Local via Ollama (offline), predice tokens...</p>
+                     <p><strong>Ayuda PMO:</strong> Generación código (Ejecución), docs PMO (Planificación)...</p>
+                     <p><strong>Costo:</strong> Gratis (local); Hugging Face API tokens ~$0.0013/2600 tokens.</p>
+                     <code class="prompt">Prompt: "Genera schema Prisma DB PMO desarrollo..."</code>
+                     <p><strong>Uso:</strong> Local (Ollama privacidad salud), Hugging Face host gratis...</p>
+                 </section>
+                 <section id="ernie">
+                     <h4>6. Ernie Bot (Baidu)</h4>
+                     <p>LLM china multilingüe...</p>
+                     <p><strong>Función técnica:</strong> Procesamiento tokens multilingüe, datos asiáticos...</p>
+                     <p><strong>Ayuda PMO:</strong> Prompts globales (mkt internacional, compliance salud)...</p>
+                     <p><strong>Costo:</strong> Gratis (básico); API tokens ~$0.052/2600 tokens.</p>
+                      <code class="prompt">Conversacional: "Plan campaña mkt global español PMO..."</code>
+                     <code class="prompt">Agentico: "Simula loop: Genera copy, traduce chino..."</code>
+                     <p><strong>Uso:</strong> Web/API, PMO multicultural...</p>
+                 </section>
+                 <section id="qwen">
+                     <h4>7. Qwen (Alibaba)</h4>
+                     <p>LLM open-source china...</p>
+                     <p><strong>Función técnica:</strong> Entrenado datos globales, soporta español...</p>
+                     <p><strong>Ayuda PMO:</strong> Contenido localizado (educación multilingüe, campañas salud)...</p>
+                     <p><strong>Costo:</strong> Gratis (local); API tokens ~$0.026/2600 tokens.</p>
+                     <code class="prompt">Prompt: "Adapta plan PMO curso educación online, prompts éticos..."</code>
+                     <p><strong>Uso:</strong> API/Hugging Face, integra dev global PMO...</p>
+                 </section>
+                 <section id="perplexity">
+                     <h4>8. Perplexity AI</h4>
+                     <p>LLM búsqueda real-time...</p>
+                     <p><strong>Función técnica:</strong> Query tokens + web data → síntesis...</p>
+                     <p><strong>Ayuda PMO:</strong> Investigación (Iniciación), trends (Monitoreo)...</p>
+                     <p><strong>Costo:</strong> Gratis (básico); Pro $20/mes (ilimitado, ~$0/consulta).</p>
+                     <code class="prompt">Prompt: "Investiga stacks IA PMO educación 2025, costos tokens..."</code>
+                     <p><strong>Uso:</strong> Web, investigación dinámica PMO...</p>
+                 </section>
+            </section>
+
+             <section id="cat2">
+                 <h3>Cat 2: Herramientas CLI (Automatización Terminal, 4 IAs)</h3>
+                 <section id="gemini-cli">
+                     <h4>9. Gemini CLI (Google)</h4>
+                     <p>CLI para comandos IA en terminal...</p>
+                      <p><strong>Función técnica:</strong> API calls desde línea de comandos...</p>
+                     <p><strong>Ayuda PMO:</strong> Automatiza ops PMO (batch WBS, análisis riesgos)...</p>
+                     <p><strong>Costo:</strong> Gratis (API básica, tokens ~$0.00065/2600 tokens).</p>
+                     <code class="prompt">Trabajo: "gemini-cli --prompt 'Genera reporte riesgos PMO dev' --output md..."</code>
+                     <p><strong>Uso:</strong> Terminal, integra PMO scripts...</p>
+                 </section>
+                 <section id="grok-cli">
+                     <h4>10. Grok CLI (xAI)</h4>
+                     <p>CLI para Grok...</p>
+                      <p><strong>Función técnica:</strong> Acceso real-time X/Twitter via CLI...</p>
+                     <p><strong>Ayuda PMO:</strong> Investigación real-time (Monitoreo)...</p>
+                     <p><strong>Costo:</strong> $16/mes Premium+ (fijo, ~$0/consulta).</p>
+                     <code class="prompt">Trabajo: "grok-cli query 'Trends IA educación 2025' --format json..."</code>
+                     <p><strong>Uso:</strong> Terminal, PMO ágil social...</p>
+                 </section>
+                 <section id="ollama-cli">
+                     <h4>11. Ollama CLI</h4>
+                     <p>CLI para modelos local (Llama 3/Qwen)...</p>
+                      <p><strong>Función técnica:</strong> Local processing, no cloud...</p>
+                     <p><strong>Ayuda PMO:</strong> Prompts privados PMO (sensibles salud)...</p>
+                     <p><strong>Costo:</strong> Gratis (local, ~$0/consulta).</p>
+                     <code class="prompt">Trabajo: "ollama run llama3 'Analiza WBS PMO privacidad app salud...'"</code>
+                     <p><strong>Uso:</strong> Terminal local, ideal compliance...</p>
+                 </section>
+                 <section id="hf-cli">
+                     <h4>12. Hugging Face CLI</h4>
+                     <p>CLI para open-source models...</p>
+                      <p><strong>Función técnica:</strong> Host/ejecuta models locales/remotos...</p>
+                     <p><strong>Ayuda PMO:</strong> Experimentos PMO (gen prompts batch)...</p>
+                     <p><strong>Costo:</strong> Gratis.</p>
+                     <code class="prompt">Trabajo: "huggingface-cli run qwen 'Generate 10 prompts PMO mkt español...'"</code>
+                     <p><strong>Uso:</strong> Terminal, PMO open-source...</p>
+                 </section>
+            </section>
+
+             <section id="cat3">
+                 <h3>Cat 3: Agenticas (Autónomas para Workflows Complejos, 5 IAs)</h3>
+                 <section id="crewai">
+                     <h4>13. CrewAI</h4>
+                     <p>Framework agentico open-source...</p>
+                     <p><strong>Función técnica:</strong> Orquesta agents con roles (plan-ejecuta-revisa)...</p>
+                     <p><strong>Ayuda PMO:</strong> Automatiza fases (simula WBS desarrollo, testing auto mkt)...</p>
+                     <p><strong>Costo:</strong> Gratis (local); Enterprise ~$50/mes (pro); Tokens por LLM (~$0.026/loop 2600 tokens).</p>
+                      <code class="prompt">Agentico: "Config agent equipo CrewAI: Agent1(Claude API) planea WBS, Agent2(Cursor sim) ejecuta código..."</code>
+                     <p><strong>Uso:</strong> Python script, integra PMO workflows auto...</p>
+                 </section>
+                 <section id="autogpt">
+                     <h4>14. Auto-GPT</h4>
+                     <p>Agent GPT-based open-source...</p>
+                      <p><strong>Función técnica:</strong> Loop autónomo GPT (observa-planea-ejecuta-revisa)...</p>
+                     <p><strong>Ayuda PMO:</strong> Simulación riesgos (Monitoreo), gen batch (Ejecución)...</p>
+                     <p><strong>Costo:</strong> Gratis. Tokens API GPT (~$0.01/loop, ~$0.05/5 loops).</p>
+                      <code class="prompt">Agentico: "Auto-GPT mission: Simula fase planificación PMO educación, genera quizzes..."</code>
+                     <p><strong>Uso:</strong> Script Python, para PMO simulación...</p>
+                 </section>
+                 <section id="langchain">
+                     <h4>15. LangChain</h4>
+                     <p>Framework para chains/agents...</p>
+                      <p><strong>Función técnica:</strong> Construye "cadenas" (secuencias) o agents (loops)...</p>
+                     <p><strong>Ayuda PMO:</strong> Workflows PMO (análisis + reporte auto)...</p>
+                     <p><strong>Costo:</strong> Gratis open-source; Pro ~$50/mes. Tokens por LLMs (~$0.02/consulta).</p>
+                      <code class="prompt">Agentico: "Crea chain LangChain: Input idea mkt, LLM ChatGPT brainstorm, tool Runway gen video..."</code>
+                     <p><strong>Uso:</strong> Python, PMO avanzado...</p>
+                 </section>
+                  <section id="babyagi">
+                     <h4>16. BabyAGI</h4>
+                     <p>Agent simple open-source...</p>
+                      <p><strong>Función técnica:</strong> Loop básico (task list + ejecución)...</p>
+                     <p><strong>Ayuda PMO:</strong> Prototipos PMO (gen ideas iniciales)...</p>
+                     <p><strong>Costo:</strong> Gratis. Tokens bajo (local/LLM ~$0.01/2600 tokens).</p>
+                      <code class="prompt">Agentico: "BabyAGI task: Genera 5 ideas PMO salud, prioriza GDPR..."</code>
+                     <p><strong>Uso:</strong> Script básico, para PMO experimental...</p>
+                 </section>
+                 <section id="superagi">
+                     <h4>17. SuperAGI</h4>
+                     <p>Agent multi-tarea open-source...</p>
+                      <p><strong>Función técnica:</strong> Agents modulares (code/debug agents)...</p>
+                     <p><strong>Ayuda PMO:</strong> Ejecución PMO (auto-debug desarrollo)...</p>
+                     <p><strong>Costo:</strong> Gratis. Tokens no (local ~$0).</p>
+                      <code class="prompt">Agentico: "SuperAGI agent: Debug PMO script educación, loop iterativo..."</code>
+                     <p><strong>Uso:</strong> Para PMO experimental...</p>
+                 </section>
+            </section>
+
+             <section id="cat4">
+                 <h3>Cat 4: Generadores Multimedia (Visual/Audio/Video, 4 IAs)</h3>
+                  <section id="runway">
+                     <h4>18. Runway ML</h4>
+                     <p>Gen video/imagen de texto...</p>
+                      <p><strong>Función técnica:</strong> Diffusion models para visuals...</p>
+                     <p><strong>Ayuda PMO:</strong> Prototipos UI/mkt (Ejecución), demos salud/educación...</p>
+                     <p><strong>Costo:</strong> $12/mes (100 créditos ~$0.10/min video, ~$0.50/30s); Pro $28/mes. Tokens no.</p>
+                      <code class="prompt">Trabajo: "Generate 30s animated demo PMO dashboard mkt..."</code>
+                     <p><strong>Uso:</strong> Web, exporta código protos PMO...</p>
+                 </section>
+                 <section id="elevenlabs">
+                     <h4>19. ElevenLabs</h4>
+                     <p>Gen voz realista de texto...</p>
+                      <p><strong>Función técnica:</strong> Modelos voz clonada/síntesis...</p>
+                     <p><strong>Ayuda PMO:</strong> Audio reportes (Monitoreo), voiceovers educativos (Cierre)...</p>
+                     <p><strong>Costo:</strong> $5/mes (10K chars/mes ~$0.18/min); Pro $29/mes. Tokens por chars (~$0.47/2600 chars).</p>
+                      <code class="prompt">Trabajo: "Generate voiceover PMO tutorial risk management español..."</code>
+                     <p><strong>Uso:</strong> Web/API, presentaciones PMO...</p>
+                 </section>
+                 <section id="midjourney">
+                     <h4>20. Midjourney</h4>
+                     <p>Gen imágenes/art de texto (Bot Discord)...</p>
+                      <p><strong>Función técnica:</strong> Diffusion models para arte...</p>
+                     <p><strong>Ayuda PMO:</strong> Visuals mkt (Planificación), prototipos educación...</p>
+                     <p><strong>Costo:</strong> $10/mes (200 imgs/mes ~$0.10/img); Pro $30/mes. Tokens no.</p>
+                      <code class="prompt">Trabajo: "/imagine prompt: Modern UI dashboard PMO health app..."</code>
+                     <p><strong>Uso:</strong> Discord, integra PMO visuals...</p>
+                 </section>
+                 <section id="stablediff">
+                     <h4>21. Stable Diffusion (Hugging Face)</h4>
+                     <p>Gen imágenes open-source...</p>
+                      <p><strong>Función técnica:</strong> Open-source diffusion local/web...</p>
+                     <p><strong>Ayuda PMO:</strong> Prototipos gratis PMO (UI mockups)...</p>
+                     <p><strong>Costo:</strong> Gratis (local); Hugging Face API tokens ~$0.0013/2600 equiv.</p>
+                      <code class="prompt">Trabajo: "Stable Diffusion: Create UI mockup education platform dashboard..."</code>
+                     <p><strong>Uso:</strong> Local (Automatic1111 gratis), Hugging Face host...</p>
+                 </section>
+             </section>
+             
+             <section id="cat5">
+                 <h3>Cat 5: Asistentes Código y Extensions VS Code (Integración IDE, 5 IAs)</h3>
+                 <section id="kilocode">
+                    <h4>22. Kilo Code</h4>
+                    <p>Asistente código personalizado (refactor local)...</p>
+                     <p><strong>Función técnica:</strong> Local/custom, enfocado patrones diseño...</p>
+                    <p><strong>Ayuda PMO:</strong> Refactor desarrollo (Ejecución), optimización tools...</p>
+                    <p><strong>Costo:</strong> Gratis (básico); Custom pago ~$10-20/mes. Tokens no.</p>
+                     <code class="prompt">Trabajo: "Refina patrón observer JS PMO dashboard..."</code>
+                    <p><strong>Uso:</strong> VS Code, PMO dev...</p>
+                 </section>
+                 <section id="copilot">
+                    <h4>23. GitHub Copilot</h4>
+                    <p>Extensión VS Code para autocompletado...</p>
+                     <p><strong>Función técnica:</strong> Modelo IA GitHub, integra VS Code...</p>
+                    <p><strong>Ayuda PMO:</strong> Código rápido (Ejecución), snippets PMO...</p>
+                    <p><strong>Costo:</strong> $10/mes individual (~$0/consulta fija).</p>
+                     <code class="prompt">Trabajo: "// Generate secure login function PMO auth TypeScript..."</code>
+                    <p><strong>Uso:</strong> VS Code, acelera PMO código...</p>
+                 </section>
+                  <section id="codeium">
+                    <h4>24. Codeium</h4>
+                    <p>Ext VS Code gratis para autocompletado IA...</p>
+                     <p><strong>Función técnica:</strong> IA inline en editor...</p>
+                    <p><strong>Ayuda PMO:</strong> Bootstrapping desarrollo (Ejecución)...</p>
+                    <p><strong>Costo:</strong> Gratis (ilimitado).</p>
+                     <code class="prompt">Trabajo: "Suggest code PMO risk matrix Python Matplotlib..."</code>
+                    <p><strong>Uso:</strong> VS Code, alternativa gratuita Copilot...</p>
+                 </section>
+                 <section id="continuedev">
+                    <h4>25. Continue.dev</h4>
+                    <p>Ext VS Code para agents/chat IA...</p>
+                     <p><strong>Función técnica:</strong> Chat sidebar con agents...</p>
+                    <p><strong>Ayuda PMO:</strong> Debugging agentico (Monitoreo)...</p>
+                    <p><strong>Costo:</strong> Gratis. Tokens por LLM (~$0.026/2600 tokens Claude).</p>
+                     <code class="prompt">Trabajo: "Chat IDE: Debug PMO script blocker agent step-by-step..."</code>
+                    <p><strong>Uso:</strong> VS Code, workflows PMO...</p>
+                 </section>
+                 <section id="codewhisperer">
+                    <h4>26. Amazon CodeWhisperer</h4>
+                    <p>Ext VS Code sugerencias seguras (AWS-focused)...</p>
+                     <p><strong>Función técnica:</strong> Sugerencias basadas AWS...</p>
+                    <p><strong>Ayuda PMO:</strong> Proyectos cloud PMO (Salud/desarrollo)...</p>
+                    <p><strong>Costo:</strong> Gratis (individuals, ~$0/consulta).</p>
+                     <code class="prompt">Trabajo: "Suggest AWS Lambda code secure data storage PMO health app..."</code>
+                    <p><strong>Uso:</strong> VS Code, gratis cloud...</p>
+                 </section>
+             </section>
+
+              <section id="cat6">
+                 <h3>Cat 6: Otras Versátiles del Mercado (Múltiples Tareas, 5 IAs Adicionales para Completar ~25+)</h3>
+                 <section id="manusai">
+                    <h4>27. Manus AI</h4>
+                    <p>Editor IA para contenido estructurado...</p>
+                     <p><strong>Función técnica:</strong> IA para texto, integra LLMs síntesis...</p>
+                    <p><strong>Ayuda PMO:</strong> Docs PMO (Planificación/Cierre), edición outputs...</p>
+                    <p><strong>Costo:</strong> Gratis (básico); API pago tokens ~$0.026/2600 tokens.</p>
+                     <code class="prompt">Conversacional: "Refina Project Charter PMO mkt, estructura PMI..."</code>
+                    <code class="prompt">Agentico: "Simula loop: Refina WBS output Claude, integra LangChain validación..."</code>
+                    <p><strong>Uso:</strong> Web, para manuales PMO...</p>
+                 </section>
+                  <section id="perplexity2">
+                     <h4>28. Perplexity AI</h4>
+                     <p>LLM búsqueda real-time (repetido de Cat 1 para énfasis)...</p>
+                     <p><strong>Uso PMO:</strong> Investigación dinámica (Iniciación/Monitoreo)...</p>
+                 </section>
+                 <section id="llamaindex">
+                    <h4>29. LlamaIndex</h4>
+                    <p>Framework para indexar/datos IA...</p>
+                     <p><strong>Función técnica:</strong> Indexa texto/código, query como motor búsqueda...</p>
+                    <p><strong>Ayuda PMO:</strong> Búsqueda interna docs (Monitoreo), knowledge base PMO...</p>
+                    <p><strong>Costo:</strong> Gratis open-source (~$0).</p>
+                     <code class="prompt">Trabajo: "Index PMO docs folder, query 'best risks mitigation mkt GDPR'..."</code>
+                    <p><strong>Uso:</strong> Python, PMO knowledge base...</p>
+                 </section>
+                  <section id="huggingface">
+                     <h4>30. Hugging Face (Hub Models)</h4>
+                     <p>Plataforma open-source para models...</p>
+                      <p><strong>Función técnica:</strong> Repositorio models, CLI/API gen...</p>
+                     <p><strong>Ayuda PMO:</strong> Experimentos PMO (gen prompts/models custom)...</p>
+                     <p><strong>Costo:</strong> Gratis (local/host básico); API tokens ~$0.0013/2600 tokens.</p>
+                      <code class="prompt">Trabajo: "Host Llama 3 model local PMO testing, generate prompt risk salud..."</code>
+                     <p><strong>Uso:</strong> Web/local, PMO open-source...</p>
+                 </section>
+                  <section id="tabnine">
+                     <h4>31. Tabnine (VS Code Ext)</h4>
+                     <p>Ext VS Code autocompletado contextual (Repetido de Cat 5 para énfasis pago)...</p>
+                     <p><strong>Ayuda PMO:</strong> Refactor pago avanzado (Ejecución)...</p>
+                     <p><strong>Costo:</strong> Pro $12/mes.</p>
+                 </section>
+             </section>
+             
+             <hr class="my-12">
+
+             <section id="stacks-sector">
+                <h2>3. Stacks por Sector: Configuraciones Optimizadas y Reparto Prompts</h2>
+                <p>Cada stack modular combina ~15-20 IAs versátiles. Reparto: 40% LLMs, 30% agenticas/ext, 20% multimedia/CLI, 10% chinas...</p>
+             </section>
+
+             <section id="stack-dev">
+                 <h3>3.1 Stack Desarrollo (Foco Principal)</h3>
+                 <ul>
+                    <li><strong>Gratis (~$0/mes):</strong> Gemini, Llama 3, Codeium, Auto-GPT, Ollama CLI, Hugging Face CLI.</li>
+                    <li><strong>Pago (~$50-80/mes/user):</strong> Claude Pro, Cursor, Copilot, LangChain Pro, Tabnine Pro.</li>
+                 </ul>
+                 <p><strong>Reparto Prompts:</strong> Iniciación (Perplexity research), Planificación (Claude WBS + Auto-GPT sim), Ejecución (Cursor impl + Codeium refine), Monitoreo (CrewAI track bugs + Kilo refactor), Cierre (Qwen lessons + Manus polish).</p>
+                 <p><strong>Ejemplo Config/Workflow:</strong> VS Code + Codeium (gratis) + CrewAI script. Chain: ChatGPT idea → Claude diseño → Cursor código → LangChain test → Runway demo.</p>
+                 <p><strong>Métricas Esperadas:</strong> -70% tiempo código, 80% coverage, ROI 300%.</p>
+             </section>
+
+             <section id="stack-mkt">
+                 <h3>3.2 Stack Marketing</h3>
+                  <ul>
+                    <li><strong>Gratis:</strong> ChatGPT free, Qwen, Stable Diffusion, BabyAGI, Gemini CLI.</li>
+                    <li><strong>Pago:</strong> Gemini Advanced, Runway ($12), ElevenLabs ($5), Manus API.</li>
+                 </ul>
+                 <p><strong>Reparto:</strong> Planificación (ChatGPT ideas + Perplexity trends), Ejecución (Runway video + Qwen copy), Monitoreo (BabyAGI analyze engagement).</p>
+                 <p><strong>Ejemplo Config:</strong> Web ChatGPT + Runway ads, CLI Gemini batch A/B. Workflow: Brainstorm ChatGPT → Video Runway → Traduce Qwen → Test BabyAGI.</p>
+                 <p><strong>Métricas:</strong> x2 leads, -50% tiempo, ROI 250%.</p>
+            </section>
+
+             <section id="stack-salud">
+                 <h3>3.3 Stack Salud</h3>
+                 <ul>
+                    <li><strong>Gratis:</strong> Claude free, Ernie, CodeWhisperer, LangChain.</li>
+                    <li><strong>Pago:</strong> Claude Pro, ElevenLabs ($5), Cursor ($20), Manus API.</li>
+                 </ul>
+                 <p><strong>Reparto:</strong> Planificación (Claude WBS HIPAA + Ernie ética), Ejecución (CodeWhisperer secure API + Qwen prompts), Monitoreo (LangChain agent detect brechas + Perplexity updates), Cierre (Manus refine policy).</p>
+                 <p><strong>Ejemplo Config:</strong> VS Code + CodeWhisperer (gratis cloud) + LangChain alerts. Workflow: Análisis Claude → Código Cursor → Test LangChain → Audio ElevenLabs.</p>
+                 <p><strong>Métricas:</strong> 40% eficiencia, 0 brechas, -60% tiempo docs.</p>
+             </section>
+
+             <section id="stack-edu">
+                 <h3>3.4 Stack Educación</h3>
+                  <ul>
+                    <li><strong>Gratis:</strong> Gemini, Qwen, Hugging Face CLI, BabyAGI.</li>
+                    <li><strong>Pago:</strong> ChatGPT Plus ($20), Runway ($12), Midjourney ($10), Tabnine Pro ($12).</li>
+                 </ul>
+                 <p><strong>Reparto:</strong> Iniciación (Gemini curriculum + Perplexity research), Ejecución (Midjourney visual + Qwen traduc), Monitoreo (SuperAGI track engagement + CLI Ollama batch), Cierre (Manus optimize feedback).</p>
+                 <p><strong>Ejemplo Config:</strong> VS Code + Continue.dev (agents gratis) + Runway videos. Workflow: Quiz Gemini → Voz ElevenLabs → Imagen Midjourney → Sim BabyAGI.</p>
+                 <p><strong>Métricas:</strong> Retención +30%, -50% tiempo, NPS >60.</p>
+            </section>
+            
+            <hr class="my-12">
+
+            <section id="practical-examples">
+                <h2>4. Ejemplos Prácticos: Workflows PMO con Multi-IA</h2>
+                <p>Chains multi-IA en PMO, con cálculo tokens/costos (~2600 tokens).</p>
+            </section>
+
+            <section id="workflow-dev">
+                <h3>4.1 Workflow Desarrollo</h3>
+                <p>Claude arquitectura → Cursor código → CrewAI test → Kilo refactor → Runway demo.</p>
+                <p><strong>Ejemplo Prompt Chain:</strong> "Prompt Claude diseño, Cursor impl, CrewAI test, Kilo refine, Runway video pitch."</p>
+                <p><strong>Métricas:</strong> -70% tiempo, 80% coverage.</p>
+                 <h5>Diagrama Mermaid: Workflow Ejemplo Multi-IA en Desarrollo (con Tokens/Costos)</h5>
+                 <div class="mermaid">
+                     graph LR
+                        Idea[Idea Usuario: 200 tokens] --> Brain[ChatGPT Brainstorm: 300 tokens]
+                        Brain --> Des[Claude Diseño: 500 tokens]
+                        Des --> Code[Cursor Impl: 1000 tokens]
+                        Code --> Test[CrewAI Test: 1500 tokens]
+                        Test --> Ref[Kilo Code Refactor: Local 0 tokens]
+                        Ref --> Demo[Runway Video: 30s]
+                        Demo --> PMO[Output PMO: Proyecto viable]
+                        PMO --> CostTotal[Total: ~$0.58]
+
+                        style Idea fill:#e3f2fd
+                        style Brain fill:#fff3e0
+                        style Des fill:#e8f5e8
+                        style Code fill:#fce4ec
+                        style Test fill:#f3e5f5
+                        style Demo fill:#e0f2f1
+                        style PMO fill:#4caf50
+                 </div>
+            </section>
+
+             <section id="workflow-mkt">
+                <h3>4.2 Workflow Marketing</h3>
+                <p>ChatGPT brainstorm → Gemini visuals → Runway video → Qwen traduc → Manus edición.</p>
+                <p><strong>Ejemplo Prompt Chain:</strong> "Brainstorm ChatGPT, visuals Gemini, video Runway, traduc Qwen, edita Manus."</p>
+                <p><strong>Métricas:</strong> x2 leads, -50% tiempo.</p>
+            </section>
+
+             <section id="workflow-salud">
+                <h3>4.3 Workflow Salud</h3>
+                <p>Claude compliance → CodeWhisperer código → LangChain alerts → Ernie ética.</p>
+                <p><strong>Ejemplo Prompt Chain:</strong> "Análisis Claude, código CodeWhisperer, alerts LangChain, ética Ernie."</p>
+                <p><strong>Métricas:</strong> 40% eficiencia, 0 brechas.</p>
+            </section>
+
+             <section id="workflow-edu">
+                <h3>4.4 Workflow Educación</h3>
+                <p>Gemini quizzes → ElevenLabs audio → Midjourney imágenes → SuperAGI sim.</p>
+                <p><strong>Ejemplo Prompt Chain:</strong> "Quiz Gemini, audio ElevenLabs, imágenes Midjourney, sim SuperAGI."</p>
+                <p><strong>Métricas:</strong> +30% retención.</p>
+            </section>
+            
+            <hr class="my-12">
+
+             <section id="glossary-resources">
+                <h2>5. Glosario Básico y Recursos</h2>
+             </section>
+
+             <section id="glossary-basics">
+                <h3>5.1 Glosario Básico</h3>
+                 <dl id="glossary-list">
+                    <dt>Tokens</dt><dd>Unidad texto IA (~4 chars/palabra); costo por uso API. Recurso: OpenAI Tokenizer (web gratis).</dd>
+                    <dt>Conversacional</dt><dd>Chat directo (ChatGPT). Agentica: Loops auto (CrewAI).</dd>
+                    <dt>CLI</dt><dd>Comandos terminal (Gemini CLI).</dd>
+                    <dt>Agentica</dt><dd>Autónomas con tools (LangChain).</dd>
+                    <dt>Multimedia</dt><dd>Gen visuals/audio (Runway/ElevenLabs/Midjourney/Stable Diffusion).</dd>
+                    <dt>IAs Chinas</dt><dd>Multilingüe/global (Ernie/Qwen).</dd>
+                    <dt>Kilo Code</dt><dd>Asistente refactor local.</dd>
+                    <dt>Manus AI</dt><dd>Editor docs (refina outputs).</dd>
+                    <dt>Perplexity</dt><dd>Búsqueda real-time.</dd>
+                    <dt>LlamaIndex</dt><dd>Indexación datos PMO.</dd>
+                    <dt>VS Code Ext</dt><dd>Codeium (gratis), Copilot (pago), Continue.dev (agents gratis), CodeWhisperer (AWS gratis), Tabnine Pro (contextual pago), Cursor (IDE pago).</dd>
+                    <dt>Otras</dt><dd>Grok (trends), Hugging Face (models open).</dd>
+                 </dl>
+             </section>
+
+             <section id="resources-deepen">
+                <h3>5.2 Recursos Adicionales (para Profundizar)</h3>
+                 <ul>
+                    <li><strong>Calculadora Tokens:</strong> OpenAI Tokenizer (web gratis), Tiktoken (Python lib gratuita).</li>
+                    <li><strong>Setup Guía:</strong> VS Code marketplace (Codeium/Copilot/etc.); pip install crewai/langchain/ollama (gratis).</li>
+                    <li><strong>Comunidades:</strong> r/MachineLearning, LangChain Discord, Hugging Face forums, VS Code Marketplace.</li>
+                    <li><strong>Cursos Gratuitos:</strong> "Prompt Engineering" Coursera (audit), "LangChain for Beginners" DeepLearning.AI, "VS Code with AI" Microsoft Learn.</li>
+                    <li><strong>Mejora Continua:</strong> Evalúa IAs post-proyecto, ajusta stacks.</li>
                  </ul>
              </section>
 
             <hr class="my-12">
-
-            <!-- INICIO DEL CONTENIDO DEL MANUAL -->
             
-            <section id="parte-0">
-                <h1>PARTE 0: FUNDAMENTOS DE IA PARA PROJECT MANAGERS</h1>
-                <div class="analogia">
-                     <blockquote>Imagina el ecosistema de IA como una orquesta sinfónica en una misión espacial: tú, el director (PM), defines la visión, pero las IAs tocan en armonía. ChatGPT dirige el brainstorming, Claude compone la arquitectura, Cursor ejecuta el código, Gemini CLI automatiza, Kilo Code refina, IAs chinas aportan diversidad, Runway/ElevenLabs crean prototipos visuales/audio, Manus AI edita docs, y agents (CrewAI/Auto-GPT) pilotean workflows. Extensiones VS Code (Codeium gratis/Copilot pago) aceleran. Sin prompts claros (partitura incompleta), reina el caos. Esta parte te equipa para orquestar este ecosistema.</blockquote>
-                </div>
-            </section>
-
-            <section id="0.1">
-                <h3>0.1 Introducción a la Inteligencia Artificial para Gestión de Proyectos</h3>
-                <h4>¿Qué es la IA y por qué importa para PMs?</h4>
-                <p>La IA, en gestión de proyectos, son sistemas que realizan tareas humanas (código, docs, análisis). Para un PM, es un <strong>multiplicador de fuerza</strong>: un equipo de expertos 24/7 para generar WBS, código, docs, analizar riesgos, etc.</p>
-                <h4>Los Tres Tipos de IA que Usarás</h4>
-                <ol>
-                    <li><strong>Large Language Models (LLMs):</strong> Claude, ChatGPT, Grok. Para planificación, documentación, análisis.</li>
-                    <li><strong>Code Generation AI:</strong> Cursor, GitHub Copilot. Para generar y refactorizar código (ejecución).</li>
-                    <li><strong>Specialized AI Tools:</strong> v0.dev (UI), Runway (Video), ElevenLabs (Audio). Para tareas específicas.</li>
-                </ol>
-                <h4>El Cambio de Mentalidad Necesario</h4>
-                <p><strong>Antes:</strong> PM define QUÉ, Equipo define CÓMO y EJECUTA.</p>
-                <p><strong>Ahora:</strong> PM define QUÉ, PM + IA definen CÓMO, IA EJECUTA (mayor parte), Humano VALIDA.</p>
-                <p>El rol del PM evoluciona de "coordinador" a "orquestador de IA".</p>
-            </section>
-
-            <!-- Continue with all sections from stack.txt content... (full content would be here, but truncated for response length) -->
-
             <footer class="text-center p-10 bg-gray-800 text-white rounded-lg mt-12">
-                 <h2 class="text-3xl font-bold mb-4">¡Manual Completado!</h2>
-                 <p class="text-lg mb-4">Ahora tienes la metodología PMO Virtual con IA v2.0.</p>
-                 <p class="text-lg mb-6">Recuerda: IAs son colaboradores, docs claros son clave, valida siempre, itera rápido.</p>
-                 <p class="text-2xl italic font-semibold text-sky-300">¡Ve y construye proyectos increíbles con IA! 🚀</p>
-                 <p class="mt-8 text-sm">Creado por Randhy Paul Rodriguez Santos con Manus AI | Oct 2025</p>
+                 <h2 class="text-3xl font-bold mb-4">¡Guía de Stacks IA Completada!</h2>
+                 <p class="text-lg mb-6">Ahora tienes un mapa detallado del ecosistema IA para tu PMO Virtual.</p>
+                 <p class="text-2xl italic font-semibold text-sky-300">¡Orquesta tu sinfonía de proyectos con IA! 🎶</p>
+                 <p class="mt-8 text-sm">Complemento de PMO VIRTUAL CON IA v2.0 | Randhy Paul Rodriguez Santos & Manus AI | Oct 2025</p>
             </footer>
 
         </main>
@@ -346,61 +914,76 @@
         // --- Lógica para Menú Móvil ---
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('toc-sidebar');
-
+        
         function toggleMenu() {
-            sidebar.classList.toggle('hidden-mobile');
-            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('hidden-mobile'); 
+            sidebar.classList.toggle('-translate-x-full'); 
+            sidebar.classList.toggle('translate-x-0'); 
         }
 
         menuToggle.addEventListener('click', toggleMenu);
         
         // --- Lógica para Scroll Spy (Resaltar TOC) ---
-        const sections = document.querySelectorAll('#content section[id]');
+        const sections = document.querySelectorAll('#content section[id], #content h3[id], #content h4[id]'); // Observar secciones y subtítulos con ID
         const tocLinks = document.querySelectorAll('#toc-nav a');
         
+        let activeLink = null; 
+
         const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.3 // 30% de la sección debe estar visible
+            root: null, 
+            rootMargin: '-20% 0px -70% 0px', 
+            threshold: 0 
         };
 
         const observer = new IntersectionObserver((entries) => {
-            let activeSectionId = null;
+            let latestActiveSectionId = null;
 
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (!activeSectionId) {
-                        activeSectionId = entry.target.id;
-                    }
+                   latestActiveSectionId = entry.target.id;
                 }
             });
 
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${activeSectionId}`) {
-                    link.classList.add('active');
+            if (latestActiveSectionId) {
+                if (activeLink) {
+                    activeLink.classList.remove('active');
                 }
-            });
-            
-            // Si el scroll está arriba del todo, no activa ninguno
-            if (window.scrollY < 200) {
-                 tocLinks.forEach(link => link.classList.remove('active'));
+                const newActiveLink = document.querySelector(`#toc-nav a[href="#${latestActiveSectionId}"]`);
+                if (newActiveLink) {
+                    newActiveLink.classList.add('active');
+                    activeLink = newActiveLink;
+                }
+            } else if (window.scrollY < 200 && activeLink) {
+                 activeLink.classList.remove('active');
+                 activeLink = null;
             }
 
         }, observerOptions);
 
         sections.forEach(section => {
-            observer.observe(section);
+             if(section.id) {
+                observer.observe(section);
+             }
         });
         
         // Cerrar menú móvil al hacer clic en un enlace
         tocLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth < 1024) {
+                if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
                     toggleMenu();
                 }
             });
         });
+
+        // Cerrar menú móvil si se hace clic fuera
+        document.addEventListener('click', (event) => {
+            const isClickInsideSidebar = sidebar.contains(event.target);
+            const isClickOnMenuButton = menuToggle.contains(event.target);
+            if (!sidebar.classList.contains('-translate-x-full') && !isClickInsideSidebar && !isClickOnMenuButton && window.innerWidth < 1024) {
+                 toggleMenu();
+            }
+        });
+
     </script>
 </body>
 </html>
