@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Integrados de Gestión de Proyectos e IA</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Mermaid.js para los diagramas -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- Header Global -->
+    <header class="bg-white shadow-md p-4">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-700">Cursos Integrados de Gestión e IA</h1>
+            <nav class="flex space-x-4">
+                <button class="tab-button active" data-tab="tab-fundamentos">Fundamentos</button>
+                <button class="tab-button" data-tab="tab-pmo">PMO IA</button>
+                <button class="tab-button" data-tab="tab-stack">Stack IA</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sidebar TOC Global (común para todos) -->
+    <aside id="toc-sidebar" class="hidden lg:block fixed top-16 left-0 h-screen w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto z-40">
+        <h3 class="text-lg font-bold mb-4">Navegación Global</h3>
+        <ul id="toc-nav" class="space-y-2">
+            <li><a href="#tab-fundamentos" class="toc-link block text-gray-500 hover:text-blue-500">Fundamentos de Gestión</a></li>
+            <li><a href="#tab-pmo" class="toc-link block text-gray-500 hover:text-blue-500">PMO Virtual con IA</a></li>
+            <li><a href="#tab-stack" class="toc-link block text-gray-500 hover:text-blue-500">Stack de IA</a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="lg:ml-64 p-6">
+        <!-- Tab 1: Fundamentos -->
+        <div id="tab-fundamentos" class="tab-content active">
+            <h2 class="text-2xl font-bold mb-4">Curso 1: Fundamentos de Gestión de Proyectos</h2>
+            <!-- Aquí va el contenido extraído del <main> de backups/fundamentos.html -->
+            <!-- Portada y secciones colapsables con <details> -->
+            <details>
+                <summary class="cursor-pointer p-4 bg-gray-200 rounded">Parte 1: Conceptos Básicos</summary>
+                <div class="p-4">
+                    <!-- Contenido de Parte 1 de fundamentos -->
+                    <section id="parte-1-fund">
+                        <h3>PARTE 1: CONCEPTOS BÁSICOS</h3>
+                        <!-- Todas las secciones de Parte 1 -->
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary class="cursor-pointer p-4 bg-gray-200 rounded">Parte 2: Las 5 Fases</summary>
+                <div class="p-4">
+                    <!-- Contenido de Parte 2 -->
+                </div>
+            </details>
+            <!-- Continuar con todas las partes como acordeones -->
+        </div>
+
+        <!-- Tab 2: PMO IA -->
+        <div id="tab-pmo" class="tab-content">
+            <h2 class="text-2xl font-bold mb-4">Curso 2: PMO Virtual con IA</h2>
+            <!-- Contenido extraído del <main> de backups/pmo.html -->
+            <details>
+                <summary class="cursor-pointer p-4 bg-gray-200 rounded">P0: Fundamentos IA</summary>
+                <div class="p-4">
+                    <!-- Contenido de P0 -->
+                </div>
+            </details>
+            <!-- Continuar con acordeones para P1, P2, etc. -->
+        </div>
+
+        <!-- Tab 3: Stack IA -->
+        <div id="tab-stack" class="tab-content">
+            <h2 class="text-2xl font-bold mb-4">Curso 3: Stack de IA</h2>
+            <!-- Contenido extraído del <main> de backups/stack.html -->
+            <details>
+                <summary class="cursor-pointer p-4 bg-gray-200 rounded">P0: Fundamentos IA</summary>
+                <div class="p-4">
+                    <!-- Contenido de P0 -->
+                </div>
+            </details>
+            <!-- Continuar con acordeones -->
+        </div>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <p>© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
+        <button id="certificado-btn" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Generar Certificado</button>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

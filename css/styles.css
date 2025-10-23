@@ -1,0 +1,205 @@
+/* Estilos unificados extraídos de los tres cursos. Basado en Tailwind + custom para consistencia. */
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  line-height: 1.7;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* Navegación activa */
+.toc-link.active {
+  color: #3b82f6;
+  font-weight: 600;
+  transform: translateX(4px);
+}
+
+/* Diagramas Mermaid */
+.mermaid {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+/* Tablas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+th, td {
+  border: 1px solid #bdc3c7;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background-color: #34495e;
+  color: white;
+}
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+tbody tr:hover {
+  background-color: #ecf0f1;
+}
+
+/* Analogías */
+.analogia {
+  background-color: #e8f5e8;
+  padding: 1.25rem;
+  border-left: 5px solid #27ae60;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #2c3e50;
+}
+.analogia blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenido principal headings */
+#content h1, #content h2, #content h3, #content h4, #content h5 {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 80px;
+}
+#content h1 { font-size: 2.5rem; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+#content h2 { font-size: 2rem; }
+#content h3 { font-size: 1.5rem; background-color: #ecf0f1; padding: 10px; border-left: 5px solid #3498db; }
+#content h4 { font-size: 1.25rem; font-weight: 600; }
+#content h5 { font-size: 1.1rem; font-weight: 600; color: #34495e; margin-top: 1.5rem; }
+
+/* Listas */
+#content ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+#content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Checklists */
+.checklist li {
+  list-style-type: none;
+  padding-left: 0;
+}
+.checklist li::before {
+  content: "✅ ";
+  color: #27ae60;
+  margin-right: 8px;
+}
+
+/* Prompts (para Stack y PMO) */
+code.prompt {
+  display: block;
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  font-family: monospace;
+  white-space: pre-wrap;
+  font-size: 0.9em;
+  overflow-x: auto;
+}
+
+/* Glosario */
+#glossary-list dt {
+  font-weight: 700;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+#glossary-list dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #bdc3c7;
+}
+
+/* Menú móvil y sidebar */
+#menu-toggle {
+  display: block;
+}
+#toc-sidebar.hidden-mobile {
+  display: none;
+}
+@media (min-width: 1024px) {
+  #menu-toggle {
+    display: none;
+  }
+  #toc-sidebar.hidden-mobile {
+    display: block;
+  }
+}
+
+/* Tabs */
+.tab-button {
+  padding: 10px 20px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.tab-button.active {
+  background: #3b82f6;
+  color: white;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Acordeones (details/summary) */
+details {
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+summary {
+  padding: 1rem;
+  background: #f9fafb;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+details[open] summary {
+  background: #e0f2fe;
+}
+
+/* Responsive para tablas y diagramas */
+@media (max-width: 768px) {
+  table, .mermaid {
+    font-size: 0.8rem;
+  }
+  th, td {
+    padding: 8px;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #f3f4f6;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+}
