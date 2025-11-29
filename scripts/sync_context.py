@@ -1,9 +1,68 @@
 #!/usr/bin/env python3
 """
-PAIDEIA - Script para generar contexto resumido para IA.
-Crea un archivo que Claude puede leer al inicio de cada sesión.
+PAIDEIA - Generador de Contexto para IA
+=======================================
 
-Ejecutar: python scripts/sync_context.py
+Este script genera un archivo Markdown optimizado para que Claude pueda
+entender rápidamente el estado actual del proyecto al iniciar una nueva sesión.
+
+Propósito:
+    - Crear un "resumen ejecutivo" del proyecto para Claude
+    - Combinar información de múltiples fuentes en un solo archivo
+    - Facilitar la continuidad entre sesiones de trabajo
+
+Arquitectura:
+    ┌──────────────────┐     ┌─────────────────┐
+    │ CONTEXT_MEMORY   │     │   Git History   │
+    │     .json        │     │   (commits)     │
+    └────────┬─────────┘     └────────┬────────┘
+             │                        │
+             └───────────┬────────────┘
+                         │
+                         ▼
+               ┌─────────────────┐
+               │ sync_context.py │
+               └────────┬────────┘
+                        │
+                        ▼
+               ┌─────────────────┐
+               │ AI_CONTEXT.md   │
+               │ (Para Claude)   │
+               └─────────────────┘
+
+Fuentes de datos:
+    1. CONTEXT_MEMORY.json:
+       - Sesiones recientes
+       - Decisiones clave
+       - Pendientes activos
+       - Stack actual
+
+    2. Git:
+       - Últimos commits
+       - Hash, mensaje, fecha
+
+Contenido generado (AI_CONTEXT.md):
+    - Estado actual del proyecto
+    - Últimas 5 sesiones
+    - Últimos 7 commits
+    - Decisiones clave recientes
+    - Pendientes actuales
+    - Mapa de archivos importantes
+
+Uso recomendado:
+    - Ejecutar antes de iniciar sesión con Claude
+    - Ejecutar después de cambios importantes
+    - Incluir en workflow de CI/CD (opcional)
+
+Comando:
+    python scripts/sync_context.py
+
+Ejemplo de salida:
+    🔄 PAIDEIA: Sincronizando contexto para IA...
+    ✅ Contexto IA generado: 00000_GENESIS/AI_CONTEXT.md
+
+Autor: Sistema PAIDEIA
+Versión: 1.0.0
 """
 
 import json
@@ -11,20 +70,48 @@ import datetime
 import subprocess
 from pathlib import Path
 
+# Configuración de rutas
 ROOT_DIR = Path(__file__).parent.parent
 CONTEXT_FILE = ROOT_DIR / "10000_CONTROL" / "CONTEXT_MEMORY.json"
 AI_CONTEXT = ROOT_DIR / "00000_GENESIS" / "AI_CONTEXT.md"
 
 
 def load_context() -> dict:
-    """Carga el contexto existente."""
+    """
+    Carga el contexto desde el archivo JSON.
+
+    Returns:
+        dict: Contexto completo o diccionario vacío si no existe.
+
+    Note:
+        Retorna {} en lugar de estructura default para permitir
+        que generate_ai_context() maneje los casos de datos faltantes.
+    """
     if CONTEXT_FILE.exists():
         return json.loads(CONTEXT_FILE.read_text(encoding='utf-8'))
     return {}
 
 
 def get_recent_commits(n: int = 10) -> list:
-    """Obtiene los últimos N commits."""
+    """
+    Obtiene los últimos N commits del repositorio git.
+
+    Args:
+        n: Número de commits a obtener (default: 10).
+
+    Returns:
+        list: Lista de diccionarios con {hash, mensaje, cuando}.
+              Lista vacía si hay error o no hay commits.
+
+    Example:
+        >>> commits = get_recent_commits(5)
+        >>> print(commits[0])
+        {'hash': 'abc123', 'mensaje': 'feat: Add login', 'cuando': '2 hours ago'}
+
+    Note:
+        Usa formato personalizado de git log para parsear fácilmente.
+        Maneja errores silenciosamente retornando lista vacía.
+    """
     try:
         result = subprocess.run(
             ['git', 'log', f'-{n}', '--format=%h|%s|%ar'],
@@ -46,7 +133,26 @@ def get_recent_commits(n: int = 10) -> list:
 
 
 def generate_ai_context():
-    """Genera el contexto para IA."""
+    """
+    Genera el archivo AI_CONTEXT.md con información consolidada.
+
+    Este es el método principal que:
+    1. Carga contexto desde JSON
+    2. Obtiene commits recientes de git
+    3. Genera markdown formateado
+    4. Escribe el archivo de salida
+
+    Secciones generadas:
+        - Estado actual del proyecto
+        - Últimas 5 sesiones
+        - Últimos 7 commits
+        - Decisiones clave (últimas 5)
+        - Pendientes activos (últimos 10)
+        - Mapa de archivos importantes
+
+    Output:
+        Archivo: 00000_GENESIS/AI_CONTEXT.md
+    """
     context = load_context()
     commits = get_recent_commits()
 
@@ -179,7 +285,18 @@ Al iniciar una nueva sesión:
     print(f"✅ Contexto IA generado: {AI_CONTEXT}")
 
 
-def main():
+def main() -> int:
+    """
+    Punto de entrada principal del script.
+
+    Ejecuta la generación del contexto para IA y muestra feedback.
+
+    Returns:
+        int: Código de salida (siempre 0, no hay casos de error manejados).
+
+    Usage:
+        python scripts/sync_context.py
+    """
     print("🔄 PAIDEIA: Sincronizando contexto para IA...")
     generate_ai_context()
     return 0
