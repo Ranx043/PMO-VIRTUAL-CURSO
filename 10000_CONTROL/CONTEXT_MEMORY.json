@@ -5,5 +5,10 @@
   "pendientes": [
     "Actualizar SPRINTS_DETALLADOS.md para Next.js"
   ],
-  "sesiones": []
+  "sesiones": [
+    {
+      "fecha": "2025-11-29T15:38:05.331893",
+      "resumen": "Sesión completa: Documenté stack Next.js+Supabase, automatizaciones de sistema, automatizaciones de desarrollo (scripts Python), actualicé sprints detallados v2.0"
+    }
+  ]
 }
