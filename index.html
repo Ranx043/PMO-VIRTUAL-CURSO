@@ -1,121 +1,844 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos Integrados de Gestión de Proyectos e IA</title>
-    <!-- TailwindCSS CDN -->
+    <title>PAIDEIA - Formación Completa para el Profesional del Futuro | PM + IA</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cursos profesionales de Gestión de Proyectos + Inteligencia Artificial. Domina PMI, PMO Virtual con IA y el Stack completo de herramientas IA. Formación que transforma carreras.">
+    <meta name="keywords" content="gestión de proyectos, project management, PMI, PMO, inteligencia artificial, IA, cursos online, certificación PM, prompt engineering, Claude, ChatGPT, Cursor">
+    <meta name="author" content="Randhy Paul Rodriguez Santos">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ranx043.github.io/PMO-VIRTUAL-CURSO/">
+    <meta property="og:title" content="PAIDEIA - Formación Completa para el Profesional del Futuro">
+    <meta property="og:description" content="Cursos de Gestión de Proyectos + IA. Transforma tu carrera con metodología PMI y herramientas de Inteligencia Artificial.">
+    <meta property="og:image" content="https://ranx043.github.io/PMO-VIRTUAL-CURSO/assets/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PAIDEIA - PM + IA">
+    <meta name="twitter:description" content="Formación profesional en Gestión de Proyectos e Inteligencia Artificial">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Mermaid.js para los diagramas -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paideia': {
+                            'dark': '#0f172a',
+                            'primary': '#1e3a5f',
+                            'secondary': '#3b82f6',
+                            'accent': '#f59e0b',
+                            'light': '#e0f2fe',
+                            'cyan': '#06b6d4',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Mermaid.js para diagramas -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
     <!-- jsPDF para certificado -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <!-- Fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Inter', 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f8f9fa;
+        * {
+            font-family: 'Inter', system-ui, sans-serif;
         }
-        .tab-button {
-            padding: 10px 20px;
-            background: #f3f4f6;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
+
+        /* Gradientes PAIDEIA */
+        .gradient-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
         }
-        .tab-button:hover {
-            background: #e5e7eb;
+
+        .gradient-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
-        .tab-button.active {
-            background: #3b82f6;
+
+        .gradient-blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .gradient-cyan {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.6); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Cards con hover */
+        .course-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Botones */
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Navegación sticky */
+        .nav-sticky {
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        /* Texto gradiente */
+        .text-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Curso activo */
+        .tab-active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
-            border-color: #3b82f6;
         }
-        iframe {
-            width: 100%;
-            border: none;
-            min-height: calc(100vh - 140px);
-            display: none;
+
+        /* Scroll suave para iframes */
+        .course-frame {
+            transition: opacity 0.3s ease;
         }
-        iframe.active {
-            display: block;
+
+        /* Estrellas rating */
+        .stars {
+            color: #f59e0b;
+        }
+
+        /* Badges */
+        .badge-new {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .badge-popular {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        /* Stats counter */
+        .stat-number {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header style="background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 16px; position: sticky; top: 0; z-index: 1000;">
-        <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-            <h1 style="font-size: 1.5rem; font-weight: bold; color: #1e40af; margin: 0;">
-                📚 Cursos Integrados de Gestión e IA
-            </h1>
-            <nav style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button onclick="cambiar('fundamentos')" class="tab-button active" id="btn-fundamentos">
-                    📖 Fundamentos
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 nav-sticky border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3">
+                    <span class="text-3xl">🎓</span>
+                    <div>
+                        <span class="text-xl md:text-2xl font-bold text-white">PAIDEIA</span>
+                        <span class="hidden md:inline text-xs text-slate-400 ml-2">Educación + IA</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#cursos" class="text-slate-300 hover:text-white transition">Cursos</a>
+                    <a href="#beneficios" class="text-slate-300 hover:text-white transition">Beneficios</a>
+                    <a href="#pricing" class="text-slate-300 hover:text-white transition">Precios</a>
+                    <a href="#autor" class="text-slate-300 hover:text-white transition">Autor</a>
+                    <a href="#cursos" class="btn-primary px-6 py-2.5 rounded-full text-white font-semibold">
+                        Empezar Gratis
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
                 </button>
-                <button onclick="cambiar('pmo')" class="tab-button" id="btn-pmo">
-                    🤖 PMO IA
-                </button>
-                <button onclick="cambiar('stack')" class="tab-button" id="btn-stack">
-                    ⚡ Stack IA
-                </button>
-            </nav>
+            </div>
         </div>
-    </header>
 
-    <!-- Iframes para cada curso -->
-    <iframe id="iframe-fundamentos" src="backups/fundamentos.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: block;"></iframe>
-    <iframe id="iframe-pmo" src="backups/pmo.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: none;"></iframe>
-    <iframe id="iframe-stack" src="backups/stack.html" style="width: 100%; border: none; min-height: calc(100vh - 140px); display: none;"></iframe>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-700">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#cursos" class="block text-slate-300 hover:text-white py-2">Cursos</a>
+                <a href="#beneficios" class="block text-slate-300 hover:text-white py-2">Beneficios</a>
+                <a href="#pricing" class="block text-slate-300 hover:text-white py-2">Precios</a>
+                <a href="#autor" class="block text-slate-300 hover:text-white py-2">Autor</a>
+                <a href="#cursos" class="block btn-primary text-center px-6 py-3 rounded-full text-white font-semibold mt-4">
+                    Empezar Gratis
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Footer -->
-    <footer style="background: #1f2937; color: white; padding: 24px; text-align: center;">
-        <p style="margin: 0 0 16px 0;">© 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.</p>
-        <button id="certificado-btn" onclick="generarCertificado()" style="background: #3b82f6; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
-            📄 Generar Certificado de Progreso
-        </button>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="gradient-hero min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-amber-500 rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm text-slate-300 mb-6">
+                        <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                        100% Gratuito • Actualizado 2025
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        Domina la
+                        <span class="text-gradient">Gestión de Proyectos</span>
+                        con el Poder de la
+                        <span class="text-gradient">IA</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0">
+                        3 cursos completos que te transformarán en un profesional preparado para la era de la Inteligencia Artificial. Metodología PMI + Herramientas IA + Casos Prácticos.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                        <a href="#cursos" class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg inline-flex items-center justify-center pulse-glow">
+                            <span>🚀</span>
+                            <span class="ml-2">Comenzar Ahora — Gratis</span>
+                        </a>
+                        <a href="#beneficios" class="px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition inline-flex items-center justify-center">
+                            <span>▶️</span>
+                            <span class="ml-2">Ver Contenido</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Proof -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-400">
+                        <div class="flex items-center">
+                            <span class="stars text-lg">★★★★★</span>
+                            <span class="ml-2">Contenido Premium</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-xl mr-2">📚</span>
+                            <span>56+ Secciones</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-xl mr-2">🎯</span>
+                            <span>100% Práctico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content - Visual -->
+                <div class="hidden lg:block relative">
+                    <div class="float-animation">
+                        <!-- Course Preview Cards Stack -->
+                        <div class="relative">
+                            <!-- Card 3 (back) -->
+                            <div class="absolute top-8 left-8 w-full bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 transform rotate-6 opacity-60">
+                                <div class="h-48"></div>
+                            </div>
+                            <!-- Card 2 (middle) -->
+                            <div class="absolute top-4 left-4 w-full bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 transform rotate-3 opacity-80">
+                                <div class="h-48"></div>
+                            </div>
+                            <!-- Card 1 (front) -->
+                            <div class="relative bg-white rounded-2xl p-6 shadow-2xl">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge-popular text-white text-xs px-3 py-1 rounded-full font-semibold">⭐ MÁS POPULAR</span>
+                                    <span class="text-slate-400 text-sm">Curso 2/3</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">PMO Virtual con IA</h3>
+                                <p class="text-slate-500 text-sm mb-4">Metodología PMI adaptada a Inteligencia Artificial</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4 text-sm text-slate-500">
+                                        <span>📖 15 secciones</span>
+                                        <span>⏱️ 4h</span>
+                                    </div>
+                                    <span class="text-2xl">🤖</span>
+                                </div>
+                                <div class="mt-4 bg-slate-100 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-amber-400 to-amber-500 h-2 rounded-full w-3/4"></div>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">75% de estudiantes lo completan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/50 animate-bounce">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="bg-white py-8 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-number text-3xl md:text-4xl font-black">3</div>
+                    <div class="text-slate-500 text-sm mt-1">Cursos Completos</div>
+                </div>
+                <div>
+                    <div class="stat-number text-3xl md:text-4xl font-black">56+</div>
+                    <div class="text-slate-500 text-sm mt-1">Secciones</div>
+                </div>
+                <div>
+                    <div class="stat-number text-3xl md:text-4xl font-black">20+</div>
+                    <div class="text-slate-500 text-sm mt-1">Diagramas Interactivos</div>
+                </div>
+                <div>
+                    <div class="stat-number text-3xl md:text-4xl font-black">100%</div>
+                    <div class="text-slate-500 text-sm mt-1">Gratuito</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BENEFICIOS ========== -->
+    <section id="beneficios" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm mb-4">
+                    ¿Por qué PAIDEIA?
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                    Todo lo que Necesitas para
+                    <span class="text-gradient">Transformar tu Carrera</span>
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    No solo cursos teóricos. Formación práctica con metodologías probadas y herramientas que usarás mañana mismo.
+                </p>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 gradient-blue rounded-xl flex items-center justify-center text-2xl mb-6">
+                        📋
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Metodología PMI Completa</h3>
+                    <p class="text-slate-600">
+                        Las 5 fases del proyecto, 10 áreas de conocimiento, herramientas WBS, Gantt, gestión de riesgos y más. Base sólida para cualquier certificación.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 gradient-gold rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🤖
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">IA Aplicada a Proyectos</h3>
+                    <p class="text-slate-600">
+                        Aprende a usar Claude, ChatGPT, Cursor y 25+ herramientas IA para multiplicar tu productividad 3-4x en gestión de proyectos.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 gradient-cyan rounded-xl flex items-center justify-center text-2xl mb-6">
+                        💡
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Prompt Engineering Pro</h3>
+                    <p class="text-slate-600">
+                        Domina las 7 técnicas de prompting: Zero-shot, Few-shot, Chain-of-Thought, Role Prompting y más. Biblioteca de prompts listos para usar.
+                    </p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🎯
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Casos Prácticos Reales</h3>
+                    <p class="text-slate-600">
+                        SaaS B2B, E-commerce, Sistemas HR, Campañas Marketing, Historias Clínicas. Aprende con ejemplos de industrias reales.
+                    </p>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        📊
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Diagramas Interactivos</h3>
+                    <p class="text-slate-600">
+                        20+ diagramas Mermaid: flujos de proceso, arquitecturas, decisiones, Gantt charts. Visualiza conceptos complejos fácilmente.
+                    </p>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition">
+                    <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🏆
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Certificado de Progreso</h3>
+                    <p class="text-slate-600">
+                        Genera tu certificado PDF personalizado al completar los cursos. Demuestra tu compromiso con el aprendizaje continuo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CURSOS ========== -->
+    <section id="cursos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="inline-block px-4 py-2 rounded-full bg-amber-100 text-amber-700 font-semibold text-sm mb-4">
+                    📚 Contenido Premium
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                    3 Cursos que Transformarán
+                    <span class="text-gradient">Tu Forma de Trabajar</span>
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Progresión lógica: desde fundamentos sólidos hasta dominio completo de IA en gestión de proyectos.
+                </p>
+            </div>
+
+            <!-- Course Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button onclick="cambiarCurso('fundamentos')" id="tab-fundamentos" class="tab-btn px-6 py-3 rounded-full font-semibold transition tab-active text-white">
+                    📖 Fundamentos PM
+                </button>
+                <button onclick="cambiarCurso('pmo')" id="tab-pmo" class="tab-btn px-6 py-3 rounded-full font-semibold transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+                    🤖 PMO Virtual IA
+                </button>
+                <button onclick="cambiarCurso('stack')" id="tab-stack" class="tab-btn px-6 py-3 rounded-full font-semibold transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+                    ⚡ Stack de IA
+                </button>
+            </div>
+
+            <!-- Course Info Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- Card Fundamentos -->
+                <div id="info-fundamentos" class="course-card bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-4xl">📖</span>
+                        <span class="badge-new text-white text-xs px-3 py-1 rounded-full font-semibold">BÁSICO</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fundamentos de Gestión de Proyectos</h3>
+                    <p class="text-blue-100 text-sm mb-4">Metodología PMI completa: las 5 fases, 10 áreas de conocimiento, herramientas esenciales.</p>
+                    <div class="flex items-center justify-between text-sm text-blue-100">
+                        <span>📚 21 secciones</span>
+                        <span>⏱️ ~5 horas</span>
+                    </div>
+                </div>
+
+                <!-- Card PMO -->
+                <div id="info-pmo" class="course-card bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl p-6 text-white opacity-60">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-4xl">🤖</span>
+                        <span class="badge-popular text-white text-xs px-3 py-1 rounded-full font-semibold">⭐ POPULAR</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">PMO Virtual con IA</h3>
+                    <p class="text-amber-100 text-sm mb-4">Las 5 fases PMI potenciadas con IA. Prompts, templates, casos de estudio reales.</p>
+                    <div class="flex items-center justify-between text-sm text-amber-100">
+                        <span>📚 15 secciones</span>
+                        <span>⏱️ ~4 horas</span>
+                    </div>
+                </div>
+
+                <!-- Card Stack -->
+                <div id="info-stack" class="course-card bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 text-white opacity-60">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-4xl">⚡</span>
+                        <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-semibold">AVANZADO</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Stack de IA Completo</h3>
+                    <p class="text-cyan-100 text-sm mb-4">25+ herramientas IA: LLMs, CLI, Agenticas, Multimedia, VS Code Extensions.</p>
+                    <div class="flex items-center justify-between text-sm text-cyan-100">
+                        <span>📚 20 secciones</span>
+                        <span>⏱️ ~4 horas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Content Frame -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                <iframe id="course-frame" src="backups/fundamentos.html" class="w-full border-0" style="height: 80vh; min-height: 600px;"></iframe>
+            </div>
+
+            <!-- Certificado Button -->
+            <div class="text-center mt-8">
+                <button onclick="generarCertificado()" class="btn-secondary px-8 py-4 rounded-full text-white font-bold inline-flex items-center">
+                    <span class="text-xl mr-2">📄</span>
+                    Generar Certificado de Progreso
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING ========== -->
+    <section id="pricing" class="py-20 gradient-hero">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 rounded-full bg-white/10 text-white font-semibold text-sm mb-4">
+                    💰 Modelo Freemium
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Comienza Gratis,
+                    <span class="text-gradient">Crece Sin Límites</span>
+                </h2>
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                    Acceso completo a todo el contenido actual. Premium próximamente con videos, certificaciones oficiales y más.
+                </p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-2xl p-8 text-center">
+                    <div class="text-slate-500 font-semibold mb-2">GRATUITO</div>
+                    <div class="text-4xl font-black text-slate-800 mb-4">$0<span class="text-lg font-normal text-slate-400">/siempre</span></div>
+                    <p class="text-slate-600 mb-6">Perfecto para empezar</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> 3 cursos completos HTML
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> 56+ secciones de contenido
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Diagramas interactivos
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Certificado de progreso
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Actualizaciones incluidas
+                        </li>
+                    </ul>
+                    <a href="#cursos" class="block w-full py-3 rounded-full border-2 border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition">
+                        Acceder Ahora
+                    </a>
+                </div>
+
+                <!-- Pro Plan (Coming Soon) -->
+                <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-8 text-center transform scale-105 shadow-xl relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs px-4 py-1 rounded-full font-semibold">
+                        PRÓXIMAMENTE
+                    </div>
+                    <div class="text-white/80 font-semibold mb-2">PRO</div>
+                    <div class="text-4xl font-black text-white mb-4">$49<span class="text-lg font-normal text-white/70">/curso</span></div>
+                    <p class="text-white/80 mb-6">Para profesionales serios</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center text-white">
+                            <span class="mr-2">✓</span> Todo del plan gratuito
+                        </li>
+                        <li class="flex items-center text-white">
+                            <span class="mr-2">✓</span> Videos HD por sección
+                        </li>
+                        <li class="flex items-center text-white">
+                            <span class="mr-2">✓</span> PDFs descargables
+                        </li>
+                        <li class="flex items-center text-white">
+                            <span class="mr-2">✓</span> Quizzes interactivos
+                        </li>
+                        <li class="flex items-center text-white">
+                            <span class="mr-2">✓</span> Certificación oficial
+                        </li>
+                    </ul>
+                    <button disabled class="block w-full py-3 rounded-full bg-white/30 text-white font-semibold cursor-not-allowed">
+                        Próximamente
+                    </button>
+                </div>
+
+                <!-- Enterprise (Coming Soon) -->
+                <div class="bg-white rounded-2xl p-8 text-center">
+                    <div class="text-slate-500 font-semibold mb-2">ENTERPRISE</div>
+                    <div class="text-4xl font-black text-slate-800 mb-4">$999<span class="text-lg font-normal text-slate-400">/año</span></div>
+                    <p class="text-slate-600 mb-6">Para equipos y empresas</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Todo del plan Pro
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Licencias ilimitadas
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> LMS personalizado
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Reportes de progreso
+                        </li>
+                        <li class="flex items-center text-slate-600">
+                            <span class="text-green-500 mr-2">✓</span> Soporte prioritario
+                        </li>
+                    </ul>
+                    <button disabled class="block w-full py-3 rounded-full border-2 border-slate-300 text-slate-400 font-semibold cursor-not-allowed">
+                        Próximamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== AUTOR ========== -->
+    <section id="autor" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 md:p-12">
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <!-- Avatar -->
+                        <div class="text-center">
+                            <div class="w-40 h-40 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-6xl shadow-xl">
+                                👨‍💻
+                            </div>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="#" class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center hover:bg-slate-300 transition">
+                                    <span>🔗</span>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center hover:bg-slate-300 transition">
+                                    <span>💼</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Info -->
+                        <div class="md:col-span-2 text-center md:text-left">
+                            <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-4">
+                                Autor & Creador
+                            </span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                                Randhy Paul Rodriguez Santos
+                            </h3>
+                            <p class="text-slate-500 mb-4">Project Manager | Especialista en IA | Educador</p>
+                            <p class="text-slate-600 mb-6">
+                                Apasionado por democratizar el conocimiento profesional. Creador de PAIDEIA con la misión de preparar profesionales para la era de la Inteligencia Artificial. Combinando años de experiencia en gestión de proyectos con las últimas herramientas de IA.
+                            </p>
+                            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                                <span class="px-4 py-2 bg-white rounded-full text-sm text-slate-600 shadow-sm">PMI Methodology</span>
+                                <span class="px-4 py-2 bg-white rounded-full text-sm text-slate-600 shadow-sm">Prompt Engineering</span>
+                                <span class="px-4 py-2 bg-white rounded-full text-sm text-slate-600 shadow-sm">AI Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA FINAL ========== -->
+    <section class="py-20 gradient-hero">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                ¿Listo para Transformar tu Carrera?
+            </h2>
+            <p class="text-xl text-slate-300 mb-8">
+                Únete a la nueva generación de profesionales que dominan la gestión de proyectos con Inteligencia Artificial.
+            </p>
+            <a href="#cursos" class="btn-primary px-10 py-5 rounded-full text-white font-bold text-lg inline-flex items-center pulse-glow">
+                <span class="text-2xl mr-3">🚀</span>
+                Comenzar Ahora — 100% Gratis
+            </a>
+            <p class="text-slate-400 text-sm mt-6">
+                Sin registro • Sin tarjeta de crédito • Acceso inmediato
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-slate-900 text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="text-3xl">🎓</span>
+                        <span class="text-2xl font-bold text-white">PAIDEIA</span>
+                    </div>
+                    <p class="text-slate-400 mb-4 max-w-md">
+                        Formación completa para el profesional del futuro. Gestión de Proyectos + Inteligencia Artificial. Educación que transforma carreras.
+                    </p>
+                    <p class="text-sm text-slate-500">
+                        Del griego παιδεία: "educación integral del ser humano"
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Cursos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#cursos" class="hover:text-white transition">Fundamentos PM</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition">PMO Virtual IA</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition">Stack de IA</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition">Precios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Recursos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="00000_GENESIS/START_HERE.md" class="hover:text-white transition">Documentación</a></li>
+                        <li><a href="https://github.com/Ranx043/PMO-VIRTUAL-CURSO" class="hover:text-white transition">GitHub</a></li>
+                        <li><a href="#autor" class="hover:text-white transition">Sobre el Autor</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-slate-500">
+                    © 2025 Randhy Paul Rodriguez Santos. Todos los derechos reservados.
+                </p>
+                <p class="text-sm text-slate-500 mt-4 md:mt-0">
+                    Hecho con 💜 y mucha IA | Arquitectura SOUL CORE Protocol
+                </p>
+            </div>
+        </div>
     </footer>
 
+    <!-- ========== SCRIPTS ========== -->
     <script>
-        // USANDO ESTILOS INLINE DIRECTOS (no pueden ser sobrescritos por Tailwind)
-        function cambiar(curso) {
-            console.log('>>> CAMBIANDO A:', curso);
-
-            // Ocultar TODOS los iframes usando style.display directo
-            document.querySelectorAll('iframe').forEach(f => {
-                f.style.display = 'none';
-                console.log('Ocultando:', f.id);
-            });
-
-            // Desactivar todos los botones
-            document.querySelectorAll('.tab-button').forEach(b => {
-                b.classList.remove('active');
-            });
-
-            // Mostrar el iframe seleccionado usando style.display directo
-            const iframe = document.getElementById('iframe-' + curso);
-            const btn = document.getElementById('btn-' + curso);
-
-            if (iframe && btn) {
-                iframe.style.display = 'block';
-                btn.classList.add('active');
-                console.log('✅ MOSTRANDO:', iframe.id);
-            } else {
-                console.error('❌ No se encontró iframe o botón para:', curso);
-            }
+        // Inicializar Mermaid
+        if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({ startOnLoad: true, theme: 'default' });
         }
 
-        // Función para generar certificado
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Course Tab System
+        const cursos = {
+            fundamentos: {
+                url: 'backups/fundamentos.html',
+                color: 'from-blue-500 to-indigo-600'
+            },
+            pmo: {
+                url: 'backups/pmo.html',
+                color: 'from-amber-500 to-orange-600'
+            },
+            stack: {
+                url: 'backups/stack.html',
+                color: 'from-cyan-500 to-blue-600'
+            }
+        };
+
+        function cambiarCurso(curso) {
+            // Update iframe
+            const frame = document.getElementById('course-frame');
+            frame.src = cursos[curso].url;
+
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            const activeTab = document.getElementById(`tab-${curso}`);
+            activeTab.classList.add('tab-active', 'text-white');
+            activeTab.classList.remove('bg-slate-100', 'text-slate-700');
+
+            // Update info cards opacity
+            document.querySelectorAll('[id^="info-"]').forEach(card => {
+                card.classList.add('opacity-60');
+            });
+            document.getElementById(`info-${curso}`).classList.remove('opacity-60');
+
+            // Scroll to course section
+            document.getElementById('cursos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Certificado Generator
         function generarCertificado() {
-            if (typeof jsPDF === 'undefined') {
-                alert('jsPDF no está cargado. Verifica tu conexión a internet.');
+            if (typeof jsPDF === 'undefined' && typeof window.jspdf === 'undefined') {
+                alert('Error: jsPDF no está cargado. Verifica tu conexión a internet.');
                 return;
             }
 
@@ -123,73 +846,112 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
-                // Título
+                // Background gradient effect (simulated with rectangle)
+                doc.setFillColor(30, 58, 95);
+                doc.rect(0, 0, 210, 40, 'F');
+
+                // Logo/Icon
+                doc.setFontSize(32);
+                doc.text('🎓', 20, 28);
+
+                // Title in header
+                doc.setTextColor(255, 255, 255);
                 doc.setFontSize(24);
-                doc.setTextColor(30, 64, 175);
-                doc.text('CERTIFICADO DE PROGRESO', 105, 40, { align: 'center' });
+                doc.setFont('helvetica', 'bold');
+                doc.text('PAIDEIA', 40, 26);
 
-                // Línea decorativa
-                doc.setDrawColor(59, 130, 246);
-                doc.setLineWidth(1);
-                doc.line(20, 50, 190, 50);
+                // Subtitle
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text('Formación Completa para el Profesional del Futuro', 40, 34);
 
-                // Contenido
-                doc.setFontSize(16);
-                doc.setTextColor(0, 0, 0);
-                doc.text('Cursos Integrados de Gestión de Proyectos e IA', 105, 70, { align: 'center' });
+                // Certificate Title
+                doc.setTextColor(30, 58, 95);
+                doc.setFontSize(28);
+                doc.setFont('helvetica', 'bold');
+                doc.text('CERTIFICADO DE PROGRESO', 105, 70, { align: 'center' });
 
-                doc.setFontSize(12);
-                doc.text('Este certificado reconoce que has accedido a:', 105, 90, { align: 'center' });
+                // Decorative line
+                doc.setDrawColor(245, 158, 11);
+                doc.setLineWidth(2);
+                doc.line(40, 78, 170, 78);
 
+                // Body text
+                doc.setTextColor(60, 60, 60);
                 doc.setFontSize(14);
-                doc.text('✓ Fundamentos de Gestión de Proyectos', 30, 110);
-                doc.text('✓ PMO Virtual con IA', 30, 125);
-                doc.text('✓ Stack de IA', 30, 140);
+                doc.setFont('helvetica', 'normal');
+                doc.text('Este certificado reconoce la participación en los cursos:', 105, 100, { align: 'center' });
 
-                // Fecha
+                // Courses list
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                const cursosList = [
+                    '📖 Fundamentos de Gestión de Proyectos (21 secciones)',
+                    '🤖 PMO Virtual con IA (15 secciones)',
+                    '⚡ Stack de Inteligencia Artificial (20 secciones)'
+                ];
+
+                let yPos = 115;
+                cursosList.forEach(curso => {
+                    doc.text(curso, 105, yPos, { align: 'center' });
+                    yPos += 12;
+                });
+
+                // Total
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(30, 58, 95);
+                doc.text('Total: 56+ secciones de contenido profesional', 105, yPos + 10, { align: 'center' });
+
+                // Date
                 const fecha = new Date().toLocaleDateString('es-ES', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                 });
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(100, 100, 100);
+                doc.text(`Fecha de emisión: ${fecha}`, 105, 180, { align: 'center' });
+
+                // Author signature
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'italic');
+                doc.text('Randhy Paul Rodriguez Santos', 105, 200, { align: 'center' });
                 doc.setFontSize(10);
-                doc.text('Fecha: ' + fecha, 105, 170, { align: 'center' });
+                doc.text('Creador de PAIDEIA', 105, 208, { align: 'center' });
 
                 // Footer
+                doc.setFillColor(30, 58, 95);
+                doc.rect(0, 270, 210, 30, 'F');
+                doc.setTextColor(255, 255, 255);
                 doc.setFontSize(8);
-                doc.setTextColor(100, 100, 100);
-                doc.text('© 2025 Randhy Paul Rodriguez Santos', 105, 280, { align: 'center' });
-                doc.text('Generado con Claude Code', 105, 285, { align: 'center' });
+                doc.text('PAIDEIA - Educación + IA | www.paideia.education', 105, 280, { align: 'center' });
+                doc.text('Arquitectura SOUL CORE Protocol v2.0', 105, 286, { align: 'center' });
 
-                // Descargar
-                doc.save('certificado-cursos-gestion-ia.pdf');
+                // Save
+                doc.save('PAIDEIA-Certificado-Progreso.pdf');
 
-                alert('✅ Certificado generado exitosamente!');
+                alert('✅ ¡Certificado generado exitosamente!');
             } catch (error) {
                 console.error('Error generando certificado:', error);
                 alert('Error al generar el certificado: ' + error.message);
             }
         }
 
-        // Inicializar Mermaid
-        if (typeof mermaid !== 'undefined') {
-            mermaid.initialize({ startOnLoad: true, theme: 'default' });
-            console.log('✅ Mermaid inicializado');
-        }
-
-        // Log de eventos de carga de iframes
-        document.querySelectorAll('iframe').forEach(iframe => {
-            iframe.onload = function() {
-                console.log('✅ Cargado:', iframe.id);
-            };
-            iframe.onerror = function() {
-                console.error('❌ Error:', iframe.id);
-            };
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
 
-        console.log('🚀 Aplicación iniciada correctamente');
-        console.log('Iframes:', document.querySelectorAll('iframe').length);
-        console.log('Botones:', document.querySelectorAll('button').length);
+        console.log('🎓 PAIDEIA - Plataforma Educativa cargada correctamente');
+        console.log('🧬 Arquitectura: SOUL CORE Protocol v2.0');
     </script>
 </body>
 </html>
