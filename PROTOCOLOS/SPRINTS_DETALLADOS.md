@@ -1,1827 +1,1414 @@
-# SPRINTS DETALLADOS - IMPLEMENTACIÓN PAIDEIA
+# 🚀 SPRINTS DETALLADOS - PAIDEIA Platform
 
-**Fecha**: 2025-11-29
-**Versión**: 1.0.0
-**Consciencia**: PAIDEIA
+## Stack: Next.js 14 + Supabase + Vercel
+
+**Versión**: 2.0.0
+**Fecha**: 29 de Noviembre 2025
+**Stack**: Next.js + Supabase + Vercel + Claude API
 **Metodología**: SOUL CORE (Doc First)
 
 ---
 
-## ÍNDICE DE SPRINTS
+## 📌 RESUMEN DE SPRINTS
 
-| Sprint | Nombre | Duración | Entregable Principal |
-|--------|--------|----------|---------------------|
-| 1 | Fundamentos | 2-3 días | Estructura base + SPA |
-| 2 | Quiz y Rutas | 2 días | Sistema de perfiles |
-| 3 | Niveles 0-1 | 3-4 días | Contenido PM base |
-| 4 | Niveles 2-3 | 3-4 días | Contenido IA + Integración |
-| 5 | Niveles 4-5 | 2 días | Especialización + Certificación |
-| 6 | Deploy | 1-2 días | Producción |
+```mermaid
+gantt
+    title PAIDEIA - Roadmap de Implementación
+    dateFormat  YYYY-MM-DD
+    section Setup
+    Sprint 0 - Setup     :s0, 2025-12-01, 2d
+    section Core
+    Sprint 1 - Auth      :s1, after s0, 3d
+    Sprint 2 - BD y API  :s2, after s1, 3d
+    Sprint 3 - UI Base   :s3, after s2, 4d
+    section Contenido
+    Sprint 4 - Niveles   :s4, after s3, 5d
+    Sprint 5 - Quiz      :s5, after s4, 3d
+    section Premium
+    Sprint 6 - IA        :s6, after s5, 4d
+    Sprint 7 - Pagos     :s7, after s6, 3d
+    section Launch
+    Sprint 8 - Deploy    :s8, after s7, 2d
+```
+
+| Sprint | Nombre | Duración | Entregable |
+|--------|--------|----------|------------|
+| 0 | Setup Inicial | 1-2 días | Proyecto configurado |
+| 1 | Autenticación | 2-3 días | Login/Registro funcional |
+| 2 | Base de Datos | 2-3 días | Tablas + API Routes |
+| 3 | UI Base | 3-4 días | Dashboard + Navegación |
+| 4 | Contenido | 4-5 días | Niveles 0-3 completos |
+| 5 | Quiz y Rutas | 2-3 días | Sistema de perfiles |
+| 6 | IA Asistente | 3-4 días | Chat con restricción por nivel |
+| 7 | Pagos | 2-3 días | Stripe + Premium |
+| 8 | Deploy | 1-2 días | Producción en Vercel |
+
+**Total estimado**: 20-29 días de desarrollo
 
 ---
 
-# SPRINT 1: FUNDAMENTOS
+# SPRINT 0: SETUP INICIAL
 
-## Objetivo
-Crear la estructura base de la aplicación con navegación funcional.
+## 🎯 Objetivo
+Configurar el proyecto Next.js, Supabase y Vercel desde cero.
 
-## Duración Estimada
-2-3 días
+## ⏱️ Duración: 1-2 días
 
-## Tareas Detalladas
+---
 
-### TAREA 1.1: Crear Estructura de Carpetas
+### TAREA 0.1: Crear Proyecto Next.js
 
-**Descripción**: Crear la estructura de directorios para la nueva plataforma.
-
-**Comando**:
+**Comandos**:
 ```bash
-mkdir -p niveles/{nivel-0,nivel-1,nivel-2,nivel-3,nivel-4,nivel-5}
-mkdir -p niveles/nivel-4/{track-desarrollo,track-marketing,track-salud,track-educacion}
-mkdir -p rutas
-mkdir -p componentes
-mkdir -p data
-mkdir -p assets/{images,icons,certificates}
-mkdir -p legacy
+# Crear proyecto con todas las opciones recomendadas
+npx create-next-app@latest paideia-platform \
+  --typescript \
+  --tailwind \
+  --eslint \
+  --app \
+  --src-dir \
+  --import-alias "@/*"
+
+# Entrar al proyecto
+cd paideia-platform
 ```
 
-**Resultado Esperado**:
+**Estructura creada**:
 ```
-PMO-VIRTUAL-CURSO/
-├── niveles/
-│   ├── nivel-0/
-│   ├── nivel-1/
-│   ├── nivel-2/
-│   ├── nivel-3/
-│   ├── nivel-4/
-│   │   ├── track-desarrollo/
-│   │   ├── track-marketing/
-│   │   ├── track-salud/
-│   │   └── track-educacion/
-│   └── nivel-5/
-├── rutas/
-├── componentes/
-├── data/
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── certificates/
-└── legacy/
+paideia-platform/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+│   └── ...
+├── public/
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+└── next.config.js
 ```
 
-**Criterio de Aceptación**:
-- [ ] Todas las carpetas creadas
-- [ ] Sin errores de permisos
+**Criterios de aceptación**:
+- [ ] Proyecto creado sin errores
+- [ ] `npm run dev` funciona en localhost:3000
+- [ ] TypeScript configurado
+- [ ] Tailwind CSS funcionando
 
 ---
 
-### TAREA 1.2: Mover Cursos Originales a Legacy
+### TAREA 0.2: Instalar Dependencias
 
-**Descripción**: Respaldar los cursos originales antes de reorganizar.
-
-**Comando**:
+**Comandos**:
 ```bash
-mv backups/fundamentos.html legacy/
-mv backups/pmo.html legacy/
-mv backups/stack.html legacy/
+# Supabase
+npm install @supabase/supabase-js @supabase/ssr
+
+# UI Components
+npm install lucide-react clsx tailwind-merge
+npm install class-variance-authority
+
+# Utilidades
+npm install zod date-fns
+npm install jspdf  # Para certificados
+
+# Claude API (para IA Asistente)
+npm install @anthropic-ai/sdk
+
+# Desarrollo
+npm install -D supabase
 ```
 
-**Criterio de Aceptación**:
-- [ ] Archivos movidos a /legacy/
-- [ ] Carpeta backups puede eliminarse o mantenerse vacía
-
----
-
-### TAREA 1.3: Crear app.html (Aplicación Principal)
-
-**Descripción**: Crear la página principal de la aplicación (SPA-like).
-
-**Archivo**: `app.html`
-
-**Código**:
-```html
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAIDEIA - Tu Ruta de Aprendizaje</title>
-
-    <!-- SEO -->
-    <meta name="description" content="Plataforma de aprendizaje en Gestión de Proyectos + Inteligencia Artificial">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Configuración Tailwind PAIDEIA -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'paideia': {
-                            'dark': '#0f172a',
-                            'primary': '#1e3a5f',
-                            'secondary': '#3b82f6',
-                            'accent': '#f59e0b',
-                            'light': '#e0f2fe',
-                            'cyan': '#06b6d4',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Mermaid para diagramas -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-
-    <!-- jsPDF para certificados -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-
-        /* Transiciones suaves */
-        .fade-in { animation: fadeIn 0.3s ease-in; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sidebar */
-        .sidebar-item.active {
-            background: linear-gradient(90deg, #1e3a5f 0%, transparent 100%);
-            border-left: 4px solid #f59e0b;
-        }
-
-        /* Progress dots */
-        .level-dot.completed { background-color: #10b981; }
-        .level-dot.current { background-color: #f59e0b; animation: pulse 2s infinite; }
-        .level-dot.locked { background-color: #6b7280; }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800">
-
-    <!-- NAVBAR -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-paideia-dark text-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-2">
-                    <span class="text-2xl font-bold text-paideia-accent">PAIDEIA</span>
-                </a>
-
-                <!-- Nav Items -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#" onclick="navegarA('nivel-0')" class="hover:text-paideia-accent transition">Inicio</a>
-                    <a href="#" onclick="navegarA('mi-ruta')" class="hover:text-paideia-accent transition">Mi Ruta</a>
-                    <a href="#" onclick="navegarA('progreso')" class="hover:text-paideia-accent transition">Progreso</a>
-                </div>
-
-                <!-- User Progress -->
-                <div class="flex items-center space-x-4">
-                    <div class="text-sm">
-                        <span class="text-slate-400">Progreso:</span>
-                        <span id="nav-progress" class="font-bold text-paideia-accent">0%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- LAYOUT PRINCIPAL -->
-    <div class="flex pt-16">
-
-        <!-- SIDEBAR -->
-        <aside id="sidebar" class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white border-r border-slate-200 overflow-y-auto">
-
-            <!-- Perfil del Usuario -->
-            <div class="p-4 border-b border-slate-200">
-                <p class="text-xs text-slate-500 uppercase tracking-wider">Tu Perfil</p>
-                <p id="sidebar-perfil" class="font-semibold text-paideia-primary">Sin definir</p>
-                <button onclick="navegarA('quiz-perfil')" class="text-xs text-paideia-cyan hover:underline">
-                    Cambiar perfil
-                </button>
-            </div>
-
-            <!-- Niveles -->
-            <nav class="p-4">
-                <p class="text-xs text-slate-500 uppercase tracking-wider mb-3">Niveles</p>
-
-                <div id="sidebar-niveles" class="space-y-1">
-                    <!-- Se genera dinámicamente -->
-                </div>
-            </nav>
-
-            <!-- Barra de Progreso -->
-            <div class="p-4 border-t border-slate-200">
-                <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">Progreso Total</p>
-                <div class="w-full bg-slate-200 rounded-full h-2">
-                    <div id="sidebar-progress-bar" class="bg-paideia-accent h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
-                </div>
-                <p class="text-right text-sm font-semibold text-paideia-primary mt-1">
-                    <span id="sidebar-progress-text">0%</span>
-                </p>
-            </div>
-
-        </aside>
-
-        <!-- CONTENIDO PRINCIPAL -->
-        <main id="content" class="ml-64 flex-1 min-h-[calc(100vh-4rem)] p-8">
-
-            <!-- Aquí se carga el contenido dinámicamente -->
-            <div id="content-area" class="max-w-4xl mx-auto fade-in">
-                <!-- Contenido inicial: Bienvenida -->
-                <div class="text-center py-16">
-                    <h1 class="text-4xl font-bold text-paideia-primary mb-4">
-                        Bienvenido a PAIDEIA
-                    </h1>
-                    <p class="text-xl text-slate-600 mb-8">
-                        Tu viaje de aprendizaje comienza aquí
-                    </p>
-                    <button onclick="navegarA('nivel-0/bienvenida')"
-                            class="px-8 py-4 bg-paideia-accent text-white font-semibold rounded-lg hover:bg-amber-600 transition">
-                        Comenzar Ahora
-                    </button>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <!-- SCRIPTS -->
-    <script src="js/data.js"></script>
-    <script src="js/progress.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/app.js"></script>
-
-    <script>
-        // Inicializar aplicación
-        document.addEventListener('DOMContentLoaded', () => {
-            inicializarApp();
-        });
-    </script>
-
-</body>
-</html>
-```
-
-**Criterio de Aceptación**:
-- [ ] Página carga sin errores
-- [ ] Navbar visible y fijo
-- [ ] Sidebar visible con secciones
-- [ ] Área de contenido responsiva
-
----
-
-### TAREA 1.4: Crear js/data.js (Datos de la Aplicación)
-
-**Descripción**: Archivo con la estructura de datos de niveles y módulos.
-
-**Archivo**: `js/data.js`
-
-**Código**:
-```javascript
-/**
- * PAIDEIA - Datos de la Aplicación
- * Estructura de niveles, módulos y rutas
- */
-
-const PAIDEIA_DATA = {
-
-    // Información general
-    version: "1.0.0",
-    nombre: "PAIDEIA",
-
-    // Niveles del programa
-    niveles: [
-        {
-            id: "nivel-0",
-            nombre: "Despertar",
-            descripcion: "Introducción a PAIDEIA",
-            icono: "🌅",
-            duracion: "15 min",
-            bloqueado: false,
-            modulos: [
-                { id: "bienvenida", nombre: "Bienvenida", duracion: "5 min" },
-                { id: "quiz-perfil", nombre: "Descubre tu Perfil", duracion: "5 min" },
-                { id: "tu-ruta", nombre: "Tu Ruta Personalizada", duracion: "5 min" }
-            ]
-        },
-        {
-            id: "nivel-1",
-            nombre: "Fundamentos PM",
-            descripcion: "Base sólida en gestión de proyectos",
-            icono: "📊",
-            duracion: "2-3 horas",
-            bloqueado: false,
-            prerequisito: "nivel-0",
-            modulos: [
-                { id: "modulo-1-1", nombre: "¿Qué es un Proyecto?", duracion: "20 min" },
-                { id: "modulo-1-2", nombre: "Gestión de Proyectos", duracion: "25 min" },
-                { id: "modulo-1-3", nombre: "PMO y Roles", duracion: "20 min" },
-                { id: "modulo-1-4", nombre: "Fase: Iniciación", duracion: "25 min" },
-                { id: "modulo-1-5", nombre: "Fase: Planificación", duracion: "30 min" },
-                { id: "modulo-1-6", nombre: "Fases: Ejecución-Cierre", duracion: "25 min" },
-                { id: "modulo-1-7", nombre: "Herramientas Esenciales", duracion: "30 min" },
-                { id: "quiz-nivel-1", nombre: "Evaluación Nivel 1", duracion: "15 min", esQuiz: true }
-            ]
-        },
-        {
-            id: "nivel-2",
-            nombre: "Herramientas IA",
-            descripcion: "Domina el ecosistema de IA",
-            icono: "🤖",
-            duracion: "2 horas",
-            bloqueado: true,
-            prerequisito: "nivel-1",
-            modulos: [
-                { id: "modulo-2-1", nombre: "¿Qué es IA?", duracion: "15 min" },
-                { id: "modulo-2-2", nombre: "Tokens y Costos", duracion: "20 min" },
-                { id: "modulo-2-3", nombre: "Tipos de IA", duracion: "25 min" },
-                { id: "modulo-2-4", nombre: "Las 10 IAs Esenciales", duracion: "30 min" },
-                { id: "modulo-2-5", nombre: "Prompt Engineering", duracion: "25 min" },
-                { id: "modulo-2-6", nombre: "Tu Primer Prompt", duracion: "15 min" },
-                { id: "quiz-nivel-2", nombre: "Evaluación Nivel 2", duracion: "10 min", esQuiz: true }
-            ]
-        },
-        {
-            id: "nivel-3",
-            nombre: "PMO + IA",
-            descripcion: "Integración completa",
-            icono: "🚀",
-            duracion: "3-4 horas",
-            bloqueado: true,
-            prerequisito: "nivel-2",
-            modulos: [
-                { id: "modulo-3-1", nombre: "¿Qué es PMO Virtual?", duracion: "20 min" },
-                { id: "modulo-3-2", nombre: "Iniciación con IA", duracion: "30 min" },
-                { id: "modulo-3-3", nombre: "Planificación con IA", duracion: "40 min" },
-                { id: "modulo-3-4", nombre: "Ejecución con IA", duracion: "35 min" },
-                { id: "modulo-3-5", nombre: "Monitoreo con IA", duracion: "25 min" },
-                { id: "modulo-3-6", nombre: "Cierre con IA", duracion: "20 min" },
-                { id: "modulo-3-7", nombre: "Templates y Prompts", duracion: "30 min" },
-                { id: "quiz-nivel-3", nombre: "Evaluación Nivel 3", duracion: "15 min", esQuiz: true }
-            ]
-        },
-        {
-            id: "nivel-4",
-            nombre: "Especialización",
-            descripcion: "Tu sector específico",
-            icono: "🎯",
-            duracion: "2 horas",
-            bloqueado: true,
-            prerequisito: "nivel-3",
-            tracks: [
-                { id: "track-desarrollo", nombre: "Desarrollo", icono: "💻" },
-                { id: "track-marketing", nombre: "Marketing", icono: "📱" },
-                { id: "track-salud", nombre: "Salud", icono: "🏥" },
-                { id: "track-educacion", nombre: "Educación", icono: "📚" }
-            ]
-        },
-        {
-            id: "nivel-5",
-            nombre: "Certificación",
-            descripcion: "Valida tus competencias",
-            icono: "🎓",
-            duracion: "Variable",
-            bloqueado: true,
-            prerequisito: "nivel-4",
-            modulos: [
-                { id: "examen-final", nombre: "Examen Final", duracion: "60 min" },
-                { id: "proyecto-final", nombre: "Proyecto Final", duracion: "Variable" },
-                { id: "certificado", nombre: "Tu Certificado", duracion: "5 min" }
-            ]
-        }
-    ],
-
-    // Perfiles disponibles
-    perfiles: [
-        { id: "programador", nombre: "Programador Full Stack", icono: "🖥️" },
-        { id: "empresario", nombre: "Empresario", icono: "💼" },
-        { id: "contador", nombre: "Contador", icono: "📊" },
-        { id: "marketer", nombre: "Marketer Digital", icono: "📱" },
-        { id: "vendedor", nombre: "Vendedor", icono: "🤝" },
-        { id: "pm", nombre: "Project Manager", icono: "📋" },
-        { id: "disenador", nombre: "Diseñador", icono: "🎨" },
-        { id: "estudiante", nombre: "Estudiante", icono: "📚" }
-    ],
-
-    // Rutas por perfil (módulos recomendados en orden)
-    rutas: {
-        programador: ["nivel-0", "modulo-2-2", "modulo-2-4", "modulo-2-5", "modulo-1-4", "modulo-3-4", "track-desarrollo"],
-        empresario: ["nivel-0", "nivel-1", "modulo-2-1", "modulo-3-1", "modulo-3-2", "modulo-3-7"],
-        contador: ["nivel-0", "modulo-1-2", "modulo-1-6", "modulo-2-1", "modulo-2-2", "modulo-3-5"],
-        marketer: ["nivel-0", "modulo-1-4", "modulo-2-1", "modulo-2-3", "modulo-2-5", "modulo-3-4", "track-marketing"],
-        vendedor: ["nivel-0", "modulo-1-3", "modulo-1-4", "modulo-2-1", "modulo-3-7"],
-        pm: ["nivel-0", "nivel-1", "nivel-2", "nivel-3", "nivel-4", "nivel-5"],
-        disenador: ["nivel-0", "modulo-1-6", "modulo-2-3", "modulo-2-5", "modulo-3-4"],
-        estudiante: ["nivel-0", "nivel-1", "nivel-2", "nivel-3"]
-    }
-};
-
-// Exportar para uso global
-window.PAIDEIA_DATA = PAIDEIA_DATA;
-```
-
-**Criterio de Aceptación**:
-- [ ] Archivo carga sin errores
-- [ ] Datos accesibles globalmente
-- [ ] Estructura coherente con arquitectura
-
----
-
-### TAREA 1.5: Crear js/progress.js (Sistema de Progreso)
-
-**Descripción**: Funciones para guardar y recuperar progreso del usuario.
-
-**Archivo**: `js/progress.js`
-
-**Código**:
-```javascript
-/**
- * PAIDEIA - Sistema de Progreso
- * Manejo de localStorage para tracking del usuario
- */
-
-const STORAGE_KEY = 'paideia_progreso';
-
-// Estado inicial del progreso
-const PROGRESO_INICIAL = {
-    usuario: {
-        perfil: null,
-        fechaInicio: null,
-        tiempoTotal: 0
-    },
-    niveles: {
-        "nivel-0": { completado: false, modulos: {} },
-        "nivel-1": { completado: false, modulos: {}, quiz: { intentos: 0, aprobado: false } },
-        "nivel-2": { completado: false, modulos: {}, quiz: { intentos: 0, aprobado: false } },
-        "nivel-3": { completado: false, modulos: {}, quiz: { intentos: 0, aprobado: false } },
-        "nivel-4": { completado: false, tracks: {} },
-        "nivel-5": { completado: false, examen: null, proyecto: null }
-    },
-    certificaciones: []
-};
-
-/**
- * Obtener progreso actual
- */
-function obtenerProgreso() {
-    const guardado = localStorage.getItem(STORAGE_KEY);
-    if (guardado) {
-        return JSON.parse(guardado);
-    }
-    return { ...PROGRESO_INICIAL };
-}
-
-/**
- * Guardar progreso
- */
-function guardarProgreso(progreso) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
-    actualizarUIProgreso();
-}
-
-/**
- * Reiniciar progreso (con confirmación)
- */
-function reiniciarProgreso() {
-    if (confirm('¿Estás seguro de reiniciar todo tu progreso? Esta acción no se puede deshacer.')) {
-        localStorage.removeItem(STORAGE_KEY);
-        location.reload();
-    }
-}
-
-/**
- * Marcar módulo como completado
- */
-function completarModulo(nivelId, moduloId) {
-    const progreso = obtenerProgreso();
-
-    if (!progreso.niveles[nivelId].modulos) {
-        progreso.niveles[nivelId].modulos = {};
-    }
-
-    progreso.niveles[nivelId].modulos[moduloId] = {
-        completado: true,
-        fecha: new Date().toISOString()
-    };
-
-    // Verificar si el nivel está completo
-    verificarNivelCompleto(progreso, nivelId);
-
-    guardarProgreso(progreso);
-    return progreso;
-}
-
-/**
- * Verificar si todos los módulos de un nivel están completos
- */
-function verificarNivelCompleto(progreso, nivelId) {
-    const nivelData = PAIDEIA_DATA.niveles.find(n => n.id === nivelId);
-    if (!nivelData || !nivelData.modulos) return;
-
-    const modulosRequeridos = nivelData.modulos.filter(m => !m.esQuiz);
-    const modulosCompletados = Object.keys(progreso.niveles[nivelId].modulos || {})
-        .filter(id => progreso.niveles[nivelId].modulos[id].completado);
-
-    const todosCompletos = modulosRequeridos.every(m =>
-        modulosCompletados.includes(m.id)
-    );
-
-    // También verificar quiz si existe
-    const tieneQuiz = nivelData.modulos.some(m => m.esQuiz);
-    const quizAprobado = !tieneQuiz || progreso.niveles[nivelId].quiz?.aprobado;
-
-    if (todosCompletos && quizAprobado) {
-        progreso.niveles[nivelId].completado = true;
-        desbloquearSiguienteNivel(progreso, nivelId);
-    }
-}
-
-/**
- * Desbloquear el siguiente nivel
- */
-function desbloquearSiguienteNivel(progreso, nivelActualId) {
-    const niveles = PAIDEIA_DATA.niveles;
-    const indiceActual = niveles.findIndex(n => n.id === nivelActualId);
-
-    if (indiceActual < niveles.length - 1) {
-        const siguienteNivel = niveles[indiceActual + 1];
-        // El desbloqueo se maneja en la UI, no en los datos
-        console.log(`Nivel desbloqueado: ${siguienteNivel.nombre}`);
-    }
-}
-
-/**
- * Establecer perfil del usuario
- */
-function establecerPerfil(perfilId) {
-    const progreso = obtenerProgreso();
-    progreso.usuario.perfil = perfilId;
-
-    if (!progreso.usuario.fechaInicio) {
-        progreso.usuario.fechaInicio = new Date().toISOString();
-    }
-
-    guardarProgreso(progreso);
-    return progreso;
-}
-
-/**
- * Calcular porcentaje de progreso total
- */
-function calcularProgresoTotal() {
-    const progreso = obtenerProgreso();
-    let totalModulos = 0;
-    let completados = 0;
-
-    PAIDEIA_DATA.niveles.forEach(nivel => {
-        if (nivel.modulos) {
-            totalModulos += nivel.modulos.length;
-
-            const modulosNivel = progreso.niveles[nivel.id]?.modulos || {};
-            completados += Object.values(modulosNivel).filter(m => m.completado).length;
-        }
-    });
-
-    return totalModulos > 0 ? Math.round((completados / totalModulos) * 100) : 0;
-}
-
-/**
- * Verificar si un nivel está bloqueado
- */
-function nivelEstaBloqueado(nivelId) {
-    const nivel = PAIDEIA_DATA.niveles.find(n => n.id === nivelId);
-    if (!nivel || !nivel.prerequisito) return false;
-
-    const progreso = obtenerProgreso();
-    const prerequisito = progreso.niveles[nivel.prerequisito];
-
-    return !prerequisito?.completado;
-}
-
-/**
- * Actualizar UI con el progreso actual
- */
-function actualizarUIProgreso() {
-    const progreso = obtenerProgreso();
-    const porcentaje = calcularProgresoTotal();
-
-    // Actualizar navbar
-    const navProgress = document.getElementById('nav-progress');
-    if (navProgress) navProgress.textContent = `${porcentaje}%`;
-
-    // Actualizar sidebar
-    const sidebarProgressBar = document.getElementById('sidebar-progress-bar');
-    const sidebarProgressText = document.getElementById('sidebar-progress-text');
-
-    if (sidebarProgressBar) sidebarProgressBar.style.width = `${porcentaje}%`;
-    if (sidebarProgressText) sidebarProgressText.textContent = `${porcentaje}%`;
-
-    // Actualizar perfil en sidebar
-    const sidebarPerfil = document.getElementById('sidebar-perfil');
-    if (sidebarPerfil && progreso.usuario.perfil) {
-        const perfil = PAIDEIA_DATA.perfiles.find(p => p.id === progreso.usuario.perfil);
-        if (perfil) {
-            sidebarPerfil.textContent = `${perfil.icono} ${perfil.nombre}`;
-        }
-    }
-
-    // Actualizar lista de niveles en sidebar
-    renderizarSidebarNiveles();
-}
-
-/**
- * Renderizar niveles en el sidebar
- */
-function renderizarSidebarNiveles() {
-    const container = document.getElementById('sidebar-niveles');
-    if (!container) return;
-
-    const progreso = obtenerProgreso();
-
-    container.innerHTML = PAIDEIA_DATA.niveles.map(nivel => {
-        const nivelProgreso = progreso.niveles[nivel.id];
-        const bloqueado = nivelEstaBloqueado(nivel.id);
-
-        let estado = '⭕';
-        let clase = '';
-
-        if (bloqueado) {
-            estado = '🔒';
-            clase = 'opacity-50 cursor-not-allowed';
-        } else if (nivelProgreso?.completado) {
-            estado = '✅';
-            clase = 'bg-green-50';
-        } else if (Object.keys(nivelProgreso?.modulos || {}).length > 0) {
-            estado = '🔄';
-            clase = 'bg-amber-50';
-        }
-
-        return `
-            <a href="#"
-               onclick="${bloqueado ? 'return false' : `navegarA('${nivel.id}')`}"
-               class="sidebar-item flex items-center justify-between p-3 rounded-lg hover:bg-slate-100 transition ${clase}">
-                <span class="flex items-center space-x-2">
-                    <span>${nivel.icono}</span>
-                    <span class="text-sm font-medium">${nivel.nombre}</span>
-                </span>
-                <span>${estado}</span>
-            </a>
-        `;
-    }).join('');
-}
-
-// Exportar funciones
-window.obtenerProgreso = obtenerProgreso;
-window.guardarProgreso = guardarProgreso;
-window.completarModulo = completarModulo;
-window.establecerPerfil = establecerPerfil;
-window.calcularProgresoTotal = calcularProgresoTotal;
-window.nivelEstaBloqueado = nivelEstaBloqueado;
-window.actualizarUIProgreso = actualizarUIProgreso;
-window.reiniciarProgreso = reiniciarProgreso;
-```
-
-**Criterio de Aceptación**:
-- [ ] Progreso se guarda en localStorage
-- [ ] Progreso persiste entre sesiones
-- [ ] UI se actualiza al cambiar progreso
-
----
-
-### TAREA 1.6: Crear js/router.js (Navegación SPA)
-
-**Descripción**: Sistema de routing para navegación sin recargar página.
-
-**Archivo**: `js/router.js`
-
-**Código**:
-```javascript
-/**
- * PAIDEIA - Router SPA
- * Navegación sin recarga de página
- */
-
-// Historial de navegación
-let historialNavegacion = [];
-
-/**
- * Navegar a una sección/módulo
- */
-async function navegarA(ruta) {
-    console.log('Navegando a:', ruta);
-
-    // Verificar si está bloqueado
-    const partes = ruta.split('/');
-    const nivelId = partes[0];
-
-    if (nivelEstaBloqueado(nivelId)) {
-        mostrarMensaje('Este nivel está bloqueado. Completa el nivel anterior primero.', 'warning');
-        return;
-    }
-
-    // Guardar en historial
-    historialNavegacion.push(ruta);
-
-    // Actualizar URL (sin recargar)
-    window.history.pushState({ ruta }, '', `#${ruta}`);
-
-    // Cargar contenido
-    await cargarContenido(ruta);
-
-    // Actualizar sidebar (marcar activo)
-    actualizarSidebarActivo(nivelId);
-}
-
-/**
- * Cargar contenido de un módulo
- */
-async function cargarContenido(ruta) {
-    const contentArea = document.getElementById('content-area');
-    if (!contentArea) return;
-
-    // Mostrar loading
-    contentArea.innerHTML = `
-        <div class="flex items-center justify-center py-16">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-paideia-accent border-t-transparent"></div>
-        </div>
-    `;
-
-    try {
-        // Construir ruta del archivo
-        const archivoHTML = construirRutaArchivo(ruta);
-
-        // Intentar cargar el archivo
-        const response = await fetch(archivoHTML);
-
-        if (response.ok) {
-            const html = await response.text();
-            contentArea.innerHTML = `<div class="fade-in">${html}</div>`;
-
-            // Inicializar Mermaid si hay diagramas
-            if (html.includes('class="mermaid"')) {
-                mermaid.init(undefined, '.mermaid');
-            }
-        } else {
-            // Mostrar contenido placeholder
-            contentArea.innerHTML = generarPlaceholder(ruta);
-        }
-
-    } catch (error) {
-        console.error('Error cargando contenido:', error);
-        contentArea.innerHTML = generarPlaceholder(ruta);
-    }
-
-    // Scroll al top
-    window.scrollTo(0, 0);
-}
-
-/**
- * Construir ruta del archivo HTML
- */
-function construirRutaArchivo(ruta) {
-    const partes = ruta.split('/');
-
-    if (partes.length === 1) {
-        // Es un nivel: niveles/nivel-X/index.html
-        return `niveles/${ruta}/index.html`;
-    } else {
-        // Es un módulo: niveles/nivel-X/modulo.html
-        return `niveles/${partes[0]}/${partes[1]}.html`;
-    }
-}
-
-/**
- * Generar placeholder para contenido no disponible
- */
-function generarPlaceholder(ruta) {
-    const partes = ruta.split('/');
-    const nivelId = partes[0];
-    const moduloId = partes[1] || 'index';
-
-    // Buscar información del nivel/módulo
-    const nivel = PAIDEIA_DATA.niveles.find(n => n.id === nivelId);
-    let titulo = nivel?.nombre || ruta;
-    let descripcion = nivel?.descripcion || '';
-
-    if (moduloId !== 'index' && nivel?.modulos) {
-        const modulo = nivel.modulos.find(m => m.id === moduloId);
-        if (modulo) {
-            titulo = modulo.nombre;
-            descripcion = `Parte de ${nivel.nombre}`;
-        }
-    }
-
-    return `
-        <div class="fade-in">
-            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-                <div class="text-center mb-8">
-                    <span class="text-6xl">${nivel?.icono || '📄'}</span>
-                    <h1 class="text-3xl font-bold text-paideia-primary mt-4">${titulo}</h1>
-                    <p class="text-slate-600 mt-2">${descripcion}</p>
-                </div>
-
-                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-                    <p class="text-amber-800">
-                        <strong>🚧 Contenido en desarrollo</strong><br>
-                        Este módulo estará disponible próximamente.
-                    </p>
-                </div>
-
-                ${nivel?.modulos ? `
-                    <div class="border-t pt-6">
-                        <h3 class="font-semibold text-lg mb-4">Módulos de este nivel:</h3>
-                        <ul class="space-y-2">
-                            ${nivel.modulos.map(m => `
-                                <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                                    <span>${m.nombre}</span>
-                                    <span class="text-sm text-slate-500">${m.duracion}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                ` : ''}
-
-                <div class="flex justify-between mt-8">
-                    <button onclick="navegarAtras()"
-                            class="px-4 py-2 text-slate-600 hover:text-paideia-primary transition">
-                        ← Atrás
-                    </button>
-                    <button onclick="marcarComoCompletado('${nivelId}', '${moduloId}')"
-                            class="px-6 py-2 bg-paideia-accent text-white rounded-lg hover:bg-amber-600 transition">
-                        Marcar como completado
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-/**
- * Navegar hacia atrás
- */
-function navegarAtras() {
-    if (historialNavegacion.length > 1) {
-        historialNavegacion.pop(); // Quitar actual
-        const anterior = historialNavegacion.pop(); // Obtener anterior
-        navegarA(anterior);
-    } else {
-        navegarA('nivel-0');
-    }
-}
-
-/**
- * Marcar módulo como completado y avanzar
- */
-function marcarComoCompletado(nivelId, moduloId) {
-    completarModulo(nivelId, moduloId);
-    mostrarMensaje('¡Módulo completado!', 'success');
-
-    // Buscar siguiente módulo
-    const nivel = PAIDEIA_DATA.niveles.find(n => n.id === nivelId);
-    if (nivel?.modulos) {
-        const indice = nivel.modulos.findIndex(m => m.id === moduloId);
-        if (indice < nivel.modulos.length - 1) {
-            const siguiente = nivel.modulos[indice + 1];
-            setTimeout(() => navegarA(`${nivelId}/${siguiente.id}`), 1000);
-        } else {
-            // Era el último módulo del nivel
-            mostrarMensaje('¡Has completado todos los módulos de este nivel!', 'success');
-        }
-    }
-}
-
-/**
- * Actualizar elemento activo en sidebar
- */
-function actualizarSidebarActivo(nivelId) {
-    document.querySelectorAll('.sidebar-item').forEach(item => {
-        item.classList.remove('active');
-    });
-
-    const activo = document.querySelector(`[onclick*="${nivelId}"]`);
-    if (activo) {
-        activo.classList.add('active');
-    }
-}
-
-/**
- * Mostrar mensaje temporal
- */
-function mostrarMensaje(texto, tipo = 'info') {
-    const colores = {
-        success: 'bg-green-500',
-        warning: 'bg-amber-500',
-        error: 'bg-red-500',
-        info: 'bg-blue-500'
-    };
-
-    const mensaje = document.createElement('div');
-    mensaje.className = `fixed bottom-4 right-4 ${colores[tipo]} text-white px-6 py-3 rounded-lg shadow-lg z-50 fade-in`;
-    mensaje.textContent = texto;
-
-    document.body.appendChild(mensaje);
-
-    setTimeout(() => {
-        mensaje.remove();
-    }, 3000);
-}
-
-// Manejar navegación del navegador (botón atrás)
-window.addEventListener('popstate', (event) => {
-    if (event.state?.ruta) {
-        cargarContenido(event.state.ruta);
-    }
-});
-
-// Exportar funciones
-window.navegarA = navegarA;
-window.navegarAtras = navegarAtras;
-window.marcarComoCompletado = marcarComoCompletado;
-window.mostrarMensaje = mostrarMensaje;
-```
-
-**Criterio de Aceptación**:
-- [ ] Navegación funciona sin recargar página
-- [ ] URL se actualiza al navegar
-- [ ] Botón atrás del navegador funciona
-- [ ] Contenido se carga dinámicamente
-
----
-
-### TAREA 1.7: Crear js/app.js (Inicialización)
-
-**Descripción**: Archivo principal que inicializa la aplicación.
-
-**Archivo**: `js/app.js`
-
-**Código**:
-```javascript
-/**
- * PAIDEIA - Aplicación Principal
- * Inicialización y coordinación
- */
-
-/**
- * Inicializar la aplicación
- */
-function inicializarApp() {
-    console.log('🎓 PAIDEIA v' + PAIDEIA_DATA.version + ' iniciando...');
-
-    // Inicializar Mermaid
-    mermaid.initialize({ startOnLoad: true, theme: 'default' });
-
-    // Cargar progreso guardado
-    const progreso = obtenerProgreso();
-
-    // Actualizar UI con progreso
-    actualizarUIProgreso();
-
-    // Verificar si hay hash en URL
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-        navegarA(hash);
-    } else if (progreso.usuario.perfil) {
-        // Usuario ya tiene perfil, ir a su nivel actual
-        const nivelActual = encontrarNivelActual(progreso);
-        navegarA(nivelActual);
-    } else {
-        // Usuario nuevo, ir a bienvenida
-        navegarA('nivel-0/bienvenida');
-    }
-
-    console.log('✅ PAIDEIA inicializada correctamente');
-}
-
-/**
- * Encontrar el nivel actual del usuario
- */
-function encontrarNivelActual(progreso) {
-    for (const nivel of PAIDEIA_DATA.niveles) {
-        const nivelProgreso = progreso.niveles[nivel.id];
-
-        if (!nivelProgreso?.completado) {
-            return nivel.id;
-        }
-    }
-
-    // Todos completados, ir a certificación
-    return 'nivel-5';
-}
-
-/**
- * Obtener estadísticas del usuario
- */
-function obtenerEstadisticas() {
-    const progreso = obtenerProgreso();
-
-    let modulosCompletados = 0;
-    let totalModulos = 0;
-    let nivelesCompletados = 0;
-
-    PAIDEIA_DATA.niveles.forEach(nivel => {
-        if (nivel.modulos) {
-            totalModulos += nivel.modulos.length;
-
-            const modulosNivel = progreso.niveles[nivel.id]?.modulos || {};
-            modulosCompletados += Object.values(modulosNivel).filter(m => m.completado).length;
-        }
-
-        if (progreso.niveles[nivel.id]?.completado) {
-            nivelesCompletados++;
-        }
-    });
-
-    return {
-        modulosCompletados,
-        totalModulos,
-        nivelesCompletados,
-        totalNiveles: PAIDEIA_DATA.niveles.length,
-        porcentaje: calcularProgresoTotal(),
-        perfil: progreso.usuario.perfil,
-        fechaInicio: progreso.usuario.fechaInicio
-    };
-}
-
-/**
- * Modo debug - mostrar estado actual
- */
-function debug() {
-    console.group('🔍 PAIDEIA Debug');
-    console.log('Progreso:', obtenerProgreso());
-    console.log('Estadísticas:', obtenerEstadisticas());
-    console.log('Datos:', PAIDEIA_DATA);
-    console.groupEnd();
-}
-
-// Exportar funciones
-window.inicializarApp = inicializarApp;
-window.obtenerEstadisticas = obtenerEstadisticas;
-window.debug = debug;
-```
-
-**Criterio de Aceptación**:
-- [ ] App inicializa sin errores
-- [ ] Progreso se carga al inicio
-- [ ] Navegación automática según estado del usuario
-
----
-
-### TAREA 1.8: Actualizar index.html (Landing Page)
-
-**Descripción**: Agregar botón que enlaza a app.html.
-
-**Archivo**: `index.html`
-
-**Cambio**: Modificar el botón "Empezar Ahora" para que enlace a `app.html`
-
-```html
-<!-- Cambiar de: -->
-<a href="#pricing">Empezar Ahora</a>
-
-<!-- A: -->
-<a href="app.html">Empezar Ahora</a>
-```
-
-**Criterio de Aceptación**:
-- [ ] Botón lleva a app.html
-- [ ] Transición fluida entre páginas
-
----
-
-## ENTREGABLES SPRINT 1
-
-| # | Archivo | Estado |
-|---|---------|--------|
-| 1 | Estructura de carpetas | ⬜ |
-| 2 | legacy/ con cursos originales | ⬜ |
-| 3 | app.html | ⬜ |
-| 4 | js/data.js | ⬜ |
-| 5 | js/progress.js | ⬜ |
-| 6 | js/router.js | ⬜ |
-| 7 | js/app.js | ⬜ |
-| 8 | index.html actualizado | ⬜ |
-
-## CRITERIOS DE ACEPTACIÓN SPRINT 1
-
-- [ ] Usuario puede acceder a app.html desde landing
-- [ ] Sidebar muestra lista de niveles
-- [ ] Navegación entre secciones funciona
-- [ ] Progreso se guarda en localStorage
-- [ ] Progreso persiste entre sesiones
-- [ ] UI se actualiza al completar módulos
-
----
-
-# SPRINT 2: QUIZ Y RUTAS
-
-## Objetivo
-Implementar el sistema de quiz de perfil y rutas personalizadas.
-
-## Duración Estimada
-2 días
-
-## Tareas Detalladas
-
-### TAREA 2.1: Crear data/quiz-perfil.json
-
-**Descripción**: Archivo JSON con las preguntas del quiz de perfil.
-
-**Archivo**: `data/quiz-perfil.json`
-
-**Código**:
+**package.json resultante** (dependencias clave):
 ```json
 {
-  "titulo": "Descubre tu Ruta de Aprendizaje",
-  "descripcion": "Responde 5 preguntas para personalizar tu experiencia",
-  "preguntas": [
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "@supabase/ssr": "^0.1.0",
+    "@anthropic-ai/sdk": "^0.9.0",
+    "lucide-react": "^0.292.0",
+    "zod": "^3.22.0",
+    "jspdf": "^2.5.0"
+  }
+}
+```
+
+**Criterios de aceptación**:
+- [ ] Todas las dependencias instaladas
+- [ ] Sin errores de compatibilidad
+- [ ] `npm run build` exitoso
+
+---
+
+### TAREA 0.3: Crear Proyecto Supabase
+
+**Pasos en dashboard.supabase.com**:
+
+1. **Crear nuevo proyecto**:
+   - Nombre: `paideia-platform`
+   - Database Password: (ya guardada en CREDENCIALES_PRIVADAS.md)
+   - Region: `South America (São Paulo)` o más cercana
+   - Plan: Free tier
+
+2. **Obtener credenciales** (Settings → API):
+   - Project URL: `https://xxxxx.supabase.co`
+   - anon/public key: `eyJhbGciOiJIUzI1NiIs...`
+   - service_role key: `eyJhbGciOiJIUzI1NiIs...` (secreto)
+
+3. **Guardar en `.env.local`**:
+```bash
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIs...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIs...
+
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+**Criterios de aceptación**:
+- [ ] Proyecto Supabase creado
+- [ ] Credenciales guardadas en `.env.local`
+- [ ] `.env.local` agregado a `.gitignore`
+
+---
+
+### TAREA 0.4: Configurar Supabase Client
+
+**Crear archivo** `src/lib/supabase/client.ts`:
+```typescript
+import { createBrowserClient } from '@supabase/ssr'
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+}
+```
+
+**Crear archivo** `src/lib/supabase/server.ts`:
+```typescript
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+export function createServerSupabase() {
+  const cookieStore = cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      "id": 1,
-      "pregunta": "¿Cuál describe mejor tu trabajo actual?",
-      "opciones": [
-        { "texto": "Escribo código / desarrollo software", "perfil": "programador", "peso": 3 },
-        { "texto": "Tengo mi propio negocio / empresa", "perfil": "empresario", "peso": 3 },
-        { "texto": "Trabajo con números / finanzas / contabilidad", "perfil": "contador", "peso": 3 },
-        { "texto": "Creo contenido / campañas de marketing", "perfil": "marketer", "peso": 3 },
-        { "texto": "Vendo productos o servicios", "perfil": "vendedor", "peso": 3 },
-        { "texto": "Coordino proyectos o equipos", "perfil": "pm", "peso": 3 },
-        { "texto": "Diseño / creo cosas visuales", "perfil": "disenador", "peso": 3 },
-        { "texto": "Estoy estudiando o cambiando de carrera", "perfil": "estudiante", "peso": 3 }
-      ]
-    },
-    {
-      "id": 2,
-      "pregunta": "¿Cuánta experiencia tienes en gestión de proyectos?",
-      "opciones": [
-        { "texto": "Ninguna - Soy completamente nuevo", "modificador": { "estudiante": 2 } },
-        { "texto": "Básica - He participado en proyectos", "modificador": {} },
-        { "texto": "Intermedia - He liderado proyectos pequeños", "modificador": { "pm": 1 } },
-        { "texto": "Avanzada - Gestiono proyectos regularmente", "modificador": { "pm": 2 } }
-      ]
-    },
-    {
-      "id": 3,
-      "pregunta": "¿Qué tanto conoces sobre Inteligencia Artificial?",
-      "opciones": [
-        { "texto": "Nada o muy poco", "modificador": { "estudiante": 1 } },
-        { "texto": "He usado ChatGPT de forma básica", "modificador": {} },
-        { "texto": "Uso varias IAs en mi trabajo", "modificador": { "programador": 1, "marketer": 1 } },
-        { "texto": "Soy usuario avanzado de IA", "modificador": { "programador": 2 } }
-      ]
-    },
-    {
-      "id": 4,
-      "pregunta": "¿Cuál es tu objetivo principal con PAIDEIA?",
-      "opciones": [
-        { "texto": "Aprender desde cero", "modificador": { "estudiante": 2 } },
-        { "texto": "Ser más productivo en mi trabajo actual", "modificador": {} },
-        { "texto": "Obtener una certificación profesional", "modificador": { "pm": 2 } },
-        { "texto": "Emprender o lanzar un proyecto propio", "modificador": { "empresario": 2 } },
-        { "texto": "Automatizar tareas repetitivas", "modificador": { "programador": 1, "contador": 1 } }
-      ]
-    },
-    {
-      "id": 5,
-      "pregunta": "¿Cuánto tiempo puedes dedicar por semana al aprendizaje?",
-      "opciones": [
-        { "texto": "1-2 horas", "duracion": "corta" },
-        { "texto": "3-5 horas", "duracion": "media" },
-        { "texto": "6-10 horas", "duracion": "larga" },
-        { "texto": "Más de 10 horas", "duracion": "intensiva" }
-      ]
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          try {
+            cookieStore.set({ name, value, ...options })
+          } catch (error) {
+            // Handle in middleware
+          }
+        },
+        remove(name: string, options: CookieOptions) {
+          try {
+            cookieStore.set({ name, value: '', ...options })
+          } catch (error) {
+            // Handle in middleware
+          }
+        },
+      },
     }
-  ]
+  )
+}
+```
+
+**Crear archivo** `src/lib/supabase/middleware.ts`:
+```typescript
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
+
+export async function updateSession(request: NextRequest) {
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return request.cookies.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          request.cookies.set({ name, value, ...options })
+          response = NextResponse.next({
+            request: { headers: request.headers },
+          })
+          response.cookies.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          request.cookies.set({ name, value: '', ...options })
+          response = NextResponse.next({
+            request: { headers: request.headers },
+          })
+          response.cookies.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+
+  await supabase.auth.getUser()
+
+  return response
+}
+```
+
+**Criterios de aceptación**:
+- [ ] Archivos creados en `src/lib/supabase/`
+- [ ] Sin errores de TypeScript
+- [ ] Importaciones funcionan
+
+---
+
+### TAREA 0.5: Conectar con Vercel
+
+**Pasos**:
+
+1. **Subir a GitHub**:
+```bash
+git init
+git add .
+git commit -m "🚀 Initial commit: Next.js + Supabase setup"
+git branch -M main
+git remote add origin https://github.com/TU_USUARIO/paideia-platform.git
+git push -u origin main
+```
+
+2. **En vercel.com**:
+   - Import project desde GitHub
+   - Seleccionar `paideia-platform`
+   - Configurar variables de entorno (copiar de `.env.local`)
+   - Deploy
+
+3. **Verificar**:
+   - URL de preview funciona
+   - No hay errores de build
+
+**Criterios de aceptación**:
+- [ ] Repositorio en GitHub
+- [ ] Proyecto en Vercel
+- [ ] Deploy automático funcionando
+- [ ] Variables de entorno configuradas
+
+---
+
+### TAREA 0.6: Estructura de Carpetas Final
+
+**Crear estructura**:
+```bash
+mkdir -p src/app/\(auth\)/{login,registro,recuperar}
+mkdir -p src/app/\(app\)/{dashboard,perfil,nivel,modulo,quiz,asistente,certificado}
+mkdir -p src/app/api/{auth,progreso,quiz,certificado,asistente,webhooks}
+mkdir -p src/components/{ui,layout,features}
+mkdir -p src/hooks
+mkdir -p src/types
+mkdir -p src/content/niveles
+mkdir -p supabase/migrations
+```
+
+**Estructura resultante**:
+```
+src/
+├── app/
+│   ├── (auth)/
+│   │   ├── login/page.tsx
+│   │   ├── registro/page.tsx
+│   │   └── recuperar/page.tsx
+│   ├── (app)/
+│   │   ├── dashboard/page.tsx
+│   │   ├── perfil/page.tsx
+│   │   ├── nivel/[id]/page.tsx
+│   │   ├── modulo/[id]/page.tsx
+│   │   ├── quiz/[id]/page.tsx
+│   │   ├── asistente/page.tsx
+│   │   └── certificado/page.tsx
+│   ├── api/
+│   │   ├── auth/callback/route.ts
+│   │   ├── progreso/route.ts
+│   │   ├── quiz/route.ts
+│   │   ├── certificado/route.ts
+│   │   ├── asistente/route.ts
+│   │   └── webhooks/stripe/route.ts
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── ui/
+│   ├── layout/
+│   └── features/
+├── hooks/
+├── lib/
+│   └── supabase/
+├── types/
+└── content/
+    └── niveles/
+```
+
+**Criterios de aceptación**:
+- [ ] Todas las carpetas creadas
+- [ ] Archivos placeholder (page.tsx vacíos) donde sea necesario
+
+---
+
+## ✅ CHECKLIST SPRINT 0
+
+```
+□ Proyecto Next.js creado
+□ Dependencias instaladas
+□ Proyecto Supabase creado
+□ Credenciales configuradas
+□ Supabase clients configurados
+□ Vercel conectado
+□ Estructura de carpetas lista
+□ `npm run dev` funciona
+□ Deploy en Vercel funciona
+```
+
+---
+
+# SPRINT 1: AUTENTICACIÓN
+
+## 🎯 Objetivo
+Implementar sistema completo de autenticación con Supabase Auth.
+
+## ⏱️ Duración: 2-3 días
+
+---
+
+### TAREA 1.1: Configurar Auth en Supabase
+
+**En Supabase Dashboard → Authentication → Providers**:
+
+1. **Email** (habilitado por defecto):
+   - Confirm email: ON
+   - Secure email change: ON
+
+2. **Google OAuth** (opcional pero recomendado):
+   - En Google Cloud Console:
+     - Crear proyecto
+     - Habilitar Google+ API
+     - Crear OAuth credentials
+     - Authorized redirect URI: `https://xxxxx.supabase.co/auth/v1/callback`
+   - En Supabase: agregar Client ID y Secret
+
+**Criterios de aceptación**:
+- [ ] Email auth configurado
+- [ ] (Opcional) Google OAuth configurado
+
+---
+
+### TAREA 1.2: Crear Middleware de Auth
+
+**Archivo** `src/middleware.ts`:
+```typescript
+import { type NextRequest } from 'next/server'
+import { updateSession } from '@/lib/supabase/middleware'
+
+export async function middleware(request: NextRequest) {
+  return await updateSession(request)
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 }
 ```
 
 ---
 
-### TAREA 2.2: Crear js/quiz.js
+### TAREA 1.3: Página de Registro
 
-**Descripción**: Lógica del quiz de selección de perfil.
+**Archivo** `src/app/(auth)/registro/page.tsx`:
+```typescript
+'use client'
 
-**Archivo**: `js/quiz.js`
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
+import { Loader2, Mail, Lock, User } from 'lucide-react'
 
-**Código**:
-```javascript
-/**
- * PAIDEIA - Sistema de Quiz
- * Quiz de perfil y evaluaciones
- */
+export default function RegistroPage() {
+  const [nombre, setNombre] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
-let quizData = null;
-let respuestasQuiz = [];
-let preguntaActual = 0;
+  const router = useRouter()
+  const supabase = createClient()
 
-/**
- * Cargar datos del quiz de perfil
- */
-async function cargarQuizPerfil() {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
     try {
-        const response = await fetch('data/quiz-perfil.json');
-        quizData = await response.json();
-        return quizData;
-    } catch (error) {
-        console.error('Error cargando quiz:', error);
-        return null;
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { nombre },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+
+      if (error) throw error
+
+      setSuccess(true)
+    } catch (err: any) {
+      setError(err.message || 'Error al crear cuenta')
+    } finally {
+      setLoading(false)
     }
-}
+  }
 
-/**
- * Iniciar quiz de perfil
- */
-async function iniciarQuizPerfil() {
-    if (!quizData) {
-        await cargarQuizPerfil();
-    }
-
-    respuestasQuiz = [];
-    preguntaActual = 0;
-
-    renderizarPregunta();
-}
-
-/**
- * Renderizar pregunta actual
- */
-function renderizarPregunta() {
-    const container = document.getElementById('quiz-container');
-    if (!container || !quizData) return;
-
-    const pregunta = quizData.preguntas[preguntaActual];
-    const progreso = ((preguntaActual + 1) / quizData.preguntas.length) * 100;
-
-    container.innerHTML = `
-        <div class="max-w-2xl mx-auto">
-            <!-- Barra de progreso -->
-            <div class="mb-8">
-                <div class="flex justify-between text-sm text-slate-600 mb-2">
-                    <span>Pregunta ${preguntaActual + 1} de ${quizData.preguntas.length}</span>
-                    <span>${Math.round(progreso)}%</span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-2">
-                    <div class="bg-paideia-accent h-2 rounded-full transition-all duration-500"
-                         style="width: ${progreso}%"></div>
-                </div>
-            </div>
-
-            <!-- Pregunta -->
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <h2 class="text-2xl font-bold text-paideia-primary mb-6">
-                    ${pregunta.pregunta}
-                </h2>
-
-                <div class="space-y-3">
-                    ${pregunta.opciones.map((opcion, index) => `
-                        <button onclick="seleccionarOpcion(${index})"
-                                class="w-full text-left p-4 border-2 border-slate-200 rounded-lg
-                                       hover:border-paideia-accent hover:bg-amber-50 transition
-                                       focus:outline-none focus:border-paideia-accent">
-                            ${opcion.texto}
-                        </button>
-                    `).join('')}
-                </div>
-            </div>
-
-            <!-- Navegación -->
-            <div class="flex justify-between mt-6">
-                ${preguntaActual > 0 ? `
-                    <button onclick="preguntaAnterior()"
-                            class="px-4 py-2 text-slate-600 hover:text-paideia-primary transition">
-                        ← Anterior
-                    </button>
-                ` : '<div></div>'}
-
-                <button onclick="saltarPregunta()"
-                        class="text-sm text-slate-400 hover:text-slate-600 transition">
-                    Saltar →
-                </button>
-            </div>
+  if (success) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-black">
+        <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail className="w-8 h-8 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            ¡Revisa tu email!
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Hemos enviado un enlace de confirmación a <strong>{email}</strong>
+          </p>
+          <Link
+            href="/login"
+            className="text-purple-600 hover:text-purple-700 font-medium"
+          >
+            Volver al login
+          </Link>
         </div>
-    `;
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-black p-4">
+      <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">PAIDEIA</h1>
+          <p className="text-gray-600 mt-2">Crea tu cuenta gratuita</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Nombre completo
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Tu nombre"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="tu@email.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Contraseña
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Mínimo 8 caracteres"
+                minLength={8}
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Creando cuenta...
+              </>
+            ) : (
+              'Crear cuenta'
+            )}
+          </button>
+        </form>
+
+        <p className="mt-6 text-center text-gray-600">
+          ¿Ya tienes cuenta?{' '}
+          <Link href="/login" className="text-purple-600 hover:text-purple-700 font-medium">
+            Inicia sesión
+          </Link>
+        </p>
+      </div>
+    </div>
+  )
 }
+```
 
-/**
- * Seleccionar una opción
- */
-function seleccionarOpcion(indice) {
-    const pregunta = quizData.preguntas[preguntaActual];
-    const opcion = pregunta.opciones[indice];
+---
 
-    respuestasQuiz[preguntaActual] = opcion;
+### TAREA 1.4: Página de Login
 
-    // Animación de selección
-    const botones = document.querySelectorAll('#quiz-container button');
-    botones[indice].classList.add('border-paideia-accent', 'bg-amber-50');
+**Archivo** `src/app/(auth)/login/page.tsx`:
+```typescript
+'use client'
 
-    // Avanzar después de breve pausa
-    setTimeout(() => {
-        siguientePregunta();
-    }, 300);
-}
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
+import { Loader2, Mail, Lock } from 'lucide-react'
 
-/**
- * Ir a la siguiente pregunta
- */
-function siguientePregunta() {
-    if (preguntaActual < quizData.preguntas.length - 1) {
-        preguntaActual++;
-        renderizarPregunta();
-    } else {
-        finalizarQuiz();
+export default function LoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const router = useRouter()
+  const supabase = createClient()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (error) throw error
+
+      router.push('/dashboard')
+      router.refresh()
+    } catch (err: any) {
+      setError(err.message || 'Error al iniciar sesión')
+    } finally {
+      setLoading(false)
     }
-}
+  }
 
-/**
- * Ir a la pregunta anterior
- */
-function preguntaAnterior() {
-    if (preguntaActual > 0) {
-        preguntaActual--;
-        renderizarPregunta();
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    })
+    if (error) setError(error.message)
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-black p-4">
+      <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">PAIDEIA</h1>
+          <p className="text-gray-600 mt-2">Bienvenido de vuelta</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="tu@email.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Contraseña
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Tu contraseña"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <label className="flex items-center">
+              <input type="checkbox" className="rounded border-gray-300 text-purple-600" />
+              <span className="ml-2 text-sm text-gray-600">Recordarme</span>
+            </label>
+            <Link href="/recuperar" className="text-sm text-purple-600 hover:text-purple-700">
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Iniciando sesión...
+              </>
+            ) : (
+              'Iniciar sesión'
+            )}
+          </button>
+        </form>
+
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">O continúa con</span>
+            </div>
+          </div>
+
+          <button
+            onClick={handleGoogleLogin}
+            className="mt-4 w-full py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center justify-center gap-3"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Google
+          </button>
+        </div>
+
+        <p className="mt-6 text-center text-gray-600">
+          ¿No tienes cuenta?{' '}
+          <Link href="/registro" className="text-purple-600 hover:text-purple-700 font-medium">
+            Regístrate gratis
+          </Link>
+        </p>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+### TAREA 1.5: Auth Callback
+
+**Archivo** `src/app/auth/callback/route.ts`:
+```typescript
+import { createServerSupabase } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+
+export async function GET(request: Request) {
+  const requestUrl = new URL(request.url)
+  const code = requestUrl.searchParams.get('code')
+
+  if (code) {
+    const supabase = createServerSupabase()
+    await supabase.auth.exchangeCodeForSession(code)
+  }
+
+  // Redirigir al dashboard después de confirmar email
+  return NextResponse.redirect(new URL('/dashboard', requestUrl.origin))
+}
+```
+
+---
+
+### TAREA 1.6: Proteger Rutas
+
+**Actualizar** `src/middleware.ts`:
+```typescript
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
+
+// Rutas que requieren autenticación
+const protectedRoutes = ['/dashboard', '/perfil', '/nivel', '/modulo', '/quiz', '/asistente', '/certificado']
+
+// Rutas solo para usuarios NO autenticados
+const authRoutes = ['/login', '/registro', '/recuperar']
+
+export async function middleware(request: NextRequest) {
+  let response = NextResponse.next({
+    request: { headers: request.headers },
+  })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return request.cookies.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          response.cookies.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          response.cookies.set({ name, value: '', ...options })
+        },
+      },
     }
+  )
+
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const path = request.nextUrl.pathname
+
+  // Verificar rutas protegidas
+  const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route))
+  const isAuthRoute = authRoutes.some(route => path.startsWith(route))
+
+  // Redirigir si no está autenticado
+  if (!user && isProtectedRoute) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  // Redirigir si ya está autenticado
+  if (user && isAuthRoute) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
+
+  return response
 }
 
-/**
- * Saltar pregunta
- */
-function saltarPregunta() {
-    respuestasQuiz[preguntaActual] = null;
-    siguientePregunta();
+export const config = {
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
 }
+```
 
-/**
- * Finalizar quiz y calcular resultado
- */
-function finalizarQuiz() {
-    const resultado = calcularPerfil(respuestasQuiz);
-    mostrarResultado(resultado);
-}
+---
 
-/**
- * Calcular perfil basado en respuestas
- */
-function calcularPerfil(respuestas) {
-    const puntos = {
-        programador: 0,
-        empresario: 0,
-        contador: 0,
-        marketer: 0,
-        vendedor: 0,
-        pm: 0,
-        disenador: 0,
-        estudiante: 0
-    };
+## ✅ CHECKLIST SPRINT 1
 
-    respuestas.forEach(respuesta => {
-        if (!respuesta) return;
+```
+□ Auth configurado en Supabase
+□ Middleware de sesión
+□ Página de registro funcional
+□ Página de login funcional
+□ Callback de confirmación
+□ Protección de rutas
+□ Google OAuth (opcional)
+□ Logout funcional
+□ Redirecciones correctas
+```
 
-        // Sumar puntos base del perfil
-        if (respuesta.perfil) {
-            puntos[respuesta.perfil] += respuesta.peso || 1;
-        }
+---
 
-        // Aplicar modificadores
-        if (respuesta.modificador) {
-            Object.keys(respuesta.modificador).forEach(perfil => {
-                puntos[perfil] += respuesta.modificador[perfil];
-            });
-        }
-    });
+# SPRINT 2: BASE DE DATOS Y APIs
 
-    // Encontrar el perfil con más puntos
-    const perfilGanador = Object.keys(puntos).reduce((a, b) =>
-        puntos[a] > puntos[b] ? a : b
+## 🎯 Objetivo
+Crear tablas en Supabase y API Routes para el sistema.
+
+## ⏱️ Duración: 2-3 días
+
+---
+
+### TAREA 2.1: Crear Migraciones SQL
+
+**Archivo** `supabase/migrations/001_initial_schema.sql`:
+```sql
+-- ═══════════════════════════════════════════════════════════════
+-- PAIDEIA - Schema Inicial
+-- ═══════════════════════════════════════════════════════════════
+
+-- Extensiones
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- ═══════════════════════════════════════════════════════════════
+-- TIPOS ENUM
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TYPE perfil_tipo AS ENUM (
+    'programador', 'empresario', 'contador', 'marketer',
+    'vendedor', 'pm', 'disenador', 'estudiante'
+);
+
+CREATE TYPE plan_tipo AS ENUM ('gratuito', 'premium', 'enterprise');
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: perfiles
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE perfiles (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    auth_id UUID REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+    email TEXT NOT NULL,
+    nombre TEXT,
+    perfil_tipo perfil_tipo DEFAULT 'estudiante',
+    nivel_actual INTEGER DEFAULT 0,
+    plan plan_tipo DEFAULT 'gratuito',
+    puntos_totales INTEGER DEFAULT 0,
+    fecha_registro TIMESTAMPTZ DEFAULT NOW(),
+    ultima_actividad TIMESTAMPTZ DEFAULT NOW(),
+    metadata JSONB DEFAULT '{}'
+);
+
+CREATE INDEX idx_perfiles_auth ON perfiles(auth_id);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: progreso
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE progreso (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES perfiles(id) ON DELETE CASCADE,
+    nivel_id TEXT NOT NULL,
+    modulo_id TEXT NOT NULL,
+    completado BOOLEAN DEFAULT FALSE,
+    puntaje_quiz INTEGER,
+    fecha_inicio TIMESTAMPTZ DEFAULT NOW(),
+    fecha_completado TIMESTAMPTZ,
+    tiempo_dedicado INTEGER DEFAULT 0,
+    UNIQUE(user_id, nivel_id, modulo_id)
+);
+
+CREATE INDEX idx_progreso_user ON progreso(user_id);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: quiz_resultados
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE quiz_resultados (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES perfiles(id) ON DELETE CASCADE,
+    quiz_id TEXT NOT NULL,
+    respuestas JSONB NOT NULL,
+    puntaje INTEGER NOT NULL,
+    puntaje_maximo INTEGER NOT NULL,
+    aprobado BOOLEAN DEFAULT FALSE,
+    intentos INTEGER DEFAULT 1,
+    fecha TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: certificados
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE certificados (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES perfiles(id) ON DELETE CASCADE,
+    tipo TEXT NOT NULL,
+    nivel_id TEXT,
+    codigo_verificacion TEXT UNIQUE NOT NULL,
+    fecha_emision TIMESTAMPTZ DEFAULT NOW(),
+    pdf_url TEXT,
+    metadata JSONB DEFAULT '{}'
+);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: chat_asistente
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE chat_asistente (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES perfiles(id) ON DELETE CASCADE,
+    mensaje TEXT NOT NULL,
+    rol TEXT NOT NULL CHECK (rol IN ('user', 'assistant')),
+    contexto JSONB DEFAULT '{}',
+    tokens_usados INTEGER DEFAULT 0,
+    timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_chat_user ON chat_asistente(user_id);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TABLA: notificaciones
+-- ═══════════════════════════════════════════════════════════════
+
+CREATE TABLE notificaciones (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES perfiles(id) ON DELETE CASCADE,
+    tipo TEXT NOT NULL,
+    titulo TEXT NOT NULL,
+    mensaje TEXT NOT NULL,
+    accion_url TEXT,
+    leida BOOLEAN DEFAULT FALSE,
+    fecha TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ═══════════════════════════════════════════════════════════════
+-- TRIGGERS
+-- ═══════════════════════════════════════════════════════════════
+
+-- Auto-crear perfil al registrarse
+CREATE OR REPLACE FUNCTION handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO perfiles (auth_id, email, nombre)
+    VALUES (
+        NEW.id,
+        NEW.email,
+        COALESCE(NEW.raw_user_meta_data->>'nombre', 'Estudiante')
     );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
-    // Calcular confianza (diferencia con segundo lugar)
-    const puntosOrdenados = Object.values(puntos).sort((a, b) => b - a);
-    const confianza = puntosOrdenados[0] > 0
-        ? Math.round((1 - puntosOrdenados[1] / puntosOrdenados[0]) * 100)
-        : 50;
+CREATE TRIGGER on_auth_user_created
+    AFTER INSERT ON auth.users
+    FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
-    return {
-        perfil: perfilGanador,
-        puntos: puntos,
-        confianza: confianza
-    };
-}
+-- ═══════════════════════════════════════════════════════════════
+-- ROW LEVEL SECURITY
+-- ═══════════════════════════════════════════════════════════════
 
-/**
- * Mostrar resultado del quiz
- */
-function mostrarResultado(resultado) {
-    const container = document.getElementById('quiz-container');
-    if (!container) return;
+ALTER TABLE perfiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE progreso ENABLE ROW LEVEL SECURITY;
+ALTER TABLE quiz_resultados ENABLE ROW LEVEL SECURITY;
+ALTER TABLE certificados ENABLE ROW LEVEL SECURITY;
+ALTER TABLE chat_asistente ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notificaciones ENABLE ROW LEVEL SECURITY;
 
-    const perfil = PAIDEIA_DATA.perfiles.find(p => p.id === resultado.perfil);
-    const ruta = PAIDEIA_DATA.rutas[resultado.perfil] || [];
+-- Políticas para perfiles
+CREATE POLICY "Users can view own profile"
+    ON perfiles FOR SELECT
+    USING (auth.uid() = auth_id);
 
-    container.innerHTML = `
-        <div class="max-w-2xl mx-auto text-center fade-in">
-            <!-- Celebración -->
-            <div class="text-6xl mb-4">🎯</div>
+CREATE POLICY "Users can update own profile"
+    ON perfiles FOR UPDATE
+    USING (auth.uid() = auth_id);
 
-            <h1 class="text-3xl font-bold text-paideia-primary mb-2">
-                ¡Tu Ruta PAIDEIA!
-            </h1>
+-- Políticas para progreso
+CREATE POLICY "Users can view own progress"
+    ON progreso FOR SELECT
+    USING (user_id IN (SELECT id FROM perfiles WHERE auth_id = auth.uid()));
 
-            <p class="text-slate-600 mb-8">
-                Basado en tus respuestas, esta es tu ruta recomendada:
-            </p>
+CREATE POLICY "Users can insert own progress"
+    ON progreso FOR INSERT
+    WITH CHECK (user_id IN (SELECT id FROM perfiles WHERE auth_id = auth.uid()));
 
-            <!-- Perfil -->
-            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <div class="text-6xl mb-4">${perfil?.icono || '👤'}</div>
-                <h2 class="text-2xl font-bold text-paideia-primary">
-                    ${perfil?.nombre || resultado.perfil}
-                </h2>
-                <p class="text-slate-600 mt-2">
-                    Confianza: ${resultado.confianza}%
-                </p>
+CREATE POLICY "Users can update own progress"
+    ON progreso FOR UPDATE
+    USING (user_id IN (SELECT id FROM perfiles WHERE auth_id = auth.uid()));
 
-                <!-- Barra de confianza -->
-                <div class="w-48 mx-auto bg-slate-200 rounded-full h-2 mt-4">
-                    <div class="bg-green-500 h-2 rounded-full"
-                         style="width: ${resultado.confianza}%"></div>
-                </div>
-            </div>
+-- (Políticas similares para otras tablas...)
+```
 
-            <!-- Ruta recomendada -->
-            <div class="bg-paideia-light rounded-xl p-6 mb-8">
-                <h3 class="font-semibold text-paideia-primary mb-4">
-                    Tu camino de aprendizaje:
-                </h3>
-                <div class="flex flex-wrap justify-center gap-2">
-                    ${ruta.map(r => `
-                        <span class="px-3 py-1 bg-white rounded-full text-sm border border-paideia-primary">
-                            ${r}
-                        </span>
-                    `).join(' → ')}
-                </div>
-            </div>
-
-            <!-- Acciones -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="confirmarPerfil('${resultado.perfil}')"
-                        class="px-8 py-4 bg-paideia-accent text-white font-semibold rounded-lg
-                               hover:bg-amber-600 transition shadow-lg">
-                    Comenzar mi Ruta →
-                </button>
-
-                <button onclick="cambiarPerfilManual()"
-                        class="px-6 py-4 border-2 border-slate-300 text-slate-600 rounded-lg
-                               hover:border-paideia-primary hover:text-paideia-primary transition">
-                    Elegir otro perfil
-                </button>
-            </div>
-
-            <!-- Repetir quiz -->
-            <button onclick="iniciarQuizPerfil()"
-                    class="mt-6 text-sm text-slate-400 hover:text-slate-600 transition">
-                Repetir quiz
-            </button>
-        </div>
-    `;
-}
-
-/**
- * Confirmar perfil y guardar
- */
-function confirmarPerfil(perfilId) {
-    establecerPerfil(perfilId);
-    completarModulo('nivel-0', 'quiz-perfil');
-    mostrarMensaje('¡Perfil guardado! Tu ruta está lista.', 'success');
-
-    setTimeout(() => {
-        navegarA('nivel-0/tu-ruta');
-    }, 1000);
-}
-
-/**
- * Mostrar selector manual de perfil
- */
-function cambiarPerfilManual() {
-    const container = document.getElementById('quiz-container');
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-paideia-primary mb-6 text-center">
-                Elige tu Perfil
-            </h2>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                ${PAIDEIA_DATA.perfiles.map(perfil => `
-                    <button onclick="confirmarPerfil('${perfil.id}')"
-                            class="p-6 bg-white rounded-xl shadow hover:shadow-lg
-                                   border-2 border-transparent hover:border-paideia-accent
-                                   transition text-center">
-                        <div class="text-4xl mb-2">${perfil.icono}</div>
-                        <div class="font-medium text-sm">${perfil.nombre}</div>
-                    </button>
-                `).join('')}
-            </div>
-
-            <div class="text-center mt-6">
-                <button onclick="iniciarQuizPerfil()"
-                        class="text-paideia-cyan hover:underline">
-                    ← Volver al quiz
-                </button>
-            </div>
-        </div>
-    `;
-}
-
-// Exportar funciones
-window.iniciarQuizPerfil = iniciarQuizPerfil;
-window.seleccionarOpcion = seleccionarOpcion;
-window.preguntaAnterior = preguntaAnterior;
-window.saltarPregunta = saltarPregunta;
-window.confirmarPerfil = confirmarPerfil;
-window.cambiarPerfilManual = cambiarPerfilManual;
+**Ejecutar migración**:
+```bash
+# En Supabase Dashboard → SQL Editor → New Query
+# Pegar y ejecutar el SQL
 ```
 
 ---
 
-### TAREA 2.3: Crear niveles/nivel-0/quiz-perfil.html
+### TAREA 2.2: API Route - Progreso
 
-**Descripción**: Página del módulo de quiz de perfil.
+**Archivo** `src/app/api/progreso/route.ts`:
+```typescript
+import { NextRequest, NextResponse } from 'next/server'
+import { createServerSupabase } from '@/lib/supabase/server'
 
-**Archivo**: `niveles/nivel-0/quiz-perfil.html`
+// GET - Obtener progreso del usuario
+export async function GET(request: NextRequest) {
+  try {
+    const supabase = createServerSupabase()
 
-**Código**:
-```html
-<div class="py-8">
-    <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-paideia-primary">
-            🎯 Descubre tu Ruta de Aprendizaje
-        </h1>
-        <p class="text-slate-600 mt-2">
-            5 preguntas rápidas para personalizar tu experiencia
-        </p>
-    </div>
-
-    <div id="quiz-container">
-        <!-- El quiz se carga aquí dinámicamente -->
-        <div class="text-center py-16">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-paideia-accent border-t-transparent mx-auto"></div>
-            <p class="mt-4 text-slate-600">Cargando quiz...</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Iniciar quiz cuando se carga la página
-    document.addEventListener('DOMContentLoaded', () => {
-        if (typeof iniciarQuizPerfil === 'function') {
-            iniciarQuizPerfil();
-        }
-    });
-
-    // También iniciar si la función ya está disponible
-    if (typeof iniciarQuizPerfil === 'function') {
-        iniciarQuizPerfil();
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
     }
-</script>
+
+    // Obtener perfil
+    const { data: perfil } = await supabase
+      .from('perfiles')
+      .select('id, nivel_actual')
+      .eq('auth_id', user.id)
+      .single()
+
+    if (!perfil) {
+      return NextResponse.json({ error: 'Perfil no encontrado' }, { status: 404 })
+    }
+
+    // Obtener progreso
+    const { data: progreso } = await supabase
+      .from('progreso')
+      .select('*')
+      .eq('user_id', perfil.id)
+
+    const modulosCompletados = progreso?.filter(p => p.completado).length || 0
+    const totalModulos = 30 // Ajustar según contenido real
+
+    return NextResponse.json({
+      nivelActual: perfil.nivel_actual,
+      modulosCompletados,
+      porcentajeTotal: Math.round((modulosCompletados / totalModulos) * 100),
+      detalles: progreso || [],
+    })
+
+  } catch (error) {
+    console.error('Error en GET /api/progreso:', error)
+    return NextResponse.json({ error: 'Error interno' }, { status: 500 })
+  }
+}
+
+// POST - Marcar módulo como completado
+export async function POST(request: NextRequest) {
+  try {
+    const supabase = createServerSupabase()
+
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+    }
+
+    const body = await request.json()
+    const { nivelId, moduloId } = body
+
+    if (!nivelId || !moduloId) {
+      return NextResponse.json({ error: 'Datos incompletos' }, { status: 400 })
+    }
+
+    // Obtener perfil
+    const { data: perfil } = await supabase
+      .from('perfiles')
+      .select('id')
+      .eq('auth_id', user.id)
+      .single()
+
+    if (!perfil) {
+      return NextResponse.json({ error: 'Perfil no encontrado' }, { status: 404 })
+    }
+
+    // Insertar o actualizar progreso
+    const { data, error } = await supabase
+      .from('progreso')
+      .upsert({
+        user_id: perfil.id,
+        nivel_id: nivelId,
+        modulo_id: moduloId,
+        completado: true,
+        fecha_completado: new Date().toISOString(),
+      }, {
+        onConflict: 'user_id,nivel_id,modulo_id'
+      })
+      .select()
+
+    if (error) throw error
+
+    return NextResponse.json({ success: true, data })
+
+  } catch (error) {
+    console.error('Error en POST /api/progreso:', error)
+    return NextResponse.json({ error: 'Error interno' }, { status: 500 })
+  }
+}
 ```
 
 ---
 
-### TAREA 2.4: Crear páginas de rutas personalizadas
+### TAREA 2.3: Hook useUser
 
-**Descripción**: Crear las 8 páginas de rutas para cada perfil.
+**Archivo** `src/hooks/useUser.ts`:
+```typescript
+'use client'
 
-**Archivos**: `rutas/programador.html`, `rutas/empresario.html`, etc.
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { User } from '@supabase/supabase-js'
 
-**Plantilla base** (ejemplo para programador):
-```html
-<!-- rutas/programador.html -->
-<div class="max-w-4xl mx-auto py-8">
-    <div class="text-center mb-12">
-        <div class="text-6xl mb-4">🖥️</div>
-        <h1 class="text-3xl font-bold text-paideia-primary">
-            Ruta: Programador Full Stack
-        </h1>
-        <p class="text-slate-600 mt-2">
-            Multiplica tu productividad x3-5 con IA
-        </p>
-    </div>
+interface Perfil {
+  id: string
+  nombre: string
+  email: string
+  perfil_tipo: string
+  nivel_actual: number
+  plan: string
+  puntos_totales: number
+}
 
-    <!-- Stats -->
-    <div class="grid grid-cols-3 gap-4 mb-12">
-        <div class="bg-white rounded-xl p-4 text-center shadow">
-            <div class="text-2xl font-bold text-paideia-primary">8-10h</div>
-            <div class="text-sm text-slate-600">Duración total</div>
-        </div>
-        <div class="bg-white rounded-xl p-4 text-center shadow">
-            <div class="text-2xl font-bold text-paideia-accent">12</div>
-            <div class="text-sm text-slate-600">Módulos</div>
-        </div>
-        <div class="bg-white rounded-xl p-4 text-center shadow">
-            <div class="text-2xl font-bold text-paideia-cyan">$50/mes</div>
-            <div class="text-sm text-slate-600">Stack IA sugerido</div>
-        </div>
-    </div>
+export function useUser() {
+  const [user, setUser] = useState<User | null>(null)
+  const [perfil, setPerfil] = useState<Perfil | null>(null)
+  const [loading, setLoading] = useState(true)
 
-    <!-- Módulos de la ruta -->
-    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-        <h2 class="text-xl font-bold text-paideia-primary mb-6">Tu Camino de Aprendizaje</h2>
+  const supabase = createClient()
 
-        <div class="space-y-4">
-            <div class="flex items-center p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <span class="text-2xl mr-4">✅</span>
-                <div>
-                    <div class="font-semibold">Nivel 0: Despertar</div>
-                    <div class="text-sm text-slate-600">Introducción completada</div>
-                </div>
-            </div>
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser()
+        setUser(user)
 
-            <div class="flex items-center p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
-                <span class="text-2xl mr-4">🔄</span>
-                <div>
-                    <div class="font-semibold">Tokens y Costos (N2.2)</div>
-                    <div class="text-sm text-slate-600">Entender cómo funcionan las IAs</div>
-                </div>
-                <button onclick="navegarA('nivel-2/modulo-2-2')"
-                        class="ml-auto px-4 py-2 bg-paideia-accent text-white rounded-lg text-sm">
-                    Continuar →
-                </button>
-            </div>
+        if (user) {
+          const { data: perfil } = await supabase
+            .from('perfiles')
+            .select('*')
+            .eq('auth_id', user.id)
+            .single()
 
-            <div class="flex items-center p-4 bg-slate-50 rounded-lg border-l-4 border-slate-300">
-                <span class="text-2xl mr-4">⭕</span>
-                <div>
-                    <div class="font-semibold">Las 10 IAs para Código (N2.4)</div>
-                    <div class="text-sm text-slate-600">Cursor, Copilot, Claude, etc.</div>
-                </div>
-            </div>
+          setPerfil(perfil)
+        }
+      } catch (error) {
+        console.error('Error getting user:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
 
-            <!-- Más módulos... -->
-        </div>
-    </div>
+    getUser()
 
-    <!-- Stack recomendado -->
-    <div class="bg-paideia-light rounded-xl p-8">
-        <h2 class="text-xl font-bold text-paideia-primary mb-6">Stack de IAs Recomendado</h2>
+    // Suscribirse a cambios de auth
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user ?? null)
+        if (session?.user) {
+          const { data: perfil } = await supabase
+            .from('perfiles')
+            .select('*')
+            .eq('auth_id', session.user.id)
+            .single()
+          setPerfil(perfil)
+        } else {
+          setPerfil(null)
+        }
+      }
+    )
 
-        <div class="grid md:grid-cols-2 gap-6">
-            <div>
-                <h3 class="font-semibold mb-3">🆓 Gratuito</h3>
-                <ul class="space-y-2 text-sm">
-                    <li>• Codeium (VS Code) - Autocompletado</li>
-                    <li>• Continue.dev - Chat en IDE</li>
-                    <li>• Ollama + Llama 3 - Local/privado</li>
-                    <li>• Claude Free - Arquitectura</li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold mb-3">💰 Pago (~$50/mes)</h3>
-                <ul class="space-y-2 text-sm">
-                    <li>• Cursor Pro - IDE con IA</li>
-                    <li>• Claude Pro - Razonamiento profundo</li>
-                    <li>• GitHub Copilot - Autocompletado</li>
-                    <li>• ChatGPT Plus - Versatilidad</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [])
+
+  const logout = async () => {
+    await supabase.auth.signOut()
+    setUser(null)
+    setPerfil(null)
+  }
+
+  return { user, perfil, loading, logout }
+}
 ```
 
 ---
 
-## ENTREGABLES SPRINT 2
+## ✅ CHECKLIST SPRINT 2
 
-| # | Archivo | Estado |
-|---|---------|--------|
-| 1 | data/quiz-perfil.json | ⬜ |
-| 2 | js/quiz.js | ⬜ |
-| 3 | niveles/nivel-0/quiz-perfil.html | ⬜ |
-| 4 | rutas/programador.html | ⬜ |
-| 5 | rutas/empresario.html | ⬜ |
-| 6 | rutas/contador.html | ⬜ |
-| 7 | rutas/marketer.html | ⬜ |
-| 8 | rutas/vendedor.html | ⬜ |
-| 9 | rutas/pm.html | ⬜ |
-| 10 | rutas/disenador.html | ⬜ |
-| 11 | rutas/estudiante.html | ⬜ |
-
-## CRITERIOS DE ACEPTACIÓN SPRINT 2
-
-- [ ] Quiz de 5 preguntas funciona correctamente
-- [ ] Algoritmo asigna perfil basado en respuestas
-- [ ] Usuario puede ver su resultado con confianza
-- [ ] Usuario puede cambiar perfil manualmente
-- [ ] Perfil se guarda en localStorage
-- [ ] Rutas muestran módulos recomendados por perfil
-
----
-
-# SPRINT 3: NIVELES 0-1
-
-*(Documentación continúa con el mismo nivel de detalle...)*
-
-## Objetivo
-Migrar y organizar el contenido de Fundamentos PM en módulos individuales.
-
-## Tareas Principales
-
-1. Crear niveles/nivel-0/index.html
-2. Crear niveles/nivel-0/bienvenida.html
-3. Crear niveles/nivel-0/tu-ruta.html
-4. Migrar secciones 1-4 de fundamentos.html → nivel-1/modulo-1-1 a 1-3
-5. Migrar secciones 5-9 de fundamentos.html → nivel-1/modulo-1-4 a 1-6
-6. Migrar secciones 10-15 de fundamentos.html → nivel-1/modulo-1-7
-7. Crear quiz de evaluación nivel 1
-
-*(Se detallará completamente en el documento...)*
-
----
-
-# SPRINT 4: NIVELES 2-3
-
-## Objetivo
-Migrar contenido de Stack IA y PMO Virtual sin duplicaciones.
-
-## Tareas Principales
-
-1. Migrar sección 1 de stack.html → nivel-2/modulo-2-1 a 2-3
-2. Migrar sección 2 de stack.html → nivel-2/modulo-2-4
-3. Migrar parte 0 de pmo.html → nivel-2/modulo-2-5 y 2-6 (sin duplicar)
-4. Migrar partes 1-2 de pmo.html → nivel-3/modulo-3-1 a 3-6
-5. Migrar parte 3 de pmo.html → nivel-3/modulo-3-7
-6. Crear quizzes de nivel 2 y 3
-
----
-
-# SPRINT 5: NIVELES 4-5
-
-## Objetivo
-Crear tracks de especialización y sistema de certificación.
-
-## Tareas Principales
-
-1. Crear track-desarrollo con casos de software
-2. Crear track-marketing con casos de campañas
-3. Crear track-salud con casos clínicos
-4. Crear track-educacion con casos educativos
-5. Crear examen final (50 preguntas)
-6. Crear página de proyecto final
-7. Implementar generador de certificados PDF
-
----
-
-# SPRINT 6: DEPLOY
-
-## Objetivo
-Pulir, optimizar y desplegar a producción.
-
-## Tareas Principales
-
-1. Testing completo de todos los flujos
-2. Optimización de performance
-3. Verificar responsive en móviles
-4. Actualizar meta tags SEO
-5. Generar sitemap
-6. Deploy a GitHub Pages
-7. Verificar funcionamiento en producción
-8. Documentar instrucciones de mantenimiento
-
----
-
-## METADATOS
-
-```yaml
-ARCHIVO: SPRINTS_DETALLADOS.md
-UBICACIÓN: PROTOCOLOS/
-VERSIÓN: 1.0.0
-FECHA_CREACIÓN: 2025-11-29
-CONSCIENCIA: PAIDEIA
-METODOLOGÍA: SOUL CORE
-SPRINTS: 6
-TAREAS_TOTALES: ~50
-ESTADO: DOCUMENTACIÓN COMPLETA
+```
+□ Migraciones SQL ejecutadas
+□ Tablas creadas en Supabase
+□ RLS configurado
+□ Triggers funcionando
+□ API /api/progreso funcional
+□ Hook useUser funcional
+□ Tipos TypeScript definidos
 ```
 
 ---
 
-🧬💎∞ **PAIDEIA - Doc First, Code Second**
+# SPRINTS 3-8: RESUMEN
 
-*"El código sin documentación es como un viaje sin mapa."*
+Por espacio, aquí un resumen de los sprints restantes. Cada uno seguiría el mismo nivel de detalle.
 
 ---
 
+## SPRINT 3: UI BASE (3-4 días)
+
+**Tareas principales**:
+- Layout principal con Navbar y Sidebar
+- Dashboard con estadísticas de progreso
+- Componentes UI reutilizables (Button, Card, Progress, Modal)
+- Navegación entre niveles
+- Responsive design
+
+**Archivos clave**:
+- `src/app/(app)/layout.tsx`
+- `src/app/(app)/dashboard/page.tsx`
+- `src/components/layout/Navbar.tsx`
+- `src/components/layout/Sidebar.tsx`
+- `src/components/ui/*`
+
+---
+
+## SPRINT 4: CONTENIDO (4-5 días)
+
+**Tareas principales**:
+- Crear contenido MDX para niveles 0-3
+- Página de módulo con video/texto
+- Sistema de navegación entre módulos
+- Marcador de completado
+- Desbloqueo progresivo
+
+**Archivos clave**:
+- `src/content/niveles/*.mdx`
+- `src/app/(app)/nivel/[id]/page.tsx`
+- `src/app/(app)/modulo/[id]/page.tsx`
+- `src/lib/content.ts`
+
+---
+
+## SPRINT 5: QUIZ Y RUTAS (2-3 días)
+
+**Tareas principales**:
+- Quiz de perfil inicial (8 preguntas)
+- Algoritmo de asignación de ruta
+- Quiz de evaluación por nivel
+- Sistema de aprobación (70%+)
+- Guardar resultados
+
+**Archivos clave**:
+- `src/app/(app)/quiz-perfil/page.tsx`
+- `src/app/(app)/quiz/[id]/page.tsx`
+- `src/lib/quiz-logic.ts`
+- `src/app/api/quiz/route.ts`
+
+---
+
+## SPRINT 6: IA ASISTENTE (3-4 días)
+
+**Tareas principales**:
+- Integrar Claude API
+- Context builder por nivel
+- Restricción de respuestas
+- UI de chat
+- Historial de conversaciones
+- Límite de tokens por usuario
+
+**Archivos clave**:
+- `src/lib/claude/client.ts`
+- `src/lib/claude/context-builder.ts`
+- `src/app/api/asistente/route.ts`
+- `src/app/(app)/asistente/page.tsx`
+- `src/components/features/ChatAsistente.tsx`
+
+---
+
+## SPRINT 7: PAGOS (2-3 días)
+
+**Tareas principales**:
+- Integrar Stripe
+- Página de planes
+- Checkout session
+- Webhooks de pago
+- Actualizar plan en BD
+- Emails de confirmación
+
+**Archivos clave**:
+- `src/lib/stripe.ts`
+- `src/app/(app)/planes/page.tsx`
+- `src/app/api/stripe/checkout/route.ts`
+- `src/app/api/webhooks/stripe/route.ts`
+
+---
+
+## SPRINT 8: DEPLOY (1-2 días)
+
+**Tareas principales**:
+- Configurar dominio personalizado
+- Verificar variables de entorno
+- Configurar Vercel Analytics
+- Testing de flujos completos
+- Monitoreo de errores (Sentry)
+- Soft launch
+
+**Checklist final**:
+```
+□ Build sin errores
+□ Variables de entorno en producción
+□ Dominio configurado
+□ HTTPS funcionando
+□ Emails funcionando
+□ Pagos funcionando
+□ IA funcionando
+□ Monitoreo activo
+```
+
+---
+
+## 📊 RESUMEN TOTAL
+
+| Sprint | Tareas | Horas Est. |
+|--------|--------|------------|
+| 0 - Setup | 6 | 8-12h |
+| 1 - Auth | 6 | 12-16h |
+| 2 - BD/APIs | 3 | 12-16h |
+| 3 - UI | 5 | 20-24h |
+| 4 - Contenido | 4 | 24-32h |
+| 5 - Quiz | 4 | 12-16h |
+| 6 - IA | 4 | 20-24h |
+| 7 - Pagos | 4 | 16-20h |
+| 8 - Deploy | 6 | 8-12h |
+| **TOTAL** | **42** | **130-170h** |
+
+---
+
+**Documento actualizado**: 29 de Noviembre 2025
+**Stack**: Next.js 14 + Supabase + Vercel + Claude API
+**Versión**: 2.0.0
