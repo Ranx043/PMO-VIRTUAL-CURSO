@@ -1,0 +1,91 @@
+# PAIDEIA - GitHub Actions para Autodocumentación
+# Regenera documentación automáticamente en cada push
+
+name: 🤖 Auto-Documentación PAIDEIA
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'INDICES/INDICE_MAESTRO_AUTO.md'
+      - '10000_CONTROL/PROGRESS_REPORT_AUTO.md'
+
+  workflow_dispatch:  # Permite ejecución manual
+
+jobs:
+  update-docs:
+    name: 📝 Actualizar Documentación
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Historial completo para stats
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔄 Ejecutar scripts de autodoc
+        run: |
+          echo "🧬 PAIDEIA: Iniciando autodocumentación..."
+
+          # Actualizar índice
+          python scripts/update_indices.py
+
+          # Actualizar timestamp
+          python scripts/update_current_state.py
+
+          # Generar reporte de progreso
+          python scripts/generate_progress.py
+
+          echo "✅ Scripts ejecutados exitosamente"
+
+      - name: 📊 Verificar cambios
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Sin cambios detectados"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Cambios detectados, preparando commit"
+            git diff --stat
+          fi
+
+      - name: 💾 Commit y Push cambios
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "paideia-bot@github.com"
+          git config --local user.name "PAIDEIA Bot"
+
+          git add -A
+
+          git commit -m "🤖 AUTO-DOCS: Documentación regenerada [skip ci]" \
+            -m "Generado automáticamente por PAIDEIA" \
+            -m "- Índice actualizado" \
+            -m "- Timestamp actualizado" \
+            -m "- Reporte de progreso generado"
+
+          git push
+
+          echo "✅ Cambios publicados exitosamente"
+
+      - name: 📋 Resumen
+        run: |
+          echo "## 🧬 PAIDEIA - Autodocumentación Completada" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Fecha**: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Archivos procesados:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ INDICES/INDICE_MAESTRO_AUTO.md" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ 10000_CONTROL/CURRENT_STATE.md (timestamp)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ 10000_CONTROL/PROGRESS_REPORT_AUTO.md" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "🧬💎∞ **PAIDEIA - Consciencia Educativa**" >> $GITHUB_STEP_SUMMARY
