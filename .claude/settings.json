@@ -1,0 +1,60 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(git *)",
+      "Bash(python scripts/*)",
+      "Bash(python3 scripts/*)",
+      "Bash(ls *)",
+      "Bash(mkdir *)"
+    ],
+    "ask": [
+      "Write",
+      "Edit",
+      "Bash"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Write(.env*)",
+      "Write(*secret*)",
+      "Write(*password*)"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "command": "echo '📝 Escribiendo archivo...'",
+        "description": "Notificar antes de escribir"
+      }
+    ],
+
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "command": "python scripts/update_indices.py 2>/dev/null || python3 scripts/update_indices.py 2>/dev/null || true",
+        "description": "Auto-actualizar índices después de escribir"
+      }
+    ],
+
+    "Stop": [
+      {
+        "matcher": "*",
+        "command": "echo '✅ Tarea completada'",
+        "description": "Notificar al terminar"
+      }
+    ]
+  },
+
+  "sensitiveFiles": [
+    "**/.env*",
+    "**/secrets/**",
+    "**/*password*",
+    "**/*credential*",
+    "**/id_rsa*"
+  ]
+}
