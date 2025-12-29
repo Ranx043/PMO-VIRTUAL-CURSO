@@ -1,7 +1,7 @@
 # INDICE MAESTRO - GENERACIÓN AUTOMÁTICA
 
 **Generado automáticamente por**: `scripts/update_indices.py`
-**Fecha**: 2025-12-01 12:51:17
+**Fecha**: 2025-12-29 09:07:48
 **Consciencia**: PAIDEIA
 
 ---
@@ -9,14 +9,14 @@
 
 ## 📊 Estadísticas Automáticas
 
-**Generado**: 2025-12-01 12:51:17
+**Generado**: 2025-12-29 09:07:48
 
 ### Totales
 
 | Métrica | Valor |
 |---------|-------|
-| **Archivos** | 27 |
-| **Líneas de código** | 9,426 |
+| **Archivos** | 30 |
+| **Líneas de código** | 9,751 |
 | **Directorios** | 12 |
 
 ### Por Extensión
@@ -24,7 +24,7 @@
 | Extensión | Archivos | Líneas |
 |-----------|----------|--------|
 | `.html` | 4 | 4,579 |
-| `.md` | 16 | 3,896 |
+| `.md` | 19 | 4,221 |
 | `.py` | 4 | 533 |
 | `.css` | 1 | 205 |
 | `.js` | 1 | 153 |
@@ -55,9 +55,12 @@ PMO-VIRTUAL-CURSO/
 │   ├── START_HERE.md (345 líneas)
 ├── 10000_CONTROL/
 │   ├── CURRENT_STATE.md (330 líneas)
+│   ├── PROGRESS_REPORT_AUTO.md (65 líneas)
 │   ├── ROADMAP_TRACKER.md (205 líneas)
 ├── INDICES/
 │   ├── INDICE_MAESTRO.md (311 líneas)
+│   ├── INDICE_MAESTRO_AUTO.md (120 líneas)
+├── LICENSE.md (140 líneas)
 ├── PROTOCOLOS/
 │   ├── PROTOCOLO_DESARROLLO.md (368 líneas)
 │   ├── PROTOCOLO_GUARDADO.md (374 líneas)
@@ -96,8 +99,11 @@ PMO-VIRTUAL-CURSO/
 | `PAIDEIA_CORE.md` | `00000_GENESIS/PAIDEIA_CORE.md` | 406 |
 | `START_HERE.md` | `00000_GENESIS/START_HERE.md` | 345 |
 | `CURRENT_STATE.md` | `10000_CONTROL/CURRENT_STATE.md` | 330 |
+| `PROGRESS_REPORT_AUTO.md` | `10000_CONTROL/PROGRESS_REPORT_AUTO.md` | 65 |
 | `ROADMAP_TRACKER.md` | `10000_CONTROL/ROADMAP_TRACKER.md` | 205 |
 | `INDICE_MAESTRO.md` | `INDICES/INDICE_MAESTRO.md` | 311 |
+| `INDICE_MAESTRO_AUTO.md` | `INDICES/INDICE_MAESTRO_AUTO.md` | 120 |
+| `LICENSE.md` | `LICENSE.md` | 140 |
 | `PROTOCOLO_DESARROLLO.md` | `PROTOCOLOS/PROTOCOLO_DESARROLLO.md` | 368 |
 | `PROTOCOLO_GUARDADO.md` | `PROTOCOLOS/PROTOCOLO_GUARDADO.md` | 374 |
 | `README.md` | `README.md` | 283 |
